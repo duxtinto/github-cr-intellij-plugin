@@ -1,0 +1,10 @@
+plugins {
+    id 'org.jetbrains.intellij' version '0.2.17'
+}
+
+apply plugin: 'java'
+
+allprojects {
+    targetCompatibility = 1.8
+    sourceCompatibility = 1.8
+}
