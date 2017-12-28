@@ -1,10 +1,43 @@
 plugins {
     id 'org.jetbrains.intellij' version '0.2.17'
+    id 'net.ltgt.apt-idea' version '0.13'
 }
 
 apply plugin: 'java'
 
-allprojects {
-    targetCompatibility = 1.8
-    sourceCompatibility = 1.8
+ext.jvm = 1.8
+ext.idea_version = '2017.2.5'
+
+targetCompatibility = project.jvm
+sourceCompatibility = project.jvm
+
+intellij {
+    version project.idea_version
+    plugins = ['git4idea', 'github']
+    pluginName 'github_reviews_plugin'
+}
+
+sourceSets {
+    main {
+        java.srcDir 'src/main/java'
+        resources.srcDir 'src/main/resources'
+    }
+    test {
+        java.srcDir 'src/test/java'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    ext.versions = [
+        dagger: '2.14',
+        auto_common: '0.9',
+    ]
+
+    compile "com.google.dagger:dagger:${versions.dagger}"
+    apt "com.google.dagger:dagger-compiler:${versions.dagger}"
+    apt "com.google.auto:auto-common:${versions.auto_common}"
 }
