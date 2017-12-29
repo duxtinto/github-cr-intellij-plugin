@@ -1,4 +1,4 @@
-package com.duxtinto.github_reviews_plugin.di.scopes;
+package com.duxtinto.intellij.plugin.github.codereviews.di.scopes;
 
 import javax.inject.Scope;
 import java.lang.annotation.Documented;

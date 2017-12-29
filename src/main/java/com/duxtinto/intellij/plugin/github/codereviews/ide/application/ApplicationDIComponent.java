@@ -1,7 +1,7 @@
-package com.duxtinto.github_reviews_plugin.ide.application;
+package com.duxtinto.intellij.plugin.github.codereviews.ide.application;
 
-import com.duxtinto.github_reviews_plugin.di.dagger.ApplicationContainer;
-import com.duxtinto.github_reviews_plugin.di.dagger.DaggerApplicationContainer;
+import com.duxtinto.intellij.plugin.github.codereviews.di.dagger.ApplicationContainer;
+import com.duxtinto.intellij.plugin.github.codereviews.di.dagger.DaggerApplicationContainer;
 import com.intellij.openapi.components.ApplicationComponent;
 
 public class ApplicationDIComponent implements ApplicationComponent {

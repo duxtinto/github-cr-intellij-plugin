@@ -1,7 +1,7 @@
-package com.duxtinto.github_reviews_plugin.ide.project;
+package com.duxtinto.intellij.plugin.github.codereviews.ide.project;
 
-import com.duxtinto.github_reviews_plugin.di.dagger.ProjectContainer;
-import com.duxtinto.github_reviews_plugin.ide.application.ApplicationDIComponent;
+import com.duxtinto.intellij.plugin.github.codereviews.di.dagger.ProjectContainer;
+import com.duxtinto.intellij.plugin.github.codereviews.ide.application.ApplicationDIComponent;
 import com.intellij.openapi.components.ProjectComponent;
 
 public class ProjectDIComponent implements ProjectComponent {
