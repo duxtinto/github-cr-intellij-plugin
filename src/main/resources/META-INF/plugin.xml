@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <idea-plugin>
-    <id>main.java.com.duxtinto.github_reviews_plugin</id>
+    <id>main.com.duxtinto.intellij.plugin.github.codereviews</id>
     <name>Github Code Review Plugin</name>
     <version>1.0</version>
 
@@ -22,24 +22,22 @@
         <toolWindow
                 id="GitHub Reviews"
                 anchor="bottom"
-                factoryClass="com.duxtinto.github_reviews_plugin.ui.toolwindow.Factory"
+                factoryClass="com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowFactory"
         />
     </extensions>
 
     <actions>
-        <group id="GH_Reviews.Toolbar">
-        </group>
     </actions>
 
     <application-components>
         <component>
-            <implementation-class>com.duxtinto.github_reviews_plugin.ide.application.ApplicationDIComponent</implementation-class>
+            <implementation-class>com.duxtinto.intellij.plugin.github.codereviews.ide.integration.ApplicationDIComponent</implementation-class>
         </component>
     </application-components>
 
     <project-components>
         <component>
-            <implementation-class>com.duxtinto.github_reviews_plugin.ide.project.ProjectDIComponent</implementation-class>
+            <implementation-class>com.duxtinto.intellij.plugin.github.codereviews.ide.integration.ProjectDIComponent</implementation-class>
         </component>
     </project-components>
 </idea-plugin>
