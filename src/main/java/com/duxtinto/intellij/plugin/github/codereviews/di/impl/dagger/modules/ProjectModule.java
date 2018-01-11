@@ -4,11 +4,10 @@ import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped;
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.ProjectExt;
 import com.intellij.openapi.progress.EmptyProgressIndicator;
 import com.intellij.openapi.progress.ProgressIndicator;
-import com.intellij.openapi.project.Project;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(includes = {AuthModule.class, ReposModule.class, PullRequestModule.class})
+@Module(includes = {AuthModule.class, ReposModule.class, PullRequestModule.class, UiModule.class})
 public class ProjectModule {
     private final ProjectExt project;
 

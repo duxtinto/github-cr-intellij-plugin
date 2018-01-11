@@ -1,6 +1,6 @@
-package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.views;
+package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow;
 
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.PullRequestList.PullRequestListView;
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListView;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 
@@ -9,14 +9,11 @@ import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class PullRequestListPanel {
+public class ToolWindowContentView implements ToolWindowContent.View {
     private JPanel content;
     private PullRequestListView pullRequestListView;
 
     private PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
-
-    public PullRequestListPanel() {
-    }
 
     public JPanel getContent() {
         return content;

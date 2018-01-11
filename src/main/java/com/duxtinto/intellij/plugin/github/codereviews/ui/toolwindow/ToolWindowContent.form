@@ -18,7 +18,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <nested-form id="23fdd" form-file="com/duxtinto/intellij/plugin/github/codereviews/ui/toolwindow/PullRequestList/PullRequestList.form" binding="pullRequestListView">
+          <nested-form id="23fdd" form-file="com/duxtinto/intellij/plugin/github/codereviews/ui/toolwindow/pullrequestlist/PullRequestList.form" binding="pullRequestListView">
             <constraints border-constraint="Center"/>
           </nested-form>
         </children>

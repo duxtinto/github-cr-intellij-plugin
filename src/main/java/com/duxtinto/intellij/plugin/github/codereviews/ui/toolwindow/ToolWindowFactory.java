@@ -1,14 +1,15 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow;
 
 import com.duxtinto.intellij.plugin.github.codereviews.di.contracts.DiContainerAware;
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.views.PullRequestListPanel;
 import com.intellij.openapi.project.DumbAware;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.impl.ToolWindowImpl;
 import com.intellij.ui.content.ContentFactory;
-import com.intellij.ui.content.ContentManager;
 import org.jetbrains.annotations.NotNull;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 public class ToolWindowFactory implements com.intellij.openapi.wm.ToolWindowFactory, DiContainerAware, DumbAware {
 
@@ -18,24 +19,36 @@ public class ToolWindowFactory implements com.intellij.openapi.wm.ToolWindowFact
 //    @Inject
 //    GetAllOpenForRepoInteractor pullRequestFetcher;
 
-    private ToolWindowImpl myToolWindow;
-    private ContentManager contentManager;
-    private ContentFactory contentFactory;
-    private final PullRequestListPanel pullRequestPanel = new PullRequestListPanel();
+//    @Inject
+//    PullRequestListPresenter presenter;
+
+    @Inject
+    ContentFactory contentFactory;
+
+    @Inject
+    @Named("GH_Reviews")
+    ToolWindowImpl myToolWindow;
+
+    @Inject
+    ToolWindowContent.View view;
+
+    @Inject
+    ToolWindowContent.Presenter presenter;
 
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
-
-        myToolWindow = (ToolWindowImpl)toolWindow;
-        contentManager = myToolWindow.getContentManager();
-        contentFactory = ContentFactory.SERVICE.getInstance();
-
         getProjectContainer(project).inject(this);
-        contentManager.addContent(contentFactory.createContent(pullRequestPanel.getContent(), "", false));
 
-//        pullRequestPanel.getReloadButton().addActionListener(e -> {
+        if (!myToolWindow.getId().equals(((ToolWindowImpl)toolWindow).getId())) {
+            return;
+        }
+
+        presenter.displayContent();
+//        presenter.displayPullRequests(new ArrayList<>());
+
+//        view.getReloadButton().addActionListener(e -> {
 //            contentManager.removeAllContents(true);
-//            contentManager.addContent(contentFactory.createContent(pullRequestPanel.getContent(), "", false));
+//            contentManager.addContent(contentFactory.createContent(view.getContent(), "", false));
 //        });
     }
 

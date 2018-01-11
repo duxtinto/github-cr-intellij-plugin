@@ -1,15 +1,25 @@
-package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.PullRequestList;
+package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist;
 
+import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubPullRequestExt;
 import com.intellij.ui.table.TableView;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 
+import javax.inject.Inject;
 import javax.swing.*;
 import java.awt.*;
 
-public class PullRequestListView implements Contract.View {
-    private TableView table;
+public class PullRequestListView implements PullRequestList.View {
+    private TableView<GithubPullRequestExt> table;
     private JPanel content;
+
+    @Inject
+    PullRequestList.Presenter presenter;
+
+    @Override
+    public void render(PullRequestList.Model model) {
+        table.setModelAndUpdateColumns(model.getTableModel());
+    }
 
     private void createUIComponents() {
         table = new TableView<>();
