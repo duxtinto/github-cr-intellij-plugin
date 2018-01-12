@@ -35,6 +35,12 @@ public class GithubPullRequestExt extends ForwardingObject {
     public String getTitle() {
         return delegate.getTitle();
     }
+
+    @Nonnull
+    public String getUrl() {
+        return delegate.getHtmlUrl();
+    }
+
     public enum State {
         UNKNOWN,
         OPEN,
