@@ -9,6 +9,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequest
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestList;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListPresenter;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListView;
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.events.PullRequesListMouseInputAdapter;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.openapi.wm.impl.ToolWindowImpl;
 import com.intellij.ui.content.ContentFactory;
@@ -56,8 +57,10 @@ public class UiModule {
 
     @Provides
     @ProjectScoped
-    public PullRequestList.View providePullRequestListView(PullRequestList.Presenter presenter) {
-        return new PullRequestListView(presenter);
+    public PullRequestList.View providePullRequestListView(
+            PullRequestList.Presenter presenter,
+            PullRequesListMouseInputAdapter mouseInputAdapter) {
+        return new PullRequestListView(presenter, mouseInputAdapter);
     }
 
     @Provides
@@ -70,5 +73,11 @@ public class UiModule {
     @ProjectScoped
     public ColumnInfoFactory provideColumnInfoFactory() {
         return new ColumnInfoFactory();
+    }
+
+    @Provides
+    @ProjectScoped
+    public PullRequesListMouseInputAdapter providePullRequesListMouseInputAdapter() {
+        return new PullRequesListMouseInputAdapter();
     }
 }
