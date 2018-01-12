@@ -8,6 +8,7 @@ public interface ToolWindowContent {
         JComponent getContent();
     }
     interface Presenter {
+        void setView(View view);
         void displayContent();
     }
 }

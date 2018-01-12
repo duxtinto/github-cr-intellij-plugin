@@ -5,6 +5,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.ProjectE
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContent;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContentPresenter;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContentView;
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.ColumnInfoFactory;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestList;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListPresenter;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListView;
@@ -42,27 +43,32 @@ public class UiModule {
     @Provides
     @ProjectScoped
     public ToolWindowContent.Presenter provideToolWindowContentPresenter(
-            ToolWindowContent.View view,
             ContentFactory contentFactory,
             @Named("GH_Reviews") ContentManager contentManager) {
-        return new ToolWindowContentPresenter(view, contentFactory, contentManager);
+        return new ToolWindowContentPresenter(contentFactory, contentManager);
     }
 
     @Provides
     @ProjectScoped
-    public ToolWindowContent.View   provideToolWindowContentView() {
-        return new ToolWindowContentView();
+    public ToolWindowContent.View provideToolWindowContentView(PullRequestList.View pullRequestListView) {
+        return new ToolWindowContentView(pullRequestListView);
     }
 
     @Provides
     @ProjectScoped
-    public PullRequestList.View providePullRequestListView() {
-        return new PullRequestListView();
+    public PullRequestList.View providePullRequestListView(PullRequestList.Presenter presenter) {
+        return new PullRequestListView(presenter);
     }
 
     @Provides
     @ProjectScoped
-    public PullRequestList.Presenter providePullRequestListPresenter(PullRequestList.View view) {
-        return new PullRequestListPresenter(view);
+    public PullRequestList.Presenter providePullRequestListPresenter(ColumnInfoFactory columnInfoFactory) {
+        return new PullRequestListPresenter(columnInfoFactory);
+    }
+
+    @Provides
+    @ProjectScoped
+    public ColumnInfoFactory provideColumnInfoFactory() {
+        return new ColumnInfoFactory();
     }
 }

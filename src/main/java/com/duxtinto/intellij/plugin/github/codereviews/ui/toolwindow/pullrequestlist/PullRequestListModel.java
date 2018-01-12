@@ -1,13 +1,16 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist;
 
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubPullRequestExt;
+import com.intellij.util.ui.ColumnInfo;
 import com.intellij.util.ui.ListTableModel;
+
+import java.util.List;
 
 public class PullRequestListModel implements PullRequestList.Model {
     private ListTableModel<GithubPullRequestExt> tableModel;
 
-    PullRequestListModel() {
-        this.tableModel = new ListTableModel<>();
+    PullRequestListModel(ColumnInfo[] columns) {
+        this.tableModel = new ListTableModel<>(columns);
     }
 
     @Override
@@ -16,7 +19,7 @@ public class PullRequestListModel implements PullRequestList.Model {
     }
 
     @Override
-    public void setTableModel(ListTableModel<GithubPullRequestExt> tableModel) {
-        this.tableModel = tableModel;
+    public void setPullRequests(List<GithubPullRequestExt> pullRequests) {
+        tableModel.setItems(pullRequests);
     }
 }
