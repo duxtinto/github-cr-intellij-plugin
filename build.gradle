@@ -1,0 +1,66 @@
+buildscript {
+    dependencies {
+        ext.versions = [
+            'plugins': [
+                'junit': '1.0.2'
+            ]
+        ]
+
+        classpath "org.junit.platform:junit-platform-gradle-plugin:${versions.plugins.junit}"
+    }
+}
+
+plugins {
+    id 'net.ltgt.apt-idea' version '0.13'
+    id 'org.jetbrains.intellij' version '0.2.17'
+}
+
+apply plugin: 'java'
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+ext.jvm = 1.8
+ext.idea_version = '2017.2.5'
+
+targetCompatibility = project.jvm
+sourceCompatibility = project.jvm
+
+intellij {
+    version project.idea_version
+    plugins = ['git4idea', 'github']
+    pluginName 'github_reviews_plugin'
+}
+
+sourceSets {
+    main {
+        java.srcDir 'src/main/java'
+        resources.srcDir 'src/main/resources'
+    }
+    test {
+        java.srcDir 'src/test/java'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    ext.versions = [
+        guava: '23.6-jre',
+        dagger: '2.14',
+        auto_common: '0.9',
+        auto_value: '1.5',
+        junit: '5.0.2',
+    ]
+
+    compile "com.google.guava:guava:${versions.guava}"
+    compile "com.google.dagger:dagger:${versions.dagger}"
+
+    compileOnly "com.google.auto.value:auto-value:${versions.auto_value}"
+
+    apt "com.google.dagger:dagger-compiler:${versions.dagger}"
+    apt "com.google.auto:auto-common:${versions.auto_common}"
+    apt "com.google.auto.value:auto-value:${versions.auto_value}"
+
+    testCompile "org.junit.jupiter:junit-jupiter-api:${versions.junit}"
+}
