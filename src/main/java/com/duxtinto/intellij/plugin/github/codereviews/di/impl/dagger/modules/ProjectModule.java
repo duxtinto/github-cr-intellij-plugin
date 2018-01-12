@@ -7,7 +7,13 @@ import com.intellij.openapi.progress.ProgressIndicator;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(includes = {AuthModule.class, ReposModule.class, PullRequestModule.class, UiModule.class})
+@Module(includes = {
+        AuthModule.class,
+        ReposModule.class,
+        PullRequestModule.class,
+        UiModule.class,
+        EventsModule.class,
+})
 public class ProjectModule {
     private final ProjectExt project;
 
