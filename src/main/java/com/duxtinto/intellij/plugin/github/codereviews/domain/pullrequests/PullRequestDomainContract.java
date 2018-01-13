@@ -14,4 +14,8 @@ public interface PullRequestDomainContract {
     interface Repository {
         List<PullRequestEntity> getAllOpenBy(@Nonnull String userName, @Nonnull String repoName) throws IOException;
     }
+
+    interface DescriptionParser {
+        PullRequestDescriptionEntity parse(String description);
+    }
 }

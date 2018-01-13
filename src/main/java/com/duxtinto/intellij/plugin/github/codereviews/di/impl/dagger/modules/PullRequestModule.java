@@ -4,9 +4,11 @@ import com.duxtinto.intellij.plugin.github.codereviews.data.pullrequests.PullReq
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped;
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestDomainContract;
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllOpenForRepoInteractor;
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.issues.GetAllClosableByInteractor;
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubConnectionExt;
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.GithubApiV3Loader;
 import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.ApiV3PullRequestFetcher;
+import com.duxtinto.intellij.plugin.github.codereviews.services.pullrequests.GithubDescriptionParser;
 import dagger.Module;
 import dagger.Provides;
 
@@ -14,8 +16,8 @@ import dagger.Provides;
 public class PullRequestModule {
     @Provides
     @ProjectScoped
-    public GithubApiV3Loader provideGithubApiLoader() {
-        return new GithubApiV3Loader();
+    public GithubApiV3Loader provideGithubApiLoader(GetAllClosableByInteractor interactor) {
+        return new GithubApiV3Loader(interactor);
     }
 
     @Provides
@@ -30,6 +32,20 @@ public class PullRequestModule {
     @ProjectScoped
     public PullRequestDomainContract.Repository providePullRequestRepository(PullRequestDomainContract.Fetcher fetcher) {
         return new PullRequestRepositoryImpl((ApiV3PullRequestFetcher)fetcher);
+    }
+
+    @Provides
+    @ProjectScoped
+    public PullRequestDomainContract.DescriptionParser providePullRequestDescriptionParser() {
+        return new GithubDescriptionParser();
+    }
+
+    @Provides
+    @ProjectScoped
+    public GetAllClosableByInteractor provideGetClosableIssuesInteractor(
+            PullRequestDomainContract.DescriptionParser descriptionParser
+    ) {
+        return new GetAllClosableByInteractor(descriptionParser);
     }
 
     @Provides
