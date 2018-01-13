@@ -1,7 +1,7 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services;
 
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity;
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubConnectionExt;
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubPullRequestExt;
 import org.apache.http.Header;
 import org.apache.http.message.BasicHeader;
 import org.jetbrains.plugins.github.api.GithubConnection;
@@ -16,11 +16,16 @@ public class GithubApiLoader {
     private static final Header ACCEPT_V3_JSON_HTML_MARKUP = new BasicHeader("Accept", "application/vnd.github.v3.html+json");
 
     @Nonnull
-    public List<GithubPullRequestExt> loadAllPullRequests(@Nonnull GithubConnectionExt connection,
+    public List<PullRequestEntity> loadAllPullRequests(@Nonnull GithubConnectionExt connection,
                                                           @Nonnull String path) throws IOException {
         return loadAll(connection, path, GithubPullRequest[].class, ACCEPT_V3_JSON_HTML_MARKUP)
                 .stream()
-                .map(GithubPullRequestExt::create)
+                .map((idePullRequest) -> PullRequestEntity.create(
+                        idePullRequest.getNumber(),
+                        idePullRequest.getTitle(),
+                        PullRequestEntity.State.fromString(idePullRequest.getState()),
+                        idePullRequest.getHtmlUrl())
+                )
                 .collect(Collectors.toList());
     }
 

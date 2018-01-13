@@ -8,6 +8,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GitRepos
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class FindGithubRepoForRootFolderInteractor implements Interactor<Void, GithubRepositoryEntity> {
     @Nonnull

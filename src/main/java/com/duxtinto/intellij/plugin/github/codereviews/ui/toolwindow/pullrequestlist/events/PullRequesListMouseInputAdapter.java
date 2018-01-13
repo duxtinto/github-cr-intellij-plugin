@@ -1,6 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.events;
 
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubPullRequestExt;
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.ColumnInfoFactory;
 import com.intellij.ide.BrowserUtil;
 import com.intellij.ui.table.TableView;
@@ -14,9 +14,9 @@ public class PullRequesListMouseInputAdapter extends MouseInputAdapter {
 
     @Nullable
     private
-    TableView<GithubPullRequestExt> table;
+    TableView<PullRequestEntity> table;
 
-    public void listenToTable(@Nonnull TableView<GithubPullRequestExt> table) {
+    public void listenToTable(@Nonnull TableView<PullRequestEntity> table) {
         if (this.table != null) {
             this.table.removeMouseListener(this);
         }
@@ -31,7 +31,7 @@ public class PullRequesListMouseInputAdapter extends MouseInputAdapter {
             int row = table.rowAtPoint(e.getPoint());
             int column = table.columnAtPoint(e.getPoint());
             if (row != -1 && column == ColumnInfoFactory.ColumnIndexes.NUMBER.ordinal()) {
-                BrowserUtil.browse(table.getRow(row).getUrl());
+                BrowserUtil.browse(table.getRow(row).url());
             }
         }
     }

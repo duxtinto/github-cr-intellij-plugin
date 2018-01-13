@@ -1,7 +1,7 @@
 package com.duxtinto.intellij.plugin.github.codereviews.data.pullrequests;
 
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity;
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.contracts.PullRequestRepository;
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubPullRequestExt;
 import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.PullRequestFetcher;
 import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.PullRequestQueryParameters;
 import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.PullRequestQueryParameters.State;
@@ -18,7 +18,7 @@ public class PullRequestRepositoryImpl implements PullRequestRepository {
     }
 
     @Override
-    public List<GithubPullRequestExt> getAllOpenBy(@Nonnull String userName, @Nonnull String repoName) throws IOException {
+    public List<PullRequestEntity> getAllOpenBy(@Nonnull String userName, @Nonnull String repoName) throws IOException {
         PullRequestQueryParameters parameters = PullRequestQueryParameters.builder().setState(State.OPEN).build();
         return fetcher.fetchForRepository(userName, repoName, parameters);
     }

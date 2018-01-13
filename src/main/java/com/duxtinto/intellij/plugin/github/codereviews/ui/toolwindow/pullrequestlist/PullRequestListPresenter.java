@@ -1,6 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist;
 
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubPullRequestExt;
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class PullRequestListPresenter implements PullRequestList.Presenter {
     }
 
     @Override
-    public void displayPullRequests(List<GithubPullRequestExt> pullRequests) {
+    public void displayPullRequests(List<PullRequestEntity> pullRequests) {
         updateModel(pullRequests);
         if (view != null) {
             view.render(model);
@@ -25,7 +25,7 @@ public class PullRequestListPresenter implements PullRequestList.Presenter {
         return model;
     }
 
-    private void updateModel(List<GithubPullRequestExt> pullRequests) {
+    private void updateModel(List<PullRequestEntity> pullRequests) {
         model.setPullRequests(pullRequests);
     }
 

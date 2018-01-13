@@ -1,6 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist;
 
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubPullRequestExt;
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity;
 import com.intellij.util.ui.ColumnInfo;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,20 +24,20 @@ public class ColumnInfoFactory {
         };
     }
 
-    private class NumberColumnInfo extends ColumnInfo<GithubPullRequestExt, Long> {
+    private class NumberColumnInfo extends ColumnInfo<PullRequestEntity, Long> {
         NumberColumnInfo() {
             super("number");
         }
 
         @Nullable
         @Override
-        public Long valueOf(GithubPullRequestExt pullRequest) {
-            return pullRequest.getNumber();
+        public Long valueOf(PullRequestEntity pullRequest) {
+            return pullRequest.number();
         }
 
         @Nullable
         @Override
-        public TableCellRenderer getRenderer(GithubPullRequestExt pullRequest) {
+        public TableCellRenderer getRenderer(PullRequestEntity pullRequest) {
             return new DefaultTableCellRenderer() {
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -49,27 +49,27 @@ public class ColumnInfoFactory {
         }
     }
 
-    private class StateColumnInfo extends ColumnInfo<GithubPullRequestExt, String> {
+    private class StateColumnInfo extends ColumnInfo<PullRequestEntity, String> {
         StateColumnInfo() {
             super("state");
         }
 
         @Nullable
         @Override
-        public String valueOf(GithubPullRequestExt pullRequest) {
-            return pullRequest.getState().toString();
+        public String valueOf(PullRequestEntity pullRequest) {
+            return pullRequest.state().toString();
         }
     }
 
-    private class TitleColumnInfo extends ColumnInfo<GithubPullRequestExt, String> {
+    private class TitleColumnInfo extends ColumnInfo<PullRequestEntity, String> {
         TitleColumnInfo() {
             super("title");
         }
 
         @Nullable
         @Override
-        public String valueOf(GithubPullRequestExt pullRequest) {
-            return pullRequest.getTitle();
+        public String valueOf(PullRequestEntity pullRequest) {
+            return pullRequest.title();
         }
     }
 }
