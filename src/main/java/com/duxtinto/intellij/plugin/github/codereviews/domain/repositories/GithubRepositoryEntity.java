@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.domain.repos;
+package com.duxtinto.intellij.plugin.github.codereviews.domain.repositories;
 
 import com.google.auto.value.AutoValue;
 

@@ -1,7 +1,7 @@
 package com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests;
 
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestDomainContract;
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity;
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.contracts.PullRequestFetcher;
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubConnectionExt;
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.GithubApiV3Loader;
 
@@ -11,7 +11,7 @@ import java.util.List;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class ApiV3PullRequestFetcher implements PullRequestFetcher {
+public class ApiV3PullRequestFetcher implements PullRequestDomainContract.Fetcher {
     private final GithubConnectionExt connection;
     private final GithubApiV3Loader apiLoader;
 
