@@ -5,7 +5,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.ProjectE
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContent;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContentPresenter;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContentView;
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.ColumnInfoFactory;
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.columns.ColumnInfoFactory;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestList;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListPresenter;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListView;

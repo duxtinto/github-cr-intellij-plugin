@@ -1,7 +1,8 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services;
 
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity;
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.issues.GetAllClosableByInteractor;
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubConnectionExt;
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubPullRequestExt;
 import org.apache.http.Header;
 import org.apache.http.message.BasicHeader;
 import org.jetbrains.plugins.github.api.GithubConnection;
@@ -12,15 +13,31 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GithubApiLoader {
+import static com.google.common.base.Preconditions.checkNotNull;
+
+public class GithubApiV3Loader {
     private static final Header ACCEPT_V3_JSON_HTML_MARKUP = new BasicHeader("Accept", "application/vnd.github.v3.html+json");
 
     @Nonnull
-    public List<GithubPullRequestExt> loadAllPullRequests(@Nonnull GithubConnectionExt connection,
-                                                          @Nonnull String path) throws IOException {
+    private final GetAllClosableByInteractor getClosableIssues;
+
+    public GithubApiV3Loader(@Nonnull GetAllClosableByInteractor getClosableIssues) {
+        this.getClosableIssues = checkNotNull(getClosableIssues);
+    }
+
+    @Nonnull
+    public List<PullRequestEntity> loadAllPullRequests(
+            @Nonnull GithubConnectionExt connection,
+            @Nonnull String path) throws IOException {
         return loadAll(connection, path, GithubPullRequest[].class, ACCEPT_V3_JSON_HTML_MARKUP)
                 .stream()
-                .map(GithubPullRequestExt::create)
+                .map((idePullRequest) -> PullRequestEntity.create(
+                        idePullRequest.getNumber(),
+                        getClosableIssues.run(idePullRequest.getBodyHtml()),
+                        idePullRequest.getTitle(),
+                        PullRequestEntity.State.fromString(idePullRequest.getState()),
+                        idePullRequest.getHtmlUrl())
+                )
                 .collect(Collectors.toList());
     }
 

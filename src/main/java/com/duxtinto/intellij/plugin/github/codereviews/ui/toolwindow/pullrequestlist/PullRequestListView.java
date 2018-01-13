@@ -1,6 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist;
 
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubPullRequestExt;
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.events.PullRequesListMouseInputAdapter;
 import com.intellij.ui.components.JBScrollPane;
 import com.intellij.ui.table.TableView;
@@ -9,10 +9,9 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.util.ui.JBUI;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class PullRequestListView implements PullRequestList.View {
-    private TableView<GithubPullRequestExt> table;
+    private TableView<PullRequestEntity> table;
     private JPanel content;
 
     private final PullRequestList.Presenter presenter;

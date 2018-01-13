@@ -50,11 +50,14 @@ dependencies {
         dagger: '2.14',
         auto_common: '0.9',
         auto_value: '1.5',
+        jsoup: '1.11.2',
+        // Testing
         junit: '5.0.2',
     ]
 
     compile "com.google.guava:guava:${versions.guava}"
     compile "com.google.dagger:dagger:${versions.dagger}"
+    compile "org.jsoup:jsoup:${versions.jsoup}"
 
     compileOnly "com.google.auto.value:auto-value:${versions.auto_value}"
 

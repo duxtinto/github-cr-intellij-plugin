@@ -1,8 +1,8 @@
 package com.duxtinto.intellij.plugin.github.codereviews.events.repos;
 
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.interactors.GetAllOpenForRepoInteractor;
-import com.duxtinto.intellij.plugin.github.codereviews.domain.repos.GithubRepositoryEntity;
-import com.duxtinto.intellij.plugin.github.codereviews.domain.repos.interactors.FindGithubRepoForRootFolderInteractor;
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllOpenForRepoInteractor;
+import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.GithubRepositoryEntity;
+import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.FindGithubRepoForRootFolderInteractor;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestList;
 import com.intellij.dvcs.repo.VcsRepositoryMappingListener;
 
