@@ -6,6 +6,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubCo
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.GithubApiV3Loader;
 
 import javax.annotation.Nonnull;
+import javax.inject.Inject;
 import java.io.IOException;
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class ApiV3PullRequestFetcher implements PullRequestDomainContract.Fetche
     private final GithubConnectionExt connection;
     private final GithubApiV3Loader apiLoader;
 
+    @Inject
     public ApiV3PullRequestFetcher(@Nonnull GithubConnectionExt connection, @Nonnull GithubApiV3Loader apiLoader) {
         this.connection = checkNotNull(connection);
         this.apiLoader = checkNotNull(apiLoader);

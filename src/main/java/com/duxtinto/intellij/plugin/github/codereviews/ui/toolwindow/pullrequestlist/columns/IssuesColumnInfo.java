@@ -6,8 +6,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.stream.Collectors;
 
-class IssuesColumnInfo extends ColumnInfo<PullRequestEntity, String> {
-    IssuesColumnInfo() {
+public class IssuesColumnInfo extends ColumnInfo<PullRequestEntity, String> {
+    public IssuesColumnInfo() {
         super("issues");
     }
 

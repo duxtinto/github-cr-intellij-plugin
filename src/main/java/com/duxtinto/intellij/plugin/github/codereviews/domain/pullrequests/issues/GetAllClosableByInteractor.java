@@ -1,11 +1,13 @@
 package com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.issues;
 
+import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped;
 import com.duxtinto.intellij.plugin.github.codereviews.domain.Interactor;
 import com.duxtinto.intellij.plugin.github.codereviews.domain.issues.IssueEntity;
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestDomainContract;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
+import javax.inject.Inject;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
@@ -13,10 +15,12 @@ import java.util.stream.Collectors;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+@ProjectScoped
 public class GetAllClosableByInteractor implements Interactor<String, List<IssueEntity>> {
 
     private final PullRequestDomainContract.DescriptionParser descriptionParser;
 
+    @Inject
     public GetAllClosableByInteractor(PullRequestDomainContract.DescriptionParser descriptionParser) {
         this.descriptionParser = descriptionParser;
     }

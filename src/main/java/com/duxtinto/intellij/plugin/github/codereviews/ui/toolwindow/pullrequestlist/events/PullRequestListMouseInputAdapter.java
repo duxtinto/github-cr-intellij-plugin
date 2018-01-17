@@ -10,13 +10,16 @@ import javax.annotation.Nullable;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.event.MouseEvent;
 
-public class PullRequesListMouseInputAdapter extends MouseInputAdapter {
+import static com.google.common.base.Preconditions.checkNotNull;
+
+public class PullRequestListMouseInputAdapter extends MouseInputAdapter {
 
     @Nullable
-    private
-    TableView<PullRequestEntity> table;
+    private TableView<PullRequestEntity> table;
 
     public void listenToTable(@Nonnull TableView<PullRequestEntity> table) {
+        checkNotNull(table);
+
         if (this.table != null) {
             this.table.removeMouseListener(this);
         }
@@ -27,7 +30,7 @@ public class PullRequesListMouseInputAdapter extends MouseInputAdapter {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (table != null) {
+        if (table!=null && table.equals(e.getSource())) {
             int row = table.rowAtPoint(e.getPoint());
             int column = table.columnAtPoint(e.getPoint());
             if (row != -1 && column == ColumnInfoFactory.ColumnIndexes.NUMBER.ordinal()) {

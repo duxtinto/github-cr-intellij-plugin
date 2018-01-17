@@ -1,5 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow;
 
+import javax.annotation.Nonnull;
 import javax.swing.*;
 
 public interface ToolWindowContent {
@@ -8,7 +9,7 @@ public interface ToolWindowContent {
         JComponent getContent();
     }
     interface Presenter {
-        void setView(View view);
+        void setView(@Nonnull View view);
         void displayContent();
     }
 }

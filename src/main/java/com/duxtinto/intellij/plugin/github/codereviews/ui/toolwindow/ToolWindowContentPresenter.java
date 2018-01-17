@@ -4,11 +4,12 @@ import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.content.ContentManager;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ToolWindowContentPresenter implements ToolWindowContent.Presenter {
-    @Nonnull
+    @Nullable
     private ToolWindowContent.View view;
     @Nonnull
     private final ContentFactory contentFactory;
@@ -23,12 +24,14 @@ public class ToolWindowContentPresenter implements ToolWindowContent.Presenter {
     }
 
     @Override
-    public void setView(ToolWindowContent.View view) {
+    public void setView(@Nonnull ToolWindowContent.View view) {
         this.view = checkNotNull(view);
     }
 
     @Override
     public void displayContent() {
-        contentManager.addContent(contentFactory.createContent(view.getContent(), "", false));
+        if (view != null) {
+            contentManager.addContent(contentFactory.createContent(view.getContent(), "", false));
+        }
     }
 }

@@ -4,8 +4,8 @@ import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullR
 import com.intellij.util.ui.ColumnInfo;
 import org.jetbrains.annotations.Nullable;
 
-class TitleColumnInfo extends ColumnInfo<PullRequestEntity, String> {
-    TitleColumnInfo() {
+public class TitleColumnInfo extends ColumnInfo<PullRequestEntity, String> {
+    public TitleColumnInfo() {
         super("title");
     }
 

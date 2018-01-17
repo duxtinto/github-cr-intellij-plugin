@@ -1,5 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services;
 
+import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped;
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity;
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.issues.GetAllClosableByInteractor;
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubConnectionExt;
@@ -9,18 +10,21 @@ import org.jetbrains.plugins.github.api.GithubConnection;
 import org.jetbrains.plugins.github.api.data.GithubPullRequest;
 
 import javax.annotation.Nonnull;
+import javax.inject.Inject;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+@ProjectScoped
 public class GithubApiV3Loader {
     private static final Header ACCEPT_V3_JSON_HTML_MARKUP = new BasicHeader("Accept", "application/vnd.github.v3.html+json");
 
     @Nonnull
     private final GetAllClosableByInteractor getClosableIssues;
 
+    @Inject
     public GithubApiV3Loader(@Nonnull GetAllClosableByInteractor getClosableIssues) {
         this.getClosableIssues = checkNotNull(getClosableIssues);
     }

@@ -4,8 +4,8 @@ import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullR
 import com.intellij.util.ui.ColumnInfo;
 import org.jetbrains.annotations.Nullable;
 
-class StateColumnInfo extends ColumnInfo<PullRequestEntity, String> {
-    StateColumnInfo() {
+public class StateColumnInfo extends ColumnInfo<PullRequestEntity, String> {
+    public StateColumnInfo() {
         super("state");
     }
 
