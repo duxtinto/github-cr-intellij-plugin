@@ -1,16 +1,26 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist;
 
+import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped;
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity;
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.columns.ColumnInfoFactory;
+import com.intellij.util.ui.ColumnInfo;
 
+import javax.annotation.Nonnull;
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
+@ProjectScoped
 public class PullRequestListPresenter implements PullRequestList.Presenter {
     private PullRequestList.View view;
     private final PullRequestList.Model model;
 
-        public PullRequestListPresenter(ColumnInfoFactory columnInfoFactory) {
-        this.model = new PullRequestListModel(columnInfoFactory.createDefaultColumns());
+    @Inject
+    public PullRequestListPresenter(@Nonnull @Named("default") ColumnInfo[] columnInfos) {
+        checkNotNull(columnInfos);
+
+        this.model = new PullRequestListModel(columnInfos);
     }
 
     @Override
@@ -30,7 +40,7 @@ public class PullRequestListPresenter implements PullRequestList.Presenter {
         model.setPullRequests(pullRequests);
     }
 
-    public void setView(PullRequestList.View view) {
-        this.view = view;
+    public void setView(@Nonnull PullRequestList.View view) {
+        this.view = checkNotNull(view);
     }
 }

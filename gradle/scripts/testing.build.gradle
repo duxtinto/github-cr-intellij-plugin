@@ -1,0 +1,21 @@
+junitPlatformTest {
+    if (project.hasProperty('debug')) {
+        jvmArgs '-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005'
+    }
+}
+
+junitPlatform {
+    selectors {
+        if (project.hasProperty('singleTestClass')) {
+            aClass project.property('singleTestClass')
+        }
+    }
+
+    filters {
+        tags {
+            if (project.hasProperty('filterTagged')) {
+                include project.property('filterTagged')
+            }
+        }
+    }
+}

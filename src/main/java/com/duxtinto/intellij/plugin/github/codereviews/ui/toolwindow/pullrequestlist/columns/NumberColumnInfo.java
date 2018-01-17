@@ -9,8 +9,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 
-class NumberColumnInfo extends ColumnInfo<PullRequestEntity, Long> {
-    NumberColumnInfo() {
+public class NumberColumnInfo extends ColumnInfo<PullRequestEntity, Long> {
+    public NumberColumnInfo() {
         super("number");
     }
 

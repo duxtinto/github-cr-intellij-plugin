@@ -3,54 +3,30 @@ package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules;
 import com.duxtinto.intellij.plugin.github.codereviews.data.pullrequests.PullRequestRepositoryImpl;
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped;
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestDomainContract;
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllOpenForRepoInteractor;
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.issues.GetAllClosableByInteractor;
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubConnectionExt;
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.GithubApiV3Loader;
 import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.ApiV3PullRequestFetcher;
 import com.duxtinto.intellij.plugin.github.codereviews.services.pullrequests.GithubDescriptionParser;
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestList;
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListPresenter;
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListView;
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 
 @Module
-public class PullRequestModule {
-    @Provides
+public abstract class PullRequestModule {
+    @Binds
     @ProjectScoped
-    public GithubApiV3Loader provideGithubApiLoader(GetAllClosableByInteractor interactor) {
-        return new GithubApiV3Loader(interactor);
-    }
+    public abstract PullRequestList.Presenter providePullRequestListPresenter(PullRequestListPresenter presenter);
 
-    @Provides
+    @Binds
     @ProjectScoped
-    public PullRequestDomainContract.Fetcher providePullRequestFetcher(
-            GithubConnectionExt connection,
-            GithubApiV3Loader apiLoader) {
-        return new ApiV3PullRequestFetcher(connection, apiLoader);
-    }
+    public abstract PullRequestList.View providePullRequestListView(PullRequestListView view);
 
-    @Provides
-    @ProjectScoped
-    public PullRequestDomainContract.Repository providePullRequestRepository(PullRequestDomainContract.Fetcher fetcher) {
-        return new PullRequestRepositoryImpl((ApiV3PullRequestFetcher)fetcher);
-    }
+    @Binds
+    public abstract PullRequestDomainContract.Fetcher providePullRequestDomainContractFetcher(ApiV3PullRequestFetcher fetcher);
 
-    @Provides
-    @ProjectScoped
-    public PullRequestDomainContract.DescriptionParser providePullRequestDescriptionParser() {
-        return new GithubDescriptionParser();
-    }
+    @Binds
+    public abstract PullRequestDomainContract.Repository providePullRequestDomainContractRepository(PullRequestRepositoryImpl repository);
 
-    @Provides
-    @ProjectScoped
-    public GetAllClosableByInteractor provideGetClosableIssuesInteractor(
-            PullRequestDomainContract.DescriptionParser descriptionParser
-    ) {
-        return new GetAllClosableByInteractor(descriptionParser);
-    }
-
-    @Provides
-    @ProjectScoped
-    public GetAllOpenForRepoInteractor provideGetAllOpenForRepoInteractor(PullRequestDomainContract.Repository repository) {
-        return new GetAllOpenForRepoInteractor(repository);
-    }
+    @Binds
+    public abstract PullRequestDomainContract.DescriptionParser providePullRequestDomainContractDescriptionParser(GithubDescriptionParser parser);
 }

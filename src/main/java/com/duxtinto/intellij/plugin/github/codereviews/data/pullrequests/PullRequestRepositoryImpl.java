@@ -7,14 +7,16 @@ import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.PullRequ
 import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.PullRequestQueryParameters.State;
 
 import javax.annotation.Nonnull;
+import javax.inject.Inject;
 import java.io.IOException;
 import java.util.List;
 
 public class PullRequestRepositoryImpl implements PullRequestDomainContract.Repository {
     private final ApiV3PullRequestFetcher fetcher;
 
-    public PullRequestRepositoryImpl(@Nonnull ApiV3PullRequestFetcher fetcher) {
-        this.fetcher = fetcher;
+    @Inject
+    public PullRequestRepositoryImpl(@Nonnull PullRequestDomainContract.Fetcher fetcher) {
+        this.fetcher = (ApiV3PullRequestFetcher) fetcher;
     }
 
     @Override

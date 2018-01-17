@@ -10,8 +10,13 @@ import org.jetbrains.plugins.github.util.GithubUrlUtil;
 import org.jetbrains.plugins.github.util.GithubUtil;
 
 import javax.annotation.Nullable;
+import javax.inject.Inject;
 
 public class GithubRepositoryFinderImpl implements RepositoriesDomainContract.GithubRepositoryFinder {
+    @Inject
+    public GithubRepositoryFinderImpl() {
+    }
+
     @Override
     @Nullable
     public GithubRepositoryEntity find(GitRepositoryExt repository) {

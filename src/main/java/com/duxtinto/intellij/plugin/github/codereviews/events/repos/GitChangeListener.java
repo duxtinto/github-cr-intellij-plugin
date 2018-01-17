@@ -7,6 +7,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequest
 import com.intellij.dvcs.repo.VcsRepositoryMappingListener;
 
 import javax.annotation.Nonnull;
+import javax.inject.Inject;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -18,6 +19,7 @@ public class GitChangeListener implements VcsRepositoryMappingListener {
     @Nonnull
     private final PullRequestList.Presenter pullRequestsPresenter;
 
+    @Inject
     public GitChangeListener(
             @Nonnull FindGithubRepoForRootFolderInteractor githubRepoFinder,
             @Nonnull GetAllOpenForRepoInteractor pullRequestFetcher,

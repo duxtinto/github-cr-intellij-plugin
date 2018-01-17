@@ -5,6 +5,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GitRepos
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.inject.Inject;
 
 public class FindGithubRepoForRootFolderInteractor implements Interactor<Void, GithubRepositoryEntity> {
     @Nonnull
@@ -12,6 +13,7 @@ public class FindGithubRepoForRootFolderInteractor implements Interactor<Void, G
     @Nonnull
     private final RepositoriesDomainContract.GithubRepositoryFinder githubRepositoryFinder;
 
+    @Inject
     public FindGithubRepoForRootFolderInteractor(
             @Nonnull RepositoriesDomainContract.GitRepositoryFinder gitRepositoryFinder,
             @Nonnull RepositoriesDomainContract.GithubRepositoryFinder githubRepositoryFinder) {

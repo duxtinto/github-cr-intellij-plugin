@@ -1,6 +1,7 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow;
 
 import com.duxtinto.intellij.plugin.github.codereviews.di.contracts.DiContainerAware;
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestList;
 import com.intellij.openapi.project.DumbAware;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
@@ -21,6 +22,12 @@ public class ToolWindowFactory implements com.intellij.openapi.wm.ToolWindowFact
     @Inject
     ToolWindowContent.Presenter presenter;
 
+    @Inject
+    PullRequestList.View pullRequestListView;
+
+    @Inject
+    PullRequestList.Presenter pullRequestListPresenter;
+
     @Override
     public void createToolWindowContent(@NotNull Project project, @NotNull ToolWindow toolWindow) {
         getProjectContainer(project).inject(this);
@@ -31,5 +38,7 @@ public class ToolWindowFactory implements com.intellij.openapi.wm.ToolWindowFact
 
         presenter.setView(view);
         presenter.displayContent();
+
+        pullRequestListPresenter.setView(pullRequestListView);
     }
 }

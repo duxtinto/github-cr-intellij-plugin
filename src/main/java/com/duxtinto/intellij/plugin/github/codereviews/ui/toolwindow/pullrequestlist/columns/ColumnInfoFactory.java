@@ -2,7 +2,13 @@ package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullreques
 
 import com.intellij.util.ui.ColumnInfo;
 
+import javax.inject.Inject;
+
 public class ColumnInfoFactory {
+    @Inject
+    public ColumnInfoFactory() {
+    }
+
     public enum ColumnIndexes {
         NUMBER,
         ISSUE,

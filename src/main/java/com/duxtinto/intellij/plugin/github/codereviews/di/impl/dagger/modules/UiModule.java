@@ -5,15 +5,14 @@ import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.ProjectE
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContent;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContentPresenter;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContentView;
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.columns.ColumnInfoFactory;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestList;
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListPresenter;
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListView;
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.events.PullRequesListMouseInputAdapter;
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.columns.ColumnInfoFactory;
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.events.PullRequestListMouseInputAdapter;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.openapi.wm.impl.ToolWindowImpl;
 import com.intellij.ui.content.ContentFactory;
 import com.intellij.ui.content.ContentManager;
+import com.intellij.util.ui.ColumnInfo;
 import dagger.Module;
 import dagger.Provides;
 
@@ -57,27 +56,14 @@ public class UiModule {
 
     @Provides
     @ProjectScoped
-    public PullRequestList.View providePullRequestListView(
-            PullRequestList.Presenter presenter,
-            PullRequesListMouseInputAdapter mouseInputAdapter) {
-        return new PullRequestListView(presenter, mouseInputAdapter);
+    @Named("default")
+    public ColumnInfo[] provideColumnInfoDefaultArray(ColumnInfoFactory columnInfoFactory) {
+        return columnInfoFactory.createDefaultColumns();
     }
 
     @Provides
     @ProjectScoped
-    public PullRequestList.Presenter providePullRequestListPresenter(ColumnInfoFactory columnInfoFactory) {
-        return new PullRequestListPresenter(columnInfoFactory);
-    }
-
-    @Provides
-    @ProjectScoped
-    public ColumnInfoFactory provideColumnInfoFactory() {
-        return new ColumnInfoFactory();
-    }
-
-    @Provides
-    @ProjectScoped
-    public PullRequesListMouseInputAdapter providePullRequesListMouseInputAdapter() {
-        return new PullRequesListMouseInputAdapter();
+    public PullRequestListMouseInputAdapter providePullRequesListMouseInputAdapter() {
+        return new PullRequestListMouseInputAdapter();
     }
 }
