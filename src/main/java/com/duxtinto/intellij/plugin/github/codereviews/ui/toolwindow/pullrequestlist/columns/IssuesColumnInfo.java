@@ -14,9 +14,9 @@ public class IssuesColumnInfo extends ColumnInfo<PullRequestEntity, String> {
     @Nullable
     @Override
     public String valueOf(PullRequestEntity pullRequest) {
-        return pullRequest.closableIssues()
+        return pullRequest.getCloseableIssues()
                 .stream()
-                .map(issue -> String.valueOf(issue.number()))
+                .map(issue -> String.valueOf(issue.getNumber()))
                 .collect(Collectors.joining(","));
     }
 }

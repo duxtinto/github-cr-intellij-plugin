@@ -1,19 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module external.linked.project.id="github_code_review" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" external.system.module.group="" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="kotlin-language" name="Kotlin">
+      <configuration version="3" platform="JVM 1.8" useProjectSettings="false">
+        <compilerSettings />
+        <compilerArguments>
+          <option name="destination" value="$MODULE_DIR$/build/classes/kotlin/main" />
+          <option name="noStdlib" value="true" />
+          <option name="noReflect" value="true" />
+          <option name="moduleName" value="github_code_review" />
+          <option name="jvmTarget" value="1.8" />
+          <option name="addCompilerBuiltIns" value="true" />
+          <option name="loadBuiltInsFromDependencies" value="true" />
+          <option name="languageVersion" value="1.2" />
+          <option name="apiVersion" value="1.2" />
+          <option name="pluginOptions">
+            <array />
+          </option>
+          <option name="pluginClasspaths">
+            <array />
+          </option>
+        </compilerArguments>
+      </configuration>
+    </facet>
+  </component>
   <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/out/production/classes" />
     <output-test url="file://$MODULE_DIR$/out/test/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/kotlin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/commonTest/kotlin" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/test/kotlin" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/uiTest/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/uiTest/kotlin" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/build/classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/distributions" />
       <excludeFolder url="file://$MODULE_DIR$/build/idea-sandbox" />
+      <excludeFolder url="file://$MODULE_DIR$/build/kotlin" />
+      <excludeFolder url="file://$MODULE_DIR$/build/kotlin-build" />
       <excludeFolder url="file://$MODULE_DIR$/build/libs" />
       <excludeFolder url="file://$MODULE_DIR$/build/patchedPluginXmlFiles" />
       <excludeFolder url="file://$MODULE_DIR$/build/resources" />
@@ -32,6 +62,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.google.guava:guava:23.6-jre" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.google.dagger:dagger:2.14" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jsoup:jsoup:1.11.2" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.20" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.google.auto.value:auto-value:1.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.jetbrains:sqlite-jdbc-3.16.1:2017.2.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.jetbrains:jsch.agentproxy.connector-factory:2017.2.5" level="project" />
@@ -41,7 +72,6 @@
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.jetbrains:log4j:2017.2.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.jetbrains:xml-apis:2017.2.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.jetbrains:slf4j-api-1.7.10:2017.2.5" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Gradle: com.jetbrains:kotlin-reflect:2017.2.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.jetbrains:cli-parser-1.1:2017.2.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.jetbrains:coverage-instrumenter:2017.2.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.jetbrains:common-image-3.2.1:2017.2.5" level="project" />
@@ -105,7 +135,6 @@
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.jetbrains:jdkAnnotations:2017.2.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.jetbrains:jsch.agentproxy.usocket-jna:2017.2.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.jetbrains:jdom:2017.2.5" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Gradle: com.jetbrains:kotlin-runtime:2017.2.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.jetbrains:hamcrest-core-1.3:2017.2.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.jetbrains:imageio-metadata-3.2.1:2017.2.5" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.jetbrains:extensions:2017.2.5" level="project" />
@@ -170,38 +199,40 @@
     <orderEntry type="library" scope="PROVIDED" name="Gradle: com.google.j2objc:j2objc-annotations:1.1" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: org.codehaus.mojo:animal-sniffer-annotations:1.14" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Gradle: javax.inject:javax.inject:1" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.dagger:dagger-compiler:2.14" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.auto:auto-common:0.9" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.auto.value:auto-value:1.5" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.dagger:dagger-spi:2.14" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.dagger:dagger-producers:2.14" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.dagger:dagger:2.14" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.googlejavaformat:google-java-format:1.4" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.guava:guava:23.5-jre" level="project" />
-    <orderEntry type="library" name="Gradle: com.squareup:javapoet:1.8.0" level="project" />
-    <orderEntry type="library" name="Gradle: javax.annotation:jsr250-api:1.0" level="project" />
-    <orderEntry type="library" name="Gradle: javax.inject:javax.inject:1" level="project" />
-    <orderEntry type="library" name="Gradle: org.checkerframework:checker-compat-qual:2.3.0" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.errorprone:javac-shaded:9-dev-r4023-3" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.code.findbugs:jsr305:1.3.9" level="project" />
-    <orderEntry type="library" name="Gradle: org.checkerframework:checker-qual:2.0.0" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.errorprone:error_prone_annotations:2.0.18" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.j2objc:j2objc-annotations:1.1" level="project" />
-    <orderEntry type="library" name="Gradle: org.codehaus.mojo:animal-sniffer-annotations:1.14" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.20" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.2.20" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: com.google.dagger:dagger-compiler:2.14" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: com.google.auto:auto-common:0.9" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: com.google.dagger:dagger-spi:2.14" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: com.google.dagger:dagger-producers:2.14" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: com.google.googlejavaformat:google-java-format:1.4" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: com.google.guava:guava:23.5-jre" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: com.squareup:javapoet:1.8.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: javax.annotation:jsr250-api:1.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.checkerframework:checker-compat-qual:2.3.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: com.google.errorprone:javac-shaded:9-dev-r4023-3" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.checkerframework:checker-qual:2.0.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: com.google.errorprone:error_prone_annotations:2.0.18" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.guava:guava:23.6-jre" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.dagger:dagger:2.14" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jsoup:jsoup:1.11.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.20" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.code.findbugs:jsr305:1.3.9" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.checkerframework:checker-compat-qual:2.0.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.errorprone:error_prone_annotations:2.1.3" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.j2objc:j2objc-annotations:1.1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.codehaus.mojo:animal-sniffer-annotations:1.14" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.20" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.2.20" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: tools" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.assertj:assertj-guava:3.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:guava:23.6-jre" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.dagger:dagger:2.14" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jsoup:jsoup:1.11.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.20" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.jetbrains:sqlite-jdbc-3.16.1:2017.2.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.jetbrains:jsch.agentproxy.connector-factory:2017.2.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.jetbrains:google-analytics-library:2017.2.5" level="project" />
@@ -210,7 +241,6 @@
     <orderEntry type="library" scope="TEST" name="Gradle: com.jetbrains:log4j:2017.2.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.jetbrains:xml-apis:2017.2.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.jetbrains:slf4j-api-1.7.10:2017.2.5" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.jetbrains:kotlin-reflect:2017.2.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.jetbrains:cli-parser-1.1:2017.2.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.jetbrains:coverage-instrumenter:2017.2.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.jetbrains:common-image-3.2.1:2017.2.5" level="project" />
@@ -274,7 +304,6 @@
     <orderEntry type="library" scope="TEST" name="Gradle: com.jetbrains:jdkAnnotations:2017.2.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.jetbrains:jsch.agentproxy.usocket-jna:2017.2.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.jetbrains:jdom:2017.2.5" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.jetbrains:kotlin-runtime:2017.2.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.jetbrains:hamcrest-core-1.3:2017.2.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.jetbrains:imageio-metadata-3.2.1:2017.2.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.jetbrains:extensions:2017.2.5" level="project" />
@@ -340,12 +369,19 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.assertj:assertj-swing:3.8.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.assertj:assertj-core:3.9.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.jmockit:jmockit:1.38" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-alpha02" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.github.benas:random-beans-randomizers:3.7.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.github.benas:random-beans:3.7.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test-junit:1.2.20" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.code.findbugs:jsr305:3.0.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.checkerframework:checker-compat-qual:2.0.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.errorprone:error_prone_annotations:2.1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.j2objc:j2objc-annotations:1.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.codehaus.mojo:animal-sniffer-annotations:1.14" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.20" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-test:1.2.20" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.2.20" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.junit.platform:junit-platform-launcher:1.0.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.junit.platform:junit-platform-engine:1.0.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.junit.platform:junit-platform-commons:1.0.3" level="project" />
@@ -353,8 +389,21 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.opentest4j:opentest4j:1.0.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: junit:junit:4.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.easytesting:fest-reflect:1.4.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.mockito:mockito-core:2.12.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.objenesis:objenesis:2.6" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.github.lukehutch:fast-classpath-scanner:2.2.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.8.8.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.github.javafaker:javafaker:0.13" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.easytesting:fest-util:1.2.5" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.bytebuddy:byte-buddy:1.7.9" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: net.bytebuddy:byte-buddy-agent:1.7.9" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.8.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.8.8" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.apache.commons:commons-lang3:3.5" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.github.mifmif:generex:1.0.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: dk.brics.automaton:automaton:1.11-8" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.junit.jupiter:junit-jupiter-engine:5.0.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: tools" level="project" />
   </component>

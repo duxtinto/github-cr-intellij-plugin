@@ -17,7 +17,7 @@ public class NumberColumnInfo extends ColumnInfo<PullRequestEntity, Long> {
     @Nullable
     @Override
     public Long valueOf(PullRequestEntity pullRequest) {
-        return pullRequest.number();
+        return pullRequest.getNumber();
     }
 
     @Nullable

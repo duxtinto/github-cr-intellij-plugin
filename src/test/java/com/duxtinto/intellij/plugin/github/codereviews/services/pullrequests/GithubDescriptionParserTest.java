@@ -23,18 +23,18 @@ class GithubDescriptionParserTest {
 
     @Test
     @DisplayName("parsing a description without any 'closing issue' keywords should return an empty map")
-    void parseDescriptionWithoutClossingIssueKeywords() {
+    void parseDescriptionWithoutClosingIssueKeywords() {
         // Act
         final PullRequestDescriptionEntity description = sutParser.parse("This is a normal description");
 
         // Assert
-        assertThat(description.closableIssues()).isEmpty();
+        assertThat(description.getClosableIssues()).isEmpty();
     }
 
     @ParameterizedTest(name = "keyword: {0}")
     @MethodSource("closingKeywordProvider")
     @DisplayName("parsing a description with a 'closing issue' keyword, should return map of just one element")
-    void parseDescriptionThatClosesAnIssue(String keyword) throws MalformedURLException {
+    void parseDescriptionThatClosesAnIssue(String keyword) {
         // Arrange
         String descriptionHtml = "<p>" +
                 generateClosingIssueHtml(keyword, ISSUES_ENDPOINT, 3L) +
@@ -44,9 +44,9 @@ class GithubDescriptionParserTest {
         final PullRequestDescriptionEntity description = sutParser.parse(descriptionHtml);
 
         // Assert
-        assertThat(description.closableIssues())
+        assertThat(description.getClosableIssues())
                 .hasSize(1)
-                .containsEntry(3L, new URL(ISSUES_ENDPOINT + "/3"));
+                .contains(3L);
     }
 
     @Test
@@ -61,7 +61,7 @@ class GithubDescriptionParserTest {
         final PullRequestDescriptionEntity description = sutParser.parse(descriptionHtml);
 
         // Assert
-        assertThat(description.closableIssues()).isEmpty();
+        assertThat(description.getClosableIssues()).isEmpty();
     }
 
     @Test
@@ -77,7 +77,7 @@ class GithubDescriptionParserTest {
         final PullRequestDescriptionEntity description = sutParser.parse(descriptionHtml);
 
         // Assert
-        assertThat(description.closableIssues()).isEmpty();
+        assertThat(description.getClosableIssues()).isEmpty();
     }
 
     /**
@@ -101,35 +101,13 @@ class GithubDescriptionParserTest {
         final PullRequestDescriptionEntity description = sutParser.parse(descriptionHtml);
 
         // Assert
-        assertThat(description.closableIssues())
+        assertThat(description.getClosableIssues())
                 .hasSize(2)
-                .containsEntry(3L, new URL(ISSUES_ENDPOINT + "/3"))
-                .containsEntry(2L, new URL(ISSUES_ENDPOINT + "/2"));
+                .contains(3L, 2L);
     }
 
     private String generateClosingIssueHtml(String keyword, String issuesEndpoint, long number) {
         return  "<span class=\"issue-keyword\">" + keyword + "</span>" +
                 "<a href=\""+ issuesEndpoint + "/" + number + "\" class=\"issue-link\">#" + number + "</a>";
-    }
-
-    @Test
-    @DisplayName("parsing a description that contains a 'closing issue' keyword with a malformed Url, should set the map entry url value as null")
-    void parseDescriptionContainingMalformedIssueLinkUrl() throws MalformedURLException {
-        // Arrange
-        String descriptionHtml = "<p>" +
-                generateClosingIssueHtml("closed", "invalid://domain.com", 165L) +
-                "</p>";
-
-        new Expectations(URL.class) {{
-            new URL("invalid://domain.com/165"); result = new MalformedURLException();
-        }};
-
-        // Act
-        final PullRequestDescriptionEntity description = sutParser.parse(descriptionHtml);
-
-        // Assert
-        assertThat(description.closableIssues())
-                .hasSize(1)
-                .containsEntry(165L, null);
     }
 }

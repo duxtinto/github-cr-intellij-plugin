@@ -30,6 +30,6 @@ public class GithubRepositoryFinderImpl implements RepositoriesDomainContract.Gi
             return null;
         }
 
-        return GithubRepositoryEntity.create(path.getRepository(), path.getUser());
+        return new GithubRepositoryEntity(path.getRepository(), path.getUser());
     }
 }

@@ -20,7 +20,7 @@ public class GetAllOpenForRepoInteractor implements Interactor<GithubRepositoryE
     @Override
     public List<PullRequestEntity> run(GithubRepositoryEntity repo) {
         try {
-            return repository.getAllOpenBy(repo.ownerName(), repo.name());
+            return repository.getAllOpenBy(repo.getOwnerName(), repo.getName());
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException(e);

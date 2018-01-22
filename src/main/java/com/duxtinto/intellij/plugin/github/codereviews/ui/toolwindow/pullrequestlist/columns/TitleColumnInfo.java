@@ -12,6 +12,6 @@ public class TitleColumnInfo extends ColumnInfo<PullRequestEntity, String> {
     @Nullable
     @Override
     public String valueOf(PullRequestEntity pullRequest) {
-        return pullRequest.title();
+        return pullRequest.getTitle();
     }
 }
