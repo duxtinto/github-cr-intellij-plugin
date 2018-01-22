@@ -22,13 +22,13 @@ public class PullRequestListView implements PullRequestList.View {
     private TableView<PullRequestEntity> table;
 
     @Nonnull
-    private final ColumnInfo[] defaultColumns;
+    private final ColumnInfo<?, ?>[] defaultColumns;
     @Nonnull
     private final PullRequestListMouseInputAdapter mouseInputAdapter;
 
     @Inject
     public PullRequestListView(
-            @Nonnull @Named("default") ColumnInfo[] defaultColumns,
+            @Nonnull @Named("default") ColumnInfo<?, ?>[] defaultColumns,
             @Nonnull PullRequestListMouseInputAdapter mouseInputAdapter) {
         this.defaultColumns = checkNotNull(defaultColumns);
         this.mouseInputAdapter = checkNotNull(mouseInputAdapter);

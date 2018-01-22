@@ -57,13 +57,7 @@ public class UiModule {
     @Provides
     @ProjectScoped
     @Named("default")
-    public ColumnInfo[] provideColumnInfoDefaultArray(ColumnInfoFactory columnInfoFactory) {
+    public ColumnInfo<?, ?>[] provideColumnInfoDefaultArray(ColumnInfoFactory columnInfoFactory) {
         return columnInfoFactory.createDefaultColumns();
-    }
-
-    @Provides
-    @ProjectScoped
-    public PullRequestListMouseInputAdapter providePullRequesListMouseInputAdapter() {
-        return new PullRequestListMouseInputAdapter();
     }
 }
