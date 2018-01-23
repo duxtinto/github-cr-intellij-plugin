@@ -1,8 +1,7 @@
-package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services
+package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.issues
 
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubConnectionExt
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.issues.IssueDataMapper
 import mockit.*
 import org.assertj.core.api.Assertions.assertThat
 import org.jetbrains.plugins.github.api.GithubApiUtil

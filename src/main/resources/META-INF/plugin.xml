@@ -12,9 +12,7 @@
     ]]>
     </change-notes>
 
-    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="173.0"/>
-
+    <depends>com.intellij.modules.platform</depends>
     <depends>org.jetbrains.plugins.github</depends>
     <depends>Git4Idea</depends>
 

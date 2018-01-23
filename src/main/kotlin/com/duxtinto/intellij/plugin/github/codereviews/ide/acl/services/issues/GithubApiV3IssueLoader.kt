@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services
+package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.issues
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.issues.IssueEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.GithubRepositoryEntity

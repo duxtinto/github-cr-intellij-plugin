@@ -15,6 +15,10 @@ sourceSets {
 }
 
 dependencies {
+    testCompileOnly(
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.versions.kotlin}",
+    )
+
     testCompile(
             "org.junit.platform:junit-platform-console:${project.versions.junit_platform}",
             "org.junit.jupiter:junit-jupiter-api:${project.versions.junit}",
@@ -26,7 +30,6 @@ dependencies {
             "com.nhaarman.mockitokotlin2:mockito-kotlin:${project.versions.mockito_kotlin}",
             "io.github.benas:random-beans:${project.versions.random_beans}",
             "io.github.benas:random-beans-randomizers:${project.versions.random_beans}",
-            "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.versions.kotlin}",
             "org.jetbrains.kotlin:kotlin-test-junit:${project.versions.kotlin}"
     )
 

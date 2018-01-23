@@ -1,7 +1,7 @@
 ext {
     versions = [
             jvm : 1.8,
-            idea_version : '2017.2.5',
+            idea_version : '2017.2.1',
             plugins: [
                     'junit': '1.0.3',
                     'kotlin': '1.2.20'
