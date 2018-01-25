@@ -4,7 +4,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContent
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContentPresenter
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContentView
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestdetails.PullRequestDetails
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviews
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestList
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.columns.ColumnInfoFactory
 import com.intellij.ui.content.ContentFactory
@@ -29,9 +29,9 @@ class ToolWindowModule {
     @ProjectScoped
     fun provideToolWindowContentView(
             pullRequestListView: PullRequestList.View,
-            pullRequestDetailsView: PullRequestDetails.View
+            codeReviewsView: CodeReviews.View
     ): ToolWindowContent.View {
-        return ToolWindowContentView(pullRequestListView, pullRequestDetailsView)
+        return ToolWindowContentView(pullRequestListView, codeReviewsView)
     }
 
     @Provides

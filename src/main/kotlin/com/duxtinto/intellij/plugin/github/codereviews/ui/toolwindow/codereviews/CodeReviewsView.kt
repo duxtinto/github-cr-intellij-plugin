@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestdetails
+package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews
 
 import com.intellij.ui.ScrollPaneFactory.createScrollPane
 import com.intellij.ui.treeStructure.Tree
@@ -9,9 +9,9 @@ import javax.inject.Inject
 import javax.swing.JComponent
 import javax.swing.JPanel
 
-class PullRequestDetailsView
+class CodeReviewsView
     @Inject constructor()
-    : PullRequestDetails.View {
+    : CodeReviews.View {
 
     override val content: JComponent = initContent()
     lateinit var tree: Tree
@@ -21,7 +21,7 @@ class PullRequestDetailsView
 
         content.layout = GridLayoutManager(1, 1, JBUI.emptyInsets(), -1, -1)
 
-        tree = Tree(PullRequestDetailsModel())
+        tree = Tree(CodeReviewsModel())
         tree.emptyText
                 .clear()
                 .appendText("Please, select a pull request above to see the here its code reviews")

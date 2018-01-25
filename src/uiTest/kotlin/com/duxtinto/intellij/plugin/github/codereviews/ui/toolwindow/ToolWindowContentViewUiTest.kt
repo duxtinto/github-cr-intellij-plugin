@@ -1,6 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow
 
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestdetails.PullRequestDetailsView
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsView
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListView
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.events.PullRequestListMouseInputAdapter
 import mockit.Mocked
@@ -19,7 +19,7 @@ internal class ToolWindowContentViewUiTest : AssertJSwingJUnit5TestCase() {
 
     private lateinit var pullRequestListView: PullRequestListView
 
-    private lateinit var pullRequestDetailsView: PullRequestDetailsView
+    private lateinit var codeReviewsView: CodeReviewsView
 
     private lateinit var view: ToolWindowContentView
 
@@ -29,8 +29,8 @@ internal class ToolWindowContentViewUiTest : AssertJSwingJUnit5TestCase() {
     override fun onSetUp() {
         view = GuiActionRunner.execute<ToolWindowContentView> {
             pullRequestListView = PullRequestListView(arrayOfNulls(0), mouseInputAdapter)
-            pullRequestDetailsView = PullRequestDetailsView()
-            ToolWindowContentView(pullRequestListView, pullRequestDetailsView)
+            codeReviewsView = CodeReviewsView()
+            ToolWindowContentView(pullRequestListView, codeReviewsView)
         }
     }
 
@@ -46,7 +46,7 @@ internal class ToolWindowContentViewUiTest : AssertJSwingJUnit5TestCase() {
             splitter(SplitterMatcher())
                     .requireIsHorizontal()
                     .requireLeftComponent(pullRequestListView.content)
-                    .requireRightComponent(pullRequestDetailsView.content)
+                    .requireRightComponent(codeReviewsView.content)
         }
     }
 }

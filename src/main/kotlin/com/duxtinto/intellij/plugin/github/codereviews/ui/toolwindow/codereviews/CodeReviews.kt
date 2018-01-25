@@ -1,9 +1,9 @@
-package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestdetails
+package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews
 
 import javax.swing.*
 import javax.swing.tree.TreeModel
 
-interface PullRequestDetails {
+interface CodeReviews {
     interface Model : TreeModel
 
     interface View {
@@ -11,7 +11,6 @@ interface PullRequestDetails {
     }
 
     interface Presenter {
-        val model: Model
         fun setView(view: View)
     }
 }

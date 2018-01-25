@@ -32,7 +32,7 @@ class PullRequestListViewUiTest : AssertJSwingJUnit5TestCase() {
             @Injectable mouseInputAdapter: PullRequestListMouseInputAdapter,
             @Tested view: PullRequestListView) {
 
-        showContentInIdeaFrame(view.content)
+        frame = showContentInIdeaFrame(view.content)
 
         val table = frame.table(IdeaTableViewMatcher())
         table
@@ -61,7 +61,7 @@ class PullRequestListViewUiTest : AssertJSwingJUnit5TestCase() {
         val view = PullRequestListView(columns, mouseInputAdapter)
 
         // Act
-        showContentInIdeaFrame(view.content)
+        frame = showContentInIdeaFrame(view.content)
         GuiActionRunner.execute<Unit>({ view.render(model) })
 
         // Assert
