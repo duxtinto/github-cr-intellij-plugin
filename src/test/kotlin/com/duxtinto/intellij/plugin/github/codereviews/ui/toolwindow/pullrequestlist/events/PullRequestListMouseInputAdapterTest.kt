@@ -185,7 +185,7 @@ internal class PullRequestListMouseInputAdapterTest {
 
                 pullRequest.closeableIssues
                 result = closableIssues
-                issueContextSwitcher!!.run(expectedIssue)
+                issueContextSwitcher.run(expectedIssue)
             }
         }
 

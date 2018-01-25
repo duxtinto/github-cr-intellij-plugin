@@ -13,7 +13,7 @@ import dagger.Provides;
         ReposModule.class,
         PullRequestModule.class,
         IssueModule.class,
-        UiModule.class,
+        ToolWindowModule.class,
         EventsModule.class,
 })
 public class ProjectModule {

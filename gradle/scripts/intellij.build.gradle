@@ -6,5 +6,5 @@ intellij {
 
 patchPluginXml {
     sinceBuild 162
-    untilBuild '173.*'
+    untilBuild '181.*'
 }

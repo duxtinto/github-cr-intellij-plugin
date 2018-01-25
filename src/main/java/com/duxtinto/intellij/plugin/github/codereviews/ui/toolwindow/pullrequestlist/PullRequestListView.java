@@ -45,6 +45,7 @@ public class PullRequestListView implements PullRequestList.View {
 
     private void initContent() {
         content = new JPanel();
+        content.setName(this.toString());
 
         content.setLayout(new GridLayoutManager(1, 1, JBUI.emptyInsets(), -1, -1));
         final JBScrollPane scrollPane1 = new JBScrollPane();

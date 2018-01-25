@@ -4,7 +4,6 @@ sourceSets {
     test {
         java.srcDirs += [
                 'src/test/java',
-                'src/uiTest/java',
         ]
         java.srcDirs += [
                 'src/commonTest/kotlin',

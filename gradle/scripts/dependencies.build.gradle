@@ -4,9 +4,9 @@ ext {
             idea_version : '2017.2.1',
             plugins: [
                     'junit': '1.0.3',
-                    'kotlin': '1.2.20'
+                    'kotlin': '1.2.21'
             ],
-            kotlin         : '1.2.20',
+            kotlin         : '1.2.21',
             guava         : '23.6-jre',
             dagger        : '2.14',
             auto_common   : '0.9',

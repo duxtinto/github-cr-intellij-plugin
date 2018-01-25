@@ -32,7 +32,7 @@ class PullRequestListViewUiTest : AssertJSwingJUnit5TestCase() {
             @Injectable mouseInputAdapter: PullRequestListMouseInputAdapter,
             @Tested view: PullRequestListView) {
 
-        showViewInFrame(view)
+        showContentInIdeaFrame(view.content)
 
         val table = frame.table(IdeaTableViewMatcher())
         table
@@ -61,7 +61,7 @@ class PullRequestListViewUiTest : AssertJSwingJUnit5TestCase() {
         val view = PullRequestListView(columns, mouseInputAdapter)
 
         // Act
-        showViewInFrame(view)
+        showContentInIdeaFrame(view.content)
         GuiActionRunner.execute<Unit>({ view.render(model) })
 
         // Assert
@@ -72,10 +72,6 @@ class PullRequestListViewUiTest : AssertJSwingJUnit5TestCase() {
                 .click(TableCell.row(0).column(ColumnInfoFactory.ColumnIndexes.ISSUE.ordinal), MouseButton.LEFT_BUTTON)
 
         verify(mouseInputAdapter).mousePressed(any())
-    }
-
-    private fun showViewInFrame(view : PullRequestListView) {
-        frame = showInFrame(robot(), GuiActionRunner.execute<JComponent>({ view.content }))
     }
 }
 
