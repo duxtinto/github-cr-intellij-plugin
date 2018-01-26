@@ -8,9 +8,11 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module(includes = {
+        AntiCorruptionLayerModule.class,
         AuthModule.class,
         ReposModule.class,
         PullRequestModule.class,
+        IssueModule.class,
         UiModule.class,
         EventsModule.class,
 })

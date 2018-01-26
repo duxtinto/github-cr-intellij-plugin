@@ -12,6 +12,6 @@ public class StateColumnInfo extends ColumnInfo<PullRequestEntity, String> {
     @Nullable
     @Override
     public String valueOf(PullRequestEntity pullRequest) {
-        return pullRequest.state().toString();
+        return pullRequest.getState().toString();
     }
 }

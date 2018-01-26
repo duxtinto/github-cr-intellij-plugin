@@ -25,7 +25,7 @@ class ToolWindowContentViewUiTest extends AssertJSwingJUnit5TestCase {
     private ToolWindowContentView view;
 
     @Injectable
-    ColumnInfo[] columns = new ColumnInfo[0];
+    ColumnInfo<?,  ?>[] columns = new ColumnInfo[0];
 
     @Injectable
     private PullRequestList.Presenter presenter;

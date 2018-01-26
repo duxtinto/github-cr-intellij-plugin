@@ -21,7 +21,8 @@ public abstract class AssertJSwingJUnit5TestCase extends AssertJSwingJUnitTestCa
     }
 
     @Override
-    protected abstract void onSetUp();
+    protected void onSetUp() {
+    }
 
     @AfterAll
     public static void tearDownClass() {

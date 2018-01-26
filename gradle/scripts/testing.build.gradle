@@ -1,3 +1,46 @@
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+sourceSets {
+    test {
+        java.srcDirs += [
+                'src/test/java',
+                'src/uiTest/java',
+        ]
+        java.srcDirs += [
+                'src/commonTest/kotlin',
+                'src/test/kotlin',
+                'src/uiTest/kotlin'
+        ]
+    }
+}
+
+dependencies {
+    testCompile(
+            "org.junit.platform:junit-platform-console:${project.versions.junit_platform}",
+            "org.junit.jupiter:junit-jupiter-api:${project.versions.junit}",
+            "org.junit.jupiter:junit-jupiter-params:${project.versions.junit}",
+            "org.assertj:assertj-core:${project.versions.assertj}",
+            "org.assertj:assertj-swing-junit:${project.versions.assertj_swing}",
+            "org.assertj:assertj-guava:${project.versions.assertj_guava}",
+            "org.jmockit:jmockit:${project.versions.jmockit}",
+            "com.nhaarman.mockitokotlin2:mockito-kotlin:${project.versions.mockito_kotlin}",
+            "io.github.benas:random-beans:${project.versions.random_beans}",
+            "io.github.benas:random-beans-randomizers:${project.versions.random_beans}",
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.versions.kotlin}",
+            "org.jetbrains.kotlin:kotlin-test-junit:${project.versions.kotlin}"
+    )
+
+    testRuntime(
+            "org.junit.jupiter:junit-jupiter-engine:${project.versions.junit}",
+    )
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = project.versions.jvm
+    }
+}
+
 junitPlatformTest {
     if (project.hasProperty('debug')) {
         jvmArgs '-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005'

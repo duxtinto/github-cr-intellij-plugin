@@ -1,38 +1,43 @@
 buildscript {
+    apply from: './gradle/scripts/dependencies.build.gradle'
+
     repositories {
         mavenCentral()
+        jcenter()
     }
 
     dependencies {
-        ext.versions = [
-                'plugins': [
-                        'junit': '1.0.3'
-                ]
-        ]
-
         classpath "org.junit.platform:junit-platform-gradle-plugin:${versions.plugins.junit}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.plugins.kotlin}"
     }
 }
 
 plugins {
     id 'net.ltgt.apt-idea' version '0.13'
     id 'org.jetbrains.intellij' version '0.2.17'
+    id "org.jetbrains.kotlin.jvm" version "1.2.20"
+    id "org.jetbrains.kotlin.plugin.allopen" version "1.2.20"
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
-apply plugin: 'org.junit.platform.gradle.plugin'
-
+apply from: './gradle/scripts/kotlin.build.gradle'
 apply from: './gradle/scripts/testing.build.gradle'
+apply from: './gradle/scripts/dependencies.build.gradle'
 
-ext.jvm = 1.8
-ext.idea_version = '2017.2.5'
+targetCompatibility = project.versions.jvm
+sourceCompatibility = project.versions.jvm
 
-targetCompatibility = project.jvm
-sourceCompatibility = project.jvm
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+
+    apply from: './gradle/scripts/dependencies.build.gradle'
+}
 
 intellij {
-    version project.idea_version
+    version = project.versions.idea_version
     plugins = ['git4idea', 'github']
     pluginName 'github_reviews_plugin'
 }
@@ -40,58 +45,24 @@ intellij {
 sourceSets {
     main {
         java.srcDir 'src/main/java'
+        kotlin.srcDirs 'src/main/kotlin'
         resources.srcDir 'src/main/resources'
     }
-    test {
-        java.srcDirs = [ 'src/test/java', 'src/uiTest/java' ]
-    }
-}
-
-repositories {
-    mavenCentral()
 }
 
 dependencies {
-    ext.versions = [
-            guava         : '23.6-jre',
-            dagger        : '2.14',
-            auto_common   : '0.9',
-            auto_value    : '1.5',
-            jsoup         : '1.11.2',
-            // Testing
-            junit         : '5.0.3',
-            junit_platform: '1.0.3',
-            assertj       : '3.9.0',
-            assertj_swing : '3.8.0',
-            assertj_guava : '3.1.0',
-            jmockit       : '1.38'
-    ]
-
     compile(
-            "com.google.guava:guava:${versions.guava}",
-            "com.google.dagger:dagger:${versions.dagger}",
-            "org.jsoup:jsoup:${versions.jsoup}",
+            "com.google.guava:guava:${project.versions.guava}",
+            "com.google.dagger:dagger:${project.versions.dagger}",
+            "org.jsoup:jsoup:${project.versions.jsoup}",
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.versions.kotlin}",
     )
 
-    compileOnly "com.google.auto.value:auto-value:${versions.auto_value}"
+    compileOnly "com.google.auto.value:auto-value:${project.versions.auto_value}"
 
     apt(
-            "com.google.dagger:dagger-compiler:${versions.dagger}",
-            "com.google.auto:auto-common:${versions.auto_common}",
-            "com.google.auto.value:auto-value:${versions.auto_value}",
-    )
-
-    testCompile (
-            "org.junit.platform:junit-platform-console:${versions.junit_platform}",
-            "org.junit.jupiter:junit-jupiter-api:${versions.junit}",
-            "org.junit.jupiter:junit-jupiter-params:${versions.junit}",
-            "org.assertj:assertj-core:${versions.assertj}",
-            "org.assertj:assertj-swing-junit:${versions.assertj_swing}",
-            "org.assertj:assertj-guava:${versions.assertj_guava}",
-            "org.jmockit:jmockit:${versions.jmockit}",
-    )
-
-    testRuntime(
-            "org.junit.jupiter:junit-jupiter-engine:${versions.junit}",
+            "com.google.dagger:dagger-compiler:${project.versions.dagger}",
+            "com.google.auto:auto-common:${project.versions.auto_common}",
+            "com.google.auto.value:auto-value:${project.versions.auto_value}",
     )
 }

@@ -5,12 +5,9 @@ import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullR
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 
-import javax.annotation.Nullable;
 import javax.inject.Inject;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -25,12 +22,12 @@ public class GithubDescriptionParser implements PullRequestDomainContract.Descri
 
     @Override
     public PullRequestDescriptionEntity parse(String description) {
-        Map<Long, URL> closableIssues = new HashMap<>();
+        Set<Long> closableIssues = new HashSet<>();
         for (Element issueLink : getClosingIssueLinksFrom(description)) {
-            closableIssues.put(getIssueNumber(issueLink), getLinkAddress(issueLink));
+            closableIssues.add(getIssueNumber(issueLink));
         }
 
-        return PullRequestDescriptionEntity.create(closableIssues);
+        return new PullRequestDescriptionEntity(closableIssues);
     }
 
     private Iterable<? extends Element> getClosingIssueLinksFrom(String description) {
@@ -53,14 +50,5 @@ public class GithubDescriptionParser implements PullRequestDomainContract.Descri
             throw new RuntimeException("Closable issues should have the format '#(\\d*)': " + link.html());
         }
         return Long.valueOf(matcher.group(1));
-    }
-
-    @Nullable
-    private URL getLinkAddress(Element link) {
-        try {
-            return new URL(link.attr("href"));
-        } catch (MalformedURLException e) {
-            return null;
-        }
     }
 }

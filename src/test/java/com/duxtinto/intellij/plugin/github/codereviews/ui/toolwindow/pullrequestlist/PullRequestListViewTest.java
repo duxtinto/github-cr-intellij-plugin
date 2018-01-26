@@ -19,8 +19,7 @@ import javax.swing.*;
 class PullRequestListViewTest {
 
     @Injectable
-    @Named("default")
-    private ColumnInfo[] columnInfos = new ColumnInfo[] {
+    private ColumnInfo<?,  ?>[] columnInfos = new ColumnInfo[] {
             new NumberColumnInfo(),
             new TitleColumnInfo(),
     };
