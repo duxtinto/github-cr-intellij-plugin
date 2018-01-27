@@ -2,7 +2,8 @@ package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow
 
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsView
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListView
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.events.PullRequestListMouseInputAdapter
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.events.PullRequestListMouseListener
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.events.SelectionListener
 import mockit.Mocked
 import org.assertj.swing.edt.GuiActionRunner
 import org.assertj.swing.fixture.FrameFixture
@@ -24,11 +25,14 @@ internal class ToolWindowContentViewUiTest : AssertJSwingJUnit5TestCase() {
     private lateinit var view: ToolWindowContentView
 
     @Mocked
-    private lateinit var mouseInputAdapter: PullRequestListMouseInputAdapter
+    private lateinit var mouseListener: PullRequestListMouseListener
+
+    @Mocked
+    private lateinit var selectionListener: SelectionListener
 
     override fun onSetUp() {
         view = GuiActionRunner.execute<ToolWindowContentView> {
-            pullRequestListView = PullRequestListView(arrayOfNulls(0), mouseInputAdapter)
+            pullRequestListView = PullRequestListView(arrayOf(), mouseListener, selectionListener)
             codeReviewsView = CodeReviewsView()
             ToolWindowContentView(pullRequestListView, codeReviewsView)
         }

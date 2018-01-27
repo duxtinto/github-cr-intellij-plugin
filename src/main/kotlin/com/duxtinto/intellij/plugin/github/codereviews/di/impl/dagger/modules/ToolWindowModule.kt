@@ -1,6 +1,7 @@
 package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules
 
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContent
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContentPresenter
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContentView
@@ -37,7 +38,7 @@ class ToolWindowModule {
     @Provides
     @ProjectScoped
     @Named("default")
-    fun provideColumnInfoDefaultArray(columnInfoFactory: ColumnInfoFactory): Array<ColumnInfo<*, *>> {
+    fun providePullRequestColumnInfoDefaultArray(columnInfoFactory: ColumnInfoFactory): Array<ColumnInfo<PullRequestEntity, *>> {
         return columnInfoFactory.createDefaultColumns()
     }
 }

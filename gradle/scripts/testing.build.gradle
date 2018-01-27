@@ -29,7 +29,7 @@ dependencies {
             "com.nhaarman.mockitokotlin2:mockito-kotlin:${project.versions.mockito_kotlin}",
             "io.github.benas:random-beans:${project.versions.random_beans}",
             "io.github.benas:random-beans-randomizers:${project.versions.random_beans}",
-            "org.jetbrains.kotlin:kotlin-test-junit:${project.versions.kotlin}"
+            "org.jetbrains.kotlin:kotlin-test-junit:${project.versions.kotlin}",
     )
 
     testRuntime(
@@ -62,5 +62,15 @@ junitPlatform {
                 include project.property('filterTagged')
             }
         }
+    }
+}
+
+task enableMockitoStaticMocking {
+    mkdir("src/test/resources/mockito-extensions")
+    def mockMakerConfig = file("src/test/resources/mockito-extensions/org.mockito.plugins.MockMaker")
+    if (!mockMakerConfig.exists()) {
+        mockMakerConfig
+                .createNewFile()
+        mockMakerConfig.text = "mock-maker-inline\n"
     }
 }

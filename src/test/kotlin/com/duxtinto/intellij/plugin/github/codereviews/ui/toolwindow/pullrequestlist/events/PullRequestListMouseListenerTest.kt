@@ -8,8 +8,10 @@ import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequest
 import com.intellij.ide.BrowserUtil
 import com.intellij.ui.table.JBTable
 import com.intellij.ui.table.TableView
-import mockit.*
-import org.junit.jupiter.api.Assertions.assertThrows
+import mockit.Expectations
+import mockit.FullVerifications
+import mockit.Injectable
+import mockit.Tested
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -21,60 +23,16 @@ import java.awt.event.MouseEvent
 import java.net.MalformedURLException
 import java.util.stream.Stream
 
-internal class PullRequestListMouseInputAdapterTest {
+internal class PullRequestListMouseListenerTest {
     @Injectable
     lateinit var issueContextSwitcher: SwitchToIssueInteractor
-
-    @Test
-    @DisplayName("setting a null table for listening should throw NullPointerException")
-    fun listenToNullTable() {
-        assertThrows(NullPointerException::class.java) {
-            PullRequestListMouseInputAdapter(issueContextSwitcher).listenToTable(null!!)
-        }
-    }
-
-    @Test
-    @DisplayName("setting a table for listening should register the listener to that table")
-    fun listenToTable(@Injectable table: TableView<PullRequestEntity>) {
-        val sut = PullRequestListMouseInputAdapter(issueContextSwitcher)
-
-        sut.listenToTable(table)
-
-        object : FullVerifications() {
-            init {
-                table.addMouseListener(sut)
-            }
-        }
-    }
-
-    @Test
-    @DisplayName("setting a table for listening should unregister the listener from any previous table")
-    fun listenToTableAfterAnotherTableHasBeenSet(
-            @Injectable registeredTable: TableView<PullRequestEntity>,
-            @Mocked newTable: TableView<PullRequestEntity>,
-            @Tested mouseInputAdapter: PullRequestListMouseInputAdapter) {
-
-        mouseInputAdapter.listenToTable(newTable)
-
-        object : FullVerifications(newTable) {
-            init {
-                newTable.addMouseListener(mouseInputAdapter)
-            }
-        }
-
-        object : Verifications() {
-            init {
-                registeredTable.removeMouseListener(mouseInputAdapter)
-            }
-        }
-    }
 
     @Test
     @DisplayName("on mouse pressed, over a PR's number cell, gh's PR page should be opened in the web browser")
     fun mousePressedOverPrNumberHappyPath(
             @Injectable pullRequest: PullRequestEntity,
             @Injectable table: TableView<PullRequestEntity>,
-            @Tested sut: PullRequestListMouseInputAdapter) {
+            @Tested sut: PullRequestListMouseListener) {
         val event = MouseEvent(table, 0, 0, 0, 38, 25, 1, false, 0)
 
         object : Expectations() {
@@ -106,23 +64,10 @@ internal class PullRequestListMouseInputAdapterTest {
     }
 
     @Test
-    @DisplayName("on mouse pressed, if the table has not been set, should do nothing")
-    fun mousePressedIfTableNotSet(
-            @Injectable event: MouseEvent,
-            @Tested sut: PullRequestListMouseInputAdapter) {
-        sut.mousePressed(event)
-
-        object : FullVerifications() {
-            init {
-            }
-        }
-    }
-
-    @Test
     @DisplayName("on mouse pressed, if the table is not the event's originator, should do nothing")
     fun mousePressedIfDifferentSource(
             @Injectable table: TableView<PullRequestEntity>,
-            @Tested sut: PullRequestListMouseInputAdapter) {
+            @Tested sut: PullRequestListMouseListener) {
         val event = MouseEvent(JBTable(), 0, 0, 0, 0, 0, 1, false, 0)
 
         sut.mousePressed(event)
@@ -139,7 +84,7 @@ internal class PullRequestListMouseInputAdapterTest {
     fun mousePressedInANonActionableCell(
             columnIndex: ColumnInfoFactory.ColumnIndexes,
             @Injectable table: TableView<PullRequestEntity>,
-            @Tested sut: PullRequestListMouseInputAdapter) {
+            @Tested sut: PullRequestListMouseListener) {
         val event = MouseEvent(table, 0, 0, 0, 38, 25, 1, false, 0)
 
         object : Expectations() {
@@ -169,7 +114,7 @@ internal class PullRequestListMouseInputAdapterTest {
             expectedIssue: IssueEntity,
             @Injectable pullRequest: PullRequestEntity,
             @Injectable table: TableView<PullRequestEntity>,
-            @Tested sut: PullRequestListMouseInputAdapter) {
+            @Tested sut: PullRequestListMouseListener) {
         val event = MouseEvent(table, 0, 0, 0, 38, 25, 1, false, 0)
 
         object : Expectations() {
@@ -216,7 +161,7 @@ internal class PullRequestListMouseInputAdapterTest {
     fun mousePressedOverEmptyIssueNumberCell(
             @Injectable pullRequest: PullRequestEntity,
             @Injectable table: TableView<PullRequestEntity>,
-            @Tested sut: PullRequestListMouseInputAdapter) {
+            @Tested sut: PullRequestListMouseListener) {
         val event = MouseEvent(table, 0, 0, 0, 38, 25, 1, false, 0)
 
         object : Expectations() {
