@@ -9,6 +9,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequest
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.columns.ColumnInfoFactory
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.events.PullRequestListMouseListener
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.events.SelectionListener
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.reviewee.RevieweeView
 import com.intellij.util.ui.ColumnInfo
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
@@ -23,25 +24,25 @@ import org.assertj.swing.matcher.SplitterMatcher
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-internal class ToolWindowContentViewUiTest : AssertJSwingJUnit5TestCase() {
+internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
     private lateinit var pullRequestColumns: Array<ColumnInfo<PullRequestEntity, *>>
     private lateinit var pullRequestListView: PullRequestListView
     private lateinit var codeReviewsView: CodeReviewsView
-    private lateinit var view: ToolWindowContentView
+    private lateinit var view: RevieweeView
 
     fun initViewDependencies(
             mouseListener: PullRequestListMouseListener,
             selectionListener: SelectionListener) {
         pullRequestColumns = ColumnInfoFactory().createDefaultColumns()
-        view = GuiActionRunner.execute<ToolWindowContentView> {
+        view = GuiActionRunner.execute<RevieweeView> {
             pullRequestListView = PullRequestListView(pullRequestColumns, mouseListener, selectionListener)
             codeReviewsView = CodeReviewsView()
-            ToolWindowContentView(pullRequestListView, codeReviewsView)
+            RevieweeView(pullRequestListView, codeReviewsView)
         }
     }
 
     @Test
-    @DisplayName("after view initialization, the pull request & code review panels should be visible")
+    @DisplayName("after reviewee view initialization, the pull request & code review panels should be visible")
     fun initView(
             @Mocked mouseListener: PullRequestListMouseListener,
             @Mocked selectionListener: SelectionListener) {

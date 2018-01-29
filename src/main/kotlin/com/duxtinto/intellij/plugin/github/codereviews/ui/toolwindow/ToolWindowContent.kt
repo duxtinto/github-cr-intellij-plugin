@@ -4,12 +4,16 @@ import javax.swing.*
 
 interface ToolWindowContent {
     interface Model
-    interface View {
+    interface RevieweeView {
+        val content: JComponent
+    }
+
+    interface ReviewerView {
         val content: JComponent
     }
 
     interface Presenter {
-        fun setView(view: View)
-        fun displayContent()
+        fun setRevieweeView(view: RevieweeView)
+        fun setReviewerView(view: ReviewerView)
     }
 }

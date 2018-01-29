@@ -1,44 +1,24 @@
 package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules
 
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContent
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContentPresenter
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContentView
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviews
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestList
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.columns.ColumnInfoFactory
-import com.intellij.ui.content.ContentFactory
-import com.intellij.ui.content.ContentManager
-import com.intellij.util.ui.ColumnInfo
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.reviewee.RevieweeView
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.reviewer.ReviewerView
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
-
-import javax.inject.Named
 
 @Module
-class ToolWindowModule {
-    @Provides
+abstract class ToolWindowModule {
+    @Binds
     @ProjectScoped
-    fun provideToolWindowContentPresenter(
-            contentFactory: ContentFactory,
-            @Named("GH_Reviews") contentManager: ContentManager): ToolWindowContent.Presenter {
-        return ToolWindowContentPresenter(contentFactory, contentManager)
-    }
+    abstract fun provideToolWindowContentPresenter(presenter: ToolWindowContentPresenter): ToolWindowContent.Presenter
 
-    @Provides
+    @Binds
     @ProjectScoped
-    fun provideToolWindowContentView(
-            pullRequestListView: PullRequestList.View,
-            codeReviewsView: CodeReviews.View
-    ): ToolWindowContent.View {
-        return ToolWindowContentView(pullRequestListView, codeReviewsView)
-    }
+    abstract fun provideToolWindowContentRevieweeView(revieweeView: RevieweeView): ToolWindowContent.RevieweeView
 
-    @Provides
+    @Binds
     @ProjectScoped
-    @Named("default")
-    fun providePullRequestColumnInfoDefaultArray(columnInfoFactory: ColumnInfoFactory): Array<ColumnInfo<PullRequestEntity, *>> {
-        return columnInfoFactory.createDefaultColumns()
-    }
+    abstract fun provideToolWindowContentReviewerView(reviewerView: ReviewerView): ToolWindowContent.ReviewerView
 }
