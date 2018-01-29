@@ -12,9 +12,9 @@ import dagger.Provides;
         AuthModule.class,
         ReposModule.class,
         PullRequestModule.class,
+        CodeReviewModule.class,
         IssueModule.class,
-        UiModule.class,
-        EventsModule.class,
+        ToolWindowModule.class,
 })
 public class ProjectModule {
     private final ProjectExt project;

@@ -17,7 +17,7 @@ public class PullRequestListPresenter implements PullRequestList.Presenter {
     private final PullRequestList.Model model;
 
     @Inject
-    public PullRequestListPresenter(@Nonnull @Named("default") ColumnInfo<?, ?>[] columnInfos) {
+    public PullRequestListPresenter(@Nonnull @Named("default") ColumnInfo<PullRequestEntity, ?>[] columnInfos) {
         checkNotNull(columnInfos);
 
         this.model = new PullRequestListModel(columnInfos);

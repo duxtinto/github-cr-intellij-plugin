@@ -9,7 +9,7 @@ import java.util.List;
 public class PullRequestListModel implements PullRequestList.Model {
     private ListTableModel<PullRequestEntity> tableModel;
 
-    PullRequestListModel(ColumnInfo[] columns) {
+    public PullRequestListModel(ColumnInfo<PullRequestEntity, ?>[] columns) {
         this.tableModel = new ListTableModel<>(columns);
     }
 

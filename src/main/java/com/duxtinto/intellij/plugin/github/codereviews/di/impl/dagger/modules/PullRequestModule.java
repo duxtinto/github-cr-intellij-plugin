@@ -8,11 +8,21 @@ import com.duxtinto.intellij.plugin.github.codereviews.services.pullrequests.Git
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestList;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListPresenter;
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListView;
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.events.SelectionListener;
 import dagger.Binds;
 import dagger.Module;
 
 @Module
 public abstract class PullRequestModule {
+    @Binds
+    public abstract PullRequestDomainContract.Fetcher providePullRequestDomainContractFetcher(ApiV3PullRequestFetcher fetcher);
+
+    @Binds
+    public abstract PullRequestDomainContract.Repository providePullRequestDomainContractRepository(PullRequestRepositoryImpl repository);
+
+    @Binds
+    public abstract PullRequestDomainContract.DescriptionParser providePullRequestDomainContractDescriptionParser(GithubDescriptionParser parser);
+
     @Binds
     @ProjectScoped
     public abstract PullRequestList.Presenter providePullRequestListPresenter(PullRequestListPresenter presenter);
@@ -22,11 +32,6 @@ public abstract class PullRequestModule {
     public abstract PullRequestList.View providePullRequestListView(PullRequestListView view);
 
     @Binds
-    public abstract PullRequestDomainContract.Fetcher providePullRequestDomainContractFetcher(ApiV3PullRequestFetcher fetcher);
-
-    @Binds
-    public abstract PullRequestDomainContract.Repository providePullRequestDomainContractRepository(PullRequestRepositoryImpl repository);
-
-    @Binds
-    public abstract PullRequestDomainContract.DescriptionParser providePullRequestDomainContractDescriptionParser(GithubDescriptionParser parser);
+    @ProjectScoped
+    public abstract PullRequestList.View.Events.SelectionListener providePullRequestListViewEventsSelectionListener(SelectionListener listener);
 }

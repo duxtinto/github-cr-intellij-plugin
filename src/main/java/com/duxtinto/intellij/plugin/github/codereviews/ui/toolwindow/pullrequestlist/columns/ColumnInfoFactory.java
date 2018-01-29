@@ -1,5 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.columns;
 
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity;
 import com.intellij.util.ui.ColumnInfo;
 
 import javax.inject.Inject;
@@ -16,7 +17,7 @@ public class ColumnInfoFactory {
         TITLE,
     }
 
-    public ColumnInfo[] createDefaultColumns() {
+    public ColumnInfo<PullRequestEntity, ?>[] createDefaultColumns() {
         return new ColumnInfo[]{
                 new NumberColumnInfo(),
                 new IssuesColumnInfo(),

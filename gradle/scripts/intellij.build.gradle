@@ -1,0 +1,11 @@
+intellij {
+    pluginName 'github_reviews_plugin'
+    version = project.versions.idea_version
+    plugins = ['git4idea', 'github']
+}
+
+patchPluginXml {
+    version '0.0.1'
+    sinceBuild 162
+    untilBuild '181.*'
+}
