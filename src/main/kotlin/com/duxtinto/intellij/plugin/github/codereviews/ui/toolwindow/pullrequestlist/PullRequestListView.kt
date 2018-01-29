@@ -12,6 +12,7 @@ import com.intellij.util.ui.ListTableModel
 import javax.inject.Inject
 import javax.inject.Named
 import javax.swing.JPanel
+import javax.swing.ListSelectionModel
 
 class PullRequestListView
 @Inject
@@ -32,11 +33,13 @@ constructor(
         val model = ListTableModel<PullRequestEntity>(*defaultColumns)
         table = TableView<PullRequestEntity>(model)
         with(table) {
-            selectionModel.addListSelectionListener(selectionListener)
+            with(selectionModel) {
+                selectionMode = ListSelectionModel.SINGLE_SELECTION
+                addListSelectionListener(selectionListener)
+            }
+            selectionListener.setTable(this)
             addMouseListener(mouseListener)
-            emptyText
-                    .clear()
-                    .appendText("Nothing to see here.")
+            emptyText.appendText("Nothing to see here.")
         }
 
         content.add(

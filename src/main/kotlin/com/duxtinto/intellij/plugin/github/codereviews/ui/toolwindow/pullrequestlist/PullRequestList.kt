@@ -1,6 +1,7 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
+import com.intellij.ui.table.TableView
 import com.intellij.util.ui.ListTableModel
 import javax.swing.JComponent
 import javax.swing.event.ListSelectionListener
@@ -18,7 +19,9 @@ interface PullRequestList {
 
         interface Events {
             interface MouseListener : AwtMouseListener
-            interface SelectionListener : ListSelectionListener
+            interface SelectionListener : ListSelectionListener {
+                fun setTable(table: TableView<PullRequestEntity>)
+            }
         }
     }
 

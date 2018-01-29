@@ -30,6 +30,7 @@ dependencies {
             "io.github.benas:random-beans:${project.versions.random_beans}",
             "io.github.benas:random-beans-randomizers:${project.versions.random_beans}",
             "org.jetbrains.kotlin:kotlin-test-junit:${project.versions.kotlin}",
+            "org.jetbrains.kotlin:kotlin-reflect:${project.versions.kotlin}"
     )
 
     testRuntime(

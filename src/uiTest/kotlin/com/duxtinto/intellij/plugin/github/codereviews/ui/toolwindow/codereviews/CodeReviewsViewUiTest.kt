@@ -1,5 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews
 
+import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
 import org.assertj.swing.edt.GuiActionRunner
 import org.assertj.swing.fixture.FrameFixture
 import org.assertj.swing.fixture.requireEmptyText
@@ -23,6 +24,25 @@ class CodeReviewsViewUiTest : AssertJSwingJUnit5TestCase() {
 
         // Assert
         frame.tree(IdeaTreeMatcher())
-                .requireEmptyText("Please, select a pull request above to see the here its code reviews")
+                .requireEmptyText("Please, select a pull request above to see here its code reviews")
+    }
+
+    @Test
+    @DisplayName("Rendering a model containing reviews should display them on the tree")
+    fun renderModelWithReviews() {
+        // Arrange
+        val view = GuiActionRunner.execute<CodeReviewsView>({ CodeReviewsView() })
+        frame = showContentInIdeaFrame(view.content)
+
+        // Act
+        val expectedReviews = Fixture.codeReview().buildList(3)
+        view.render(CodeReviewsModel(expectedReviews))
+
+        // Assert
+        frame.tree(IdeaTreeMatcher()).apply {
+            for (codeReview in expectedReviews) {
+                node("Code Reviews/${codeReview.reviewer.username} [${codeReview.state}]")
+            }
+        }
     }
 }

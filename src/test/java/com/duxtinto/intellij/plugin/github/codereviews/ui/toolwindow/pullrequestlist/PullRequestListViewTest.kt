@@ -45,7 +45,11 @@ internal class PullRequestListViewTest {
         // Assert
         object : Verifications() {
             init {
-                selectionModel.addListSelectionListener(selectionListener)
+                with(selectionModel) {
+                    selectionMode = ListSelectionModel.SINGLE_SELECTION
+                    addListSelectionListener(selectionListener)
+                }
+                selectionListener.setTable(table)
                 table.addMouseListener(mouseListener)
                 content.add(any as JComponent?, any)
             }
@@ -62,6 +66,8 @@ internal class PullRequestListViewTest {
             init {
                 TableView<PullRequestEntity>(any as ListTableModel<PullRequestEntity>?)
                 result = table
+
+                selectionListener.setTable(table)
             }
         }
 
@@ -77,14 +83,6 @@ internal class PullRequestListViewTest {
                 table.setModelAndUpdateColumns(model.tableModel)
                 table.repaint()
             }
-        }
-
-        object : FullVerifications(mouseListener) {
-            init {}
-        }
-
-        object : FullVerifications(selectionListener) {
-            init {}
         }
     }
 }

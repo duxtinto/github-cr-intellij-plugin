@@ -7,8 +7,8 @@ import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.issues.G
 import javax.inject.Inject
 
 class ApiV3IssueFetcher
-@Inject
-constructor(
+    @Inject
+    constructor(
         private val githubRootRepoFinder : FindGithubRepoForRootFolderInteractor,
         private val apiV3Loader: GithubApiV3IssueLoader)
     : IssuesDomainContract.Fetcher {

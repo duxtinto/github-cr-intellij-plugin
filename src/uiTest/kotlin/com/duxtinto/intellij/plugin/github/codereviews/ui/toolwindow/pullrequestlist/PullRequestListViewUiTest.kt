@@ -2,6 +2,7 @@ package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullreques
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsPresenter
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.columns.*
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.events.PullRequestListMouseListener
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.events.SelectionListener
@@ -79,14 +80,18 @@ class PullRequestListViewUiTest : AssertJSwingJUnit5TestCase() {
 
     @Test
     @DisplayName("After selecting a PR row, the CRs related to that PR should be displayes")
-    fun selectingRow(@Mocked mouseListener: PullRequestListMouseListener) {
+    fun selectingRow(@Mocked codeReviewsPresenter: CodeReviewsPresenter) {
         // Arrange
         val pullRequest = Fixture.pullRequest().build()
         val model = PullRequestListModel(columns).apply {
             setPullRequests(arrayListOf(pullRequest))
         }
 
-        val selectionListener: SelectionListener = spy(SelectionListener()) {
+        val mouseListener = spy(PullRequestListMouseListener(mock())) {
+            doNothing().whenever(it).mousePressed(any())
+        }
+
+        val selectionListener: SelectionListener = spy(SelectionListener(codeReviewsPresenter)) {
             doNothing().whenever(it).valueChanged(any())
         }
 
@@ -98,7 +103,9 @@ class PullRequestListViewUiTest : AssertJSwingJUnit5TestCase() {
         frame.table(IdeaTableViewMatcher()).selectRows(0)
 
         // Assert
-        verify(selectionListener).valueChanged(any())
+        verify(selectionListener).valueChanged(argThat {
+            firstIndex == 0 && !valueIsAdjusting
+        })
     }
 }
 
