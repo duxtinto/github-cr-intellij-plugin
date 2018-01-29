@@ -17,7 +17,10 @@ class ToolWindowFactory : com.intellij.openapi.wm.ToolWindowFactory, DiContainer
     internal lateinit var myToolWindow: ToolWindowImpl
 
     @Inject
-    internal lateinit var view: ToolWindowContent.View
+    internal lateinit var revieweeView: ToolWindowContent.RevieweeView
+
+    @Inject
+    internal lateinit var reviewerView: ToolWindowContent.ReviewerView
 
     @Inject
     internal lateinit var presenter: ToolWindowContent.Presenter
@@ -41,8 +44,8 @@ class ToolWindowFactory : com.intellij.openapi.wm.ToolWindowFactory, DiContainer
             return
         }
 
-        presenter.setView(view)
-        presenter.displayContent()
+        presenter.setRevieweeView(revieweeView)
+        presenter.setReviewerView(reviewerView)
 
         pullRequestListPresenter.setView(pullRequestListView)
         codeReviewsPresenter.setView(codeReviewsView)

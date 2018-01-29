@@ -15,7 +15,7 @@ internal class CodeReviewsPresenterTest {
     private lateinit var presenter: CodeReviewsPresenter
 
     @Test
-    @DisplayName("display code reviews should create model and order the view to render it")
+    @DisplayName("display code reviews should create model and order the revieweeView to render it")
     internal fun displayCodeReviewsHappyPath(
             @Mocked model: CodeReviewsModel,
             @Mocked view: CodeReviews.View) {
@@ -47,7 +47,7 @@ internal class CodeReviewsPresenterTest {
     }
 
     @Test
-    @DisplayName("display code reviews, if view is not set, should do nothing")
+    @DisplayName("display code reviews, if revieweeView is not set, should do nothing")
     internal fun displayCodeReviewsIfViewNotSet() {
         // Arrange
         val pullRequest = Fixture.pullRequest().build()

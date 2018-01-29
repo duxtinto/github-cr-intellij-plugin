@@ -13,7 +13,7 @@ import javax.swing.JComponent
 import javax.swing.JPanel
 import javax.swing.ListSelectionModel
 
-internal class PullRequestListViewTest {
+internal class PullRequestListRevieweeViewTest {
 
     @Injectable
     private var columnInfos = arrayOf<ColumnInfo<PullRequestEntity, *>>()
