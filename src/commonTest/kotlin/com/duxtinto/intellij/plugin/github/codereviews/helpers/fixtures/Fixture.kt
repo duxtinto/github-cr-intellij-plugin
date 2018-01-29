@@ -1,9 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures
 
-import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.builders.IssueFixtureBuilder
-import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.builders.PullRequestDescriptionFixtureBuilder
-import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.builders.PullRequestFixtureBuilder
-import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.builders.RepositoryFixtureBuilder
+import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.builders.*
 
 object Fixture {
     internal fun issue(): IssueFixtureBuilder {
@@ -14,12 +11,16 @@ object Fixture {
         return PullRequestFixtureBuilder()
     }
 
-    fun pullRequestDescription(): PullRequestDescriptionFixtureBuilder {
+    internal fun pullRequestDescription(): PullRequestDescriptionFixtureBuilder {
         return PullRequestDescriptionFixtureBuilder()
     }
 
-    fun repository(): RepositoryFixtureBuilder {
+    internal fun repository(): RepositoryFixtureBuilder {
         return RepositoryFixtureBuilder()
+    }
+
+    internal fun codeReview(): CodeReviewFixtureBuilder {
+        return CodeReviewFixtureBuilder()
     }
 
     internal fun ide(): IdeFixture {

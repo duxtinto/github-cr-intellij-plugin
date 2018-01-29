@@ -15,15 +15,16 @@ buildscript {
 plugins {
     id 'net.ltgt.apt-idea' version '0.13'
     id 'org.jetbrains.intellij' version '0.2.17'
-    id "org.jetbrains.kotlin.jvm" version "1.2.20"
-    id "org.jetbrains.kotlin.plugin.allopen" version "1.2.20"
+    id "org.jetbrains.kotlin.jvm" version "1.2.21"
+    id "org.jetbrains.kotlin.plugin.allopen" version "1.2.21"
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
-apply from: './gradle/scripts/kotlin.build.gradle'
-apply from: './gradle/scripts/testing.build.gradle'
 apply from: './gradle/scripts/dependencies.build.gradle'
+apply from: './gradle/scripts/kotlin.build.gradle'
+apply from: './gradle/scripts/intellij.build.gradle'
+apply from: './gradle/scripts/testing.build.gradle'
 
 targetCompatibility = project.versions.jvm
 sourceCompatibility = project.versions.jvm
@@ -36,12 +37,6 @@ allprojects {
     apply from: './gradle/scripts/dependencies.build.gradle'
 }
 
-intellij {
-    version = project.versions.idea_version
-    plugins = ['git4idea', 'github']
-    pluginName 'github_reviews_plugin'
-}
-
 sourceSets {
     main {
         java.srcDir 'src/main/java'
@@ -51,11 +46,14 @@ sourceSets {
 }
 
 dependencies {
+    compileOnly(
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.versions.kotlin}",
+    )
+
     compile(
             "com.google.guava:guava:${project.versions.guava}",
             "com.google.dagger:dagger:${project.versions.dagger}",
             "org.jsoup:jsoup:${project.versions.jsoup}",
-            "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.versions.kotlin}",
     )
 
     compileOnly "com.google.auto.value:auto-value:${project.versions.auto_value}"

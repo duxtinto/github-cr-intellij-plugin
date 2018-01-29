@@ -2,7 +2,7 @@ package com.duxtinto.intellij.plugin.github.codereviews.net.issues
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.FindGithubRepoForRootFolderInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.GithubApiV3IssueLoader
+import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.issues.GithubApiV3IssueLoader
 import mockit.Expectations
 import mockit.Injectable
 import mockit.Tested
