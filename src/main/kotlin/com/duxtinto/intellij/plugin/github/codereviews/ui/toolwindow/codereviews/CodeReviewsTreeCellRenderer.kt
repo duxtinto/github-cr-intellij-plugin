@@ -3,9 +3,12 @@ package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereview
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewEntity
 import com.intellij.ide.util.treeView.NodeRenderer
 import com.intellij.util.ui.tree.TreeUtil
+import javax.inject.Inject
 import javax.swing.JTree
 
-class CodeReviewsTreeCellRenderer: NodeRenderer() {
+class CodeReviewsTreeCellRenderer
+    @Inject constructor()
+    : NodeRenderer() {
     override fun customizeCellRenderer(tree: JTree, value: Any?, selected: Boolean, expanded: Boolean, leaf: Boolean, row: Int, hasFocus: Boolean) {
         with(TreeUtil.getUserObject(value)) {
             if (this is CodeReviewEntity) {
