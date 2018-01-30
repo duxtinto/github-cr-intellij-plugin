@@ -12,7 +12,7 @@ class RevieweeView
     constructor(
         private val pullRequestListView: PullRequestList.View,
         private val codeReviewsView: CodeReviews.View)
-    : ToolWindowContent.RevieweeView {
+    : ToolWindowContent.Reviewee.View {
 
     override val content = SimpleToolWindowPanel(true, true).apply {
         setContent(

@@ -1,8 +1,8 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow
 
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsPresenter
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsTreeCellRenderer
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsView
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListModel
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListView
@@ -10,7 +10,6 @@ import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequest
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.events.PullRequestListMouseListener
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.events.SelectionListener
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.reviewee.RevieweeView
-import com.intellij.util.ui.ColumnInfo
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import mockit.Mocked
@@ -23,20 +22,22 @@ import org.assertj.swing.matcher.IdeaTreeMatcher
 import org.assertj.swing.matcher.SplitterMatcher
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import javax.swing.tree.TreeCellRenderer
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.events.MouseListener as CodeReviewsMouseListener
 
 internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
-    private lateinit var pullRequestColumns: Array<ColumnInfo<PullRequestEntity, *>>
+    private val pullRequestColumns = ColumnInfoFactory().createDefaultColumns()
     private lateinit var pullRequestListView: PullRequestListView
     private lateinit var codeReviewsView: CodeReviewsView
     private lateinit var view: RevieweeView
+    private val codeReviewsCellRenderer: TreeCellRenderer = CodeReviewsTreeCellRenderer()
 
     fun initViewDependencies(
             mouseListener: PullRequestListMouseListener,
             selectionListener: SelectionListener) {
-        pullRequestColumns = ColumnInfoFactory().createDefaultColumns()
         view = GuiActionRunner.execute<RevieweeView> {
             pullRequestListView = PullRequestListView(pullRequestColumns, mouseListener, selectionListener)
-            codeReviewsView = CodeReviewsView()
+            codeReviewsView = CodeReviewsView(CodeReviewsMouseListener(), codeReviewsCellRenderer)
             RevieweeView(pullRequestListView, codeReviewsView)
         }
     }
