@@ -7,10 +7,13 @@ import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.revie
 import com.duxtinto.intellij.plugin.github.codereviews.net.codereviews.apiv3.CodeReviewsFetcher
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviews
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsPresenter
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsTreeCellRenderer
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsView
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.events.MouseListener
 import dagger.Binds
 import dagger.Module
+import javax.inject.Named
+import javax.swing.tree.TreeCellRenderer
 
 @Module
 abstract class CodeReviewModule {
@@ -25,6 +28,11 @@ abstract class CodeReviewModule {
     @Binds
     @ProjectScoped
     abstract fun provideCodeReviewsView(view: CodeReviewsView): CodeReviews.View
+
+    @Binds
+    @ProjectScoped
+    @Named("code_reviews")
+    abstract fun provideCodeReviewsTreeCellRenderer(cellRenderer: CodeReviewsTreeCellRenderer): TreeCellRenderer
 
     @Binds
     @ProjectScoped
