@@ -9,18 +9,21 @@ class ToolWindowContentPresenter
     @Inject
     constructor(
             private val contentFactory: ContentFactory,
-            @Named("GH_Reviews") private val contentManager: ContentManager)
+            @Named("GH_Reviews") private val contentManager: ContentManager,
+            private val revieweeView: ToolWindowContent.Reviewee.View,
+            revieweePresenter: ToolWindowContent.Reviewee.Presenter,
+            private val reviewerView: ToolWindowContent.Reviewer.View,
+            reviewerPresenter: ToolWindowContent.Reviewer.Presenter)
     : ToolWindowContent.Presenter {
-    private lateinit var revieweeView: ToolWindowContent.RevieweeView
-    private lateinit var reviewerView: ToolWindowContent.ReviewerView
 
-    override fun setRevieweeView(view: ToolWindowContent.RevieweeView) {
-        revieweeView = view
-        contentManager.addContent(contentFactory.createContent(view.content, "Reviewee", false))
+    init {
+        revieweePresenter.setView(revieweeView)
+        reviewerPresenter.setView(reviewerView)
     }
 
-    override fun setReviewerView(view: ToolWindowContent.ReviewerView) {
-        reviewerView = view
+    override fun displayToolWindow() {
+        contentManager.addContent(contentFactory.createContent(revieweeView.content, "Reviewee", false))
         contentManager.addContent(contentFactory.createContent(reviewerView.content, "Reviewer", false))
     }
 }
+

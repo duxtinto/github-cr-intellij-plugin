@@ -7,12 +7,7 @@ import mockit.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-import javax.swing.*
-
 internal class ToolWindowContentPresenterTest {
-
-    @Tested
-    private lateinit var presenter: ToolWindowContentPresenter
 
     @Injectable
     private lateinit var contentFactory: ContentFactory
@@ -20,48 +15,57 @@ internal class ToolWindowContentPresenterTest {
     @Injectable
     private lateinit var contentManager: ContentManager
 
+    @Injectable
+    private lateinit var revieweeView: ToolWindowContent.Reviewee.View
+
+    @Injectable
+    private lateinit var  revieweePresenter: ToolWindowContent.Reviewee.Presenter
+
+    @Injectable
+    private lateinit var  reviewerView: ToolWindowContent.Reviewer.View
+
+    @Injectable
+    private lateinit var  reviewerPresenter: ToolWindowContent.Reviewer.Presenter
+
+    @Tested
+    private lateinit var presenter: ToolWindowContentPresenter
+
     @Test
-    @DisplayName("setting the reviewee View should display it under the reviewee tab")
-    fun setRevieweeView(@Injectable view: ToolWindowContent.RevieweeView, @Mocked content: Content)
-    {
-        // Arrange
-        object : Expectations() {
-            init {
-                contentFactory.createContent(view.content, "Reviewee", anyBoolean)
-                result = content
-            }
-        }
-
-        // Act
-        presenter.setRevieweeView(view)
-
+    @DisplayName("on initialization, presenter should set both reviewee & reviewer views")
+    internal fun init() {
         // Assert
-        object : Verifications() {
+        object : FullVerifications() {
             init {
-                contentManager.addContent(content)
+                revieweePresenter.setView(revieweeView)
+                reviewerPresenter.setView(reviewerView)
             }
         }
     }
 
     @Test
-    @DisplayName("setting the reviewer View should display it under the reviewer tab")
-    fun setReviewerView(@Injectable view: ToolWindowContent.ReviewerView, @Mocked content: Content)
-    {
+    @DisplayName("present tool window should present both, reviewee & reviewer content")
+    internal fun presentToolWindow(
+            @Mocked revieweeContent: Content,
+            @Mocked reviewerContent: Content) {
         // Arrange
         object : Expectations() {
             init {
-                contentFactory.createContent(view.content, "Reviewer", anyBoolean)
-                result = content
+                contentFactory.createContent(revieweeView.content, "Reviewee", anyBoolean)
+                result = revieweeContent
+
+                contentFactory.createContent(reviewerView.content, "Reviewer", anyBoolean)
+                result = reviewerContent
             }
         }
 
         // Act
-        presenter.setReviewerView(view)
+        presenter.displayToolWindow()
 
         // Assert
-        object : Verifications() {
+        object : FullVerifications() {
             init {
-                contentManager.addContent(content)
+                contentManager.addContent(revieweeContent)
+                contentManager.addContent(reviewerContent)
             }
         }
     }
