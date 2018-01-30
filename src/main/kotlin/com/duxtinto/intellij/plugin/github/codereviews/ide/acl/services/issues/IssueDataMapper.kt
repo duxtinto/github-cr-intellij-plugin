@@ -10,7 +10,7 @@ class IssueDataMapper
     constructor()
     : DomainDataMapper<IssueEntity, GithubIssue> {
 
-    override fun toEntity(ideDataModel: GithubIssue): IssueEntity {
-        return IssueEntity(number = ideDataModel.number, title = ideDataModel.title)
+    override fun toEntity(dataModel: GithubIssue): IssueEntity {
+        return IssueEntity(number = dataModel.number, title = dataModel.title)
     }
 }
