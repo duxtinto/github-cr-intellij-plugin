@@ -7,6 +7,6 @@ import javax.inject.Inject
 class ReviewerView
     @Inject
     constructor()
-    : ToolWindowContent.ReviewerView {
+    : ToolWindowContent.Reviewer.View {
     override val content = SimpleToolWindowPanel(true, true)
 }
