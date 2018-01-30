@@ -7,8 +7,8 @@ import io.github.benas.randombeans.api.Randomizer
 class CodeReviewerRandomizer : Randomizer<CodeReviewerEntity> {
     override fun getRandomValue(): CodeReviewerEntity {
         return CodeReviewerEntity(
-                id = RandomGenerator.nextLong(),
-                username = RandomGenerator.nextObject(String::class)
+                id = RandomGenerator.next(),
+                username = RandomGenerator.next()
         )
     }
 }

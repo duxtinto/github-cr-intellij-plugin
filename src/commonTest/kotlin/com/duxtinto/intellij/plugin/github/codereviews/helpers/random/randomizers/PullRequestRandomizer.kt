@@ -7,12 +7,12 @@ import java.net.URL
 
 class PullRequestRandomizer : Randomizer<PullRequestEntity> {
     override fun getRandomValue(): PullRequestEntity {
-        val prNumber = RandomGenerator.nextLong()
+        val prNumber: Long = RandomGenerator.next()
         return PullRequestEntity(
                 number = prNumber,
                 closeableIssues = listOf(),
-                title = RandomGenerator.nextObject(String::class),
-                state = RandomGenerator.nextObject(PullRequestEntity.State::class),
+                title = RandomGenerator.next(),
+                state = RandomGenerator.next(),
                 url = URL("https://github.com/duxtinto/dummy/pull/$prNumber"))
     }
 }

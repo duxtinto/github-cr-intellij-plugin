@@ -6,6 +6,6 @@ import com.duxtinto.intellij.plugin.github.codereviews.helpers.random.RandomGene
 
 class RepositoryFixtureBuilder : FixtureBuilder<GithubRepositoryEntity> {
     override fun build(): GithubRepositoryEntity {
-        return RandomGenerator.nextObject(GithubRepositoryEntity::class)
+        return RandomGenerator.next()
     }
 }

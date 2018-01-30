@@ -7,7 +7,7 @@ import io.github.benas.randombeans.api.Randomizer
 class IssueRandomizer : Randomizer<IssueEntity> {
     override fun getRandomValue(): IssueEntity {
         return IssueEntity(
-                number = RandomGenerator.nextLong(),
-                title = RandomGenerator.nextObject(String::class))
+                number = RandomGenerator.next(),
+                title = RandomGenerator.next())
     }
 }

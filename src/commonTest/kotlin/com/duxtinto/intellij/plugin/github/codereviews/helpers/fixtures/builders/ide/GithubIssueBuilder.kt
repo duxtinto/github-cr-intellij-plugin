@@ -7,8 +7,8 @@ import com.google.gson.JsonParser
 import org.jetbrains.plugins.github.api.data.GithubIssue
 
 class GithubIssueBuilder: FixtureBuilder<GithubIssue> {
-    private var number: Long = RandomGenerator.nextLong()
-    private var title: String = RandomGenerator.nextObject(String::class)
+    private var number: Long = RandomGenerator.next()
+    private var title: String = RandomGenerator.next()
 
     companion object {
         val gson = GsonBuilder()

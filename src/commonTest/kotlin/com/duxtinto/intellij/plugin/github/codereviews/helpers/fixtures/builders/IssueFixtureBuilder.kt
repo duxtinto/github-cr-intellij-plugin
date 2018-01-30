@@ -6,6 +6,6 @@ import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.FixtureB
 
 class IssueFixtureBuilder : FixtureBuilder<IssueEntity> {
     override fun build(): IssueEntity {
-        return RandomGenerator.nextObject(IssueEntity::class)
+        return RandomGenerator.next()
     }
 }
