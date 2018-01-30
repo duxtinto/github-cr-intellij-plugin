@@ -2,7 +2,6 @@ package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow
 
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsPresenter
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsTreeCellRenderer
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsView
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListModel
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListView
@@ -13,6 +12,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.reviewee.Re
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import mockit.Mocked
+import mockit.Tested
 import org.assertj.swing.data.TableCell
 import org.assertj.swing.edt.GuiActionRunner
 import org.assertj.swing.fixture.splitter
@@ -26,18 +26,22 @@ import javax.swing.tree.TreeCellRenderer
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.events.MouseListener as CodeReviewsMouseListener
 
 internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
+    @Tested
+    private lateinit var codeReviewsCellRenderer: TreeCellRenderer
     private val pullRequestColumns = ColumnInfoFactory().createDefaultColumns()
     private lateinit var pullRequestListView: PullRequestListView
     private lateinit var codeReviewsView: CodeReviewsView
     private lateinit var view: RevieweeView
-    private val codeReviewsCellRenderer: TreeCellRenderer = CodeReviewsTreeCellRenderer()
 
-    fun initViewDependencies(
+    @Mocked
+    private lateinit var codeReviewsMouseListener: CodeReviewsMouseListener
+
+    fun initViews(
             mouseListener: PullRequestListMouseListener,
             selectionListener: SelectionListener) {
         view = GuiActionRunner.execute<RevieweeView> {
             pullRequestListView = PullRequestListView(pullRequestColumns, mouseListener, selectionListener)
-            codeReviewsView = CodeReviewsView(CodeReviewsMouseListener(), codeReviewsCellRenderer)
+            codeReviewsView = CodeReviewsView(codeReviewsMouseListener, codeReviewsCellRenderer)
             RevieweeView(pullRequestListView, codeReviewsView)
         }
     }
@@ -48,7 +52,7 @@ internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
             @Mocked mouseListener: PullRequestListMouseListener,
             @Mocked selectionListener: SelectionListener) {
         // Arrange
-        initViewDependencies(mouseListener, selectionListener)
+        initViews(mouseListener, selectionListener)
 
         // Act
         val container = showContentInIdeaFrame(view.content)
@@ -75,7 +79,7 @@ internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
             on { run(aPullRequest) } doReturn expectedReviews
         })
 
-        initViewDependencies(mouseListener, SelectionListener(reviewsPresenter))
+        initViews(mouseListener, SelectionListener(reviewsPresenter))
         val container = showContentInIdeaFrame(view.content)
 
         val nonEmptyModel = PullRequestListModel(pullRequestColumns).apply { setPullRequests(listOf(aPullRequest)) }
