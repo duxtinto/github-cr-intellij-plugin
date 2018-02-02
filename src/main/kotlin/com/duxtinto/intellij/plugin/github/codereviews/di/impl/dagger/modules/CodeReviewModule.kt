@@ -16,7 +16,9 @@ import dagger.Module
 import javax.inject.Named
 import javax.swing.tree.TreeCellRenderer
 
-@Module
+@Module(includes = [
+    ReviewCommentModule::class
+])
 abstract class CodeReviewModule {
     @Binds
     @ProjectScoped
