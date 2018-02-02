@@ -18,10 +18,10 @@ class RandomGenerator {
                 .build()
 
         @JvmStatic
-        inline fun <reified C: Any> next(): C {
+        inline fun <reified C> next(): C {
             return when {
-                C::class.isInstance(Long) -> return random.nextLong() as C
-                else -> random.nextObject(C::class.java) as C
+                C::class.isInstance(Long) -> random.nextLong() as C
+                else -> random.nextObject(C::class.java)
             }
         }
     }
