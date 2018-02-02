@@ -1,6 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.events
 
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.GetAllCommentsForInteractor
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.CommentsByReviewInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviews
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsTree
@@ -15,7 +15,7 @@ internal class MouseListenerTest {
     private lateinit var presenter: CodeReviews.Presenter
 
     @Injectable
-    private lateinit var getAllCommentsInteractor: GetAllCommentsForInteractor
+    private lateinit var getAllCommentsInteractor: CommentsByReviewInteractor
 
     @Tested
     private lateinit var listener: MouseListener
@@ -98,7 +98,7 @@ internal class MouseListenerTest {
         // Assert
         object : FullVerifications() {
             init {
-                presenter.presentComments(reviewComments)
+                presenter.presentComments(codeReview, reviewComments)
             }
         }
     }

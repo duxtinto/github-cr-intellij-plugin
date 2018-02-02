@@ -1,7 +1,7 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.events
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewEntity
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.GetAllCommentsForInteractor
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.CommentsByReviewInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviews
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsTree
 import java.awt.event.MouseEvent
@@ -12,7 +12,7 @@ import javax.swing.tree.DefaultMutableTreeNode
 class MouseListener
     @Inject
     constructor(
-            private val getAllCommentsFor: GetAllCommentsForInteractor,
+            private val getAllCommentsFor: CommentsByReviewInteractor,
             private val presenter: CodeReviews.Presenter)
     : MouseInputAdapter(), CodeReviews.View.Events.MouseListener {
 
@@ -22,7 +22,11 @@ class MouseListener
                 val node = (event.source as CodeReviewsTree).lastSelectedPathComponent
                 if (node is DefaultMutableTreeNode) {
                     when(node.userObject) {
-                        is CodeReviewEntity -> presenter.presentComments(getAllCommentsFor.run(node.userObject as CodeReviewEntity))
+                        is CodeReviewEntity -> {
+                            with(node.userObject as CodeReviewEntity) {
+                                presenter.presentComments(this, getAllCommentsFor.run(this)!!)
+                            }
+                        }
                     }
                 }
             }
