@@ -2,6 +2,7 @@ package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules
 
 import com.duxtinto.intellij.plugin.github.codereviews.data.codereviews.CodeReviewsDataContract
 import com.duxtinto.intellij.plugin.github.codereviews.data.codereviews.CodeReviewsRepository
+import com.duxtinto.intellij.plugin.github.codereviews.data.codereviews.comments.CommentsRepository
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewsDomainContract
 import com.duxtinto.intellij.plugin.github.codereviews.net.codereviews.apiv3.CodeReviewsFetcher
@@ -20,6 +21,10 @@ abstract class CodeReviewModule {
     @Binds
     @ProjectScoped
     abstract fun provideCodeReviewsDomainContractRepository(repository: CodeReviewsRepository): CodeReviewsDomainContract.Repository
+
+    @Binds
+    @ProjectScoped
+    abstract fun provideCodeReviewCommentsDomainContractRepository(repository: CommentsRepository): CodeReviewsDomainContract.Comments.Repository
 
     @Binds
     @ProjectScoped
