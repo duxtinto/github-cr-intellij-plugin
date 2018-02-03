@@ -1,8 +1,10 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.codereviews
 
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.GithubRepositoryEntity
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubConnectionExt
 import com.duxtinto.intellij.plugin.github.codereviews.net.codereviews.apiv3.CodeReviewResponse
+import com.duxtinto.intellij.plugin.github.codereviews.net.codereviews.comments.apiv3.CodeReviewCommentResponse
 import org.apache.http.Header
 import org.apache.http.message.BasicHeader
 import org.jetbrains.plugins.github.api.GithubConnection
@@ -22,6 +24,12 @@ class GithubApiV3CodeReviewLoader
     fun loadAllForPullRequest(repository: GithubRepositoryEntity, id: Long): List<CodeReviewResponse> {
         val path = "/repos/${repository.ownerName}/${repository.name}/pulls/$id/reviews"
         return loadAll(connection, path, Array<CodeReviewResponse>::class.java, ACCEPT_V3_JSON_HTML_MARKUP)
+    }
+
+    @Throws(IOException::class)
+    fun loadAllReviewComments(repository: GithubRepositoryEntity, review: CodeReviewEntity): List<CodeReviewCommentResponse> {
+        val path = "/repos/${repository.ownerName}/${repository.name}/pulls/${review.pull_request_id}/reviews/${review.id}/comments"
+        return loadAll(connection, path, Array<CodeReviewCommentResponse>::class.java, ACCEPT_V3_JSON_HTML_MARKUP)
     }
 
     @Throws(IOException::class)

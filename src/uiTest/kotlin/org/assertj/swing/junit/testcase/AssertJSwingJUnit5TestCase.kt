@@ -7,6 +7,7 @@ import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
+import java.awt.Dimension
 import javax.swing.JComponent
 import javax.swing.JFrame
 
@@ -42,9 +43,10 @@ abstract class AssertJSwingJUnit5TestCase : AssertJSwingJUnitTestCase() {
 
     fun showContentInIdeaFrame(content: JComponent) : FrameFixture {
         val container = Containers.frameFixtureFor(robot(), content)
-        container
-                .targetCastedTo(JFrame::class.java)
-                .glassPane = DummyIdeGlassPane()
+        with (container.targetCastedTo(JFrame::class.java)) {
+            glassPane = DummyIdeGlassPane()
+            minimumSize = Dimension(1200,500)
+        }
         container.show()
         return container
     }

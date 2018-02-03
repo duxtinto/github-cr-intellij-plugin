@@ -12,7 +12,12 @@ class CodeReviewResponseMapper
         return CodeReviewEntity(
                 id = dataModel.id,
                 reviewer = reviewerMapper.toEntity(dataModel.user),
-                state = dataModel.state
+                state = dataModel.state,
+                pull_request_id = getPullRequestIdFromLink(dataModel._links.pull_request)
         )
+    }
+
+    private fun getPullRequestIdFromLink(link: Map<String, String>): Long {
+        return Regex("^(.*)/(?<id>\\d.*)\$").matchEntire(link["href"]!!)!!.groups[2]!!.value.toLong()
     }
 }

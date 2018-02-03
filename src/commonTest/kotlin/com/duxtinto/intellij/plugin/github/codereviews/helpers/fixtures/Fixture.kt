@@ -23,6 +23,10 @@ object Fixture {
         return CodeReviewFixtureBuilder()
     }
 
+    internal fun reviewComments(): CodeReviewCommentFixtureBuilder {
+        return CodeReviewCommentFixtureBuilder()
+    }
+
     internal fun ide(): IdeFixture {
         return IdeFixture()
     }

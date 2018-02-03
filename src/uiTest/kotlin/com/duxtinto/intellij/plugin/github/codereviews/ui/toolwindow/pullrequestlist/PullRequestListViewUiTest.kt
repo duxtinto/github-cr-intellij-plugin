@@ -91,7 +91,7 @@ class PullRequestListViewUiTest : AssertJSwingJUnit5TestCase() {
             doNothing().whenever(it).mousePressed(any())
         }
 
-        val selectionListener: SelectionListener = spy(SelectionListener(codeReviewsPresenter)) {
+        val selectionListener: SelectionListener = spy(SelectionListener(mock(), codeReviewsPresenter)) {
             doNothing().whenever(it).valueChanged(any())
         }
 
