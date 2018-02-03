@@ -2,7 +2,9 @@ package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules
 
 import com.duxtinto.intellij.plugin.github.codereviews.data.pullrequests.PullRequestRepositoryImpl
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllOpenForRepoInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestDomainContract
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestsByRepository
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewsByPullRequestInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.GetAllReviewsForInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.ApiV3PullRequestFetcher
@@ -16,6 +18,10 @@ import dagger.Module
 
 @Module
 abstract class PullRequestModule {
+    @Binds
+    @ProjectScoped
+    abstract fun provideGetAllOpenForRepoInteractor(interactor: GetAllOpenForRepoInteractor): PullRequestsByRepository
+
     @Binds
     @ProjectScoped
     abstract fun provideGetAllReviewsForInteractor(interactor: GetAllReviewsForInteractor): CodeReviewsByPullRequestInteractor

@@ -1,5 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow
 
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import javax.swing.*
 
 interface ToolWindowContent {
@@ -9,6 +10,7 @@ interface ToolWindowContent {
         }
         interface Presenter {
             fun setView(view: Reviewee.View)
+            fun presentPullRequests(pullRequests: List<PullRequestEntity>)
         }
     }
 
