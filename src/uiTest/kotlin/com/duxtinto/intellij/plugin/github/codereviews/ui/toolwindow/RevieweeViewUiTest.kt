@@ -2,6 +2,7 @@ package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow
 
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsPresenter
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsTreeCellRenderer
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsView
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListModel
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListView
@@ -15,6 +16,7 @@ import mockit.Mocked
 import mockit.Tested
 import org.assertj.swing.data.TableCell
 import org.assertj.swing.edt.GuiActionRunner
+import org.assertj.swing.fixture.requireCodeReviewNode
 import org.assertj.swing.fixture.splitter
 import org.assertj.swing.junit.testcase.AssertJSwingJUnit5TestCase
 import org.assertj.swing.matcher.IdeaTableViewMatcher
@@ -22,12 +24,12 @@ import org.assertj.swing.matcher.IdeaTreeMatcher
 import org.assertj.swing.matcher.SplitterMatcher
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import javax.swing.tree.TreeCellRenderer
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.events.MouseListener as CodeReviewsMouseListener
 
 internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
     @Tested
-    private lateinit var codeReviewsCellRenderer: TreeCellRenderer
+    private lateinit var codeReviewsCellRenderer: CodeReviewsTreeCellRenderer
+
     private val pullRequestColumns = ColumnInfoFactory().createDefaultColumns()
     private lateinit var pullRequestListView: PullRequestListView
     private lateinit var codeReviewsView: CodeReviewsView
@@ -47,7 +49,7 @@ internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
     }
 
     @Test
-    @DisplayName("after reviewee view initialization, the pull request & code review panels should be visible")
+    @DisplayName("after view initialization, the pull request & code review panels should be visible")
     fun initView(
             @Mocked mouseListener: PullRequestListMouseListener,
             @Mocked selectionListener: SelectionListener) {
@@ -70,16 +72,18 @@ internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
 
     @Test
     @DisplayName("after selecting a pull request, the list of code reviews has to be populated")
-    fun selectPullRequest(
-            @Mocked mouseListener: PullRequestListMouseListener) {
+    fun selectPullRequest(@Mocked mouseListener: PullRequestListMouseListener) {
         // Arrange
         val aPullRequest = Fixture.pullRequest().build()
-        val expectedReviews = listOf(Fixture.codeReview().build(), Fixture.codeReview().build())
-        val reviewsPresenter = CodeReviewsPresenter(mock {
-            on { run(aPullRequest) } doReturn expectedReviews
-        })
+        val expectedReviews = Fixture.codeReview().ofPullRequest(aPullRequest).buildList(4)
+        val reviewsPresenter = CodeReviewsPresenter()
 
-        initViews(mouseListener, SelectionListener(reviewsPresenter))
+        initViews(mouseListener, SelectionListener(
+                mock {
+                    on { run(aPullRequest) } doReturn expectedReviews
+                },
+                reviewsPresenter
+        ))
         val container = showContentInIdeaFrame(view.content)
 
         val nonEmptyModel = PullRequestListModel(pullRequestColumns).apply { setPullRequests(listOf(aPullRequest)) }
@@ -94,7 +98,7 @@ internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
             table(IdeaTableViewMatcher())
             tree(IdeaTreeMatcher()).apply {
                 for (codeReview in expectedReviews) {
-                    node("Code Reviews/${codeReview.reviewer.username} [${codeReview.state}]")
+                    requireCodeReviewNode(codeReview)
                 }
             }
         }

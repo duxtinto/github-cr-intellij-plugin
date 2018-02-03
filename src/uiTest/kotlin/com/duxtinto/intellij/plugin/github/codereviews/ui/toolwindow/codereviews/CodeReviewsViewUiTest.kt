@@ -1,23 +1,32 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews
 
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.CommentsByReviewInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.events.MouseListener
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.mock
+import mockit.Mocked
+import mockit.Tested
 import org.assertj.swing.edt.GuiActionRunner
 import org.assertj.swing.fixture.FrameFixture
+import org.assertj.swing.fixture.requireCodeReviewNode
 import org.assertj.swing.fixture.requireEmptyText
+import org.assertj.swing.fixture.requireReviewCommentNode
 import org.assertj.swing.junit.testcase.AssertJSwingJUnit5TestCase
 import org.assertj.swing.matcher.IdeaTreeMatcher
+import org.assertj.swing.matcher.withName
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 class CodeReviewsViewUiTest : AssertJSwingJUnit5TestCase() {
 
-    lateinit var frame: FrameFixture
+    private lateinit var frame: FrameFixture
 
     @Test
     @DisplayName("An initialized empty setView should contain an empty message")
-    fun initializeEmptyTree() {
+    fun initializeEmptyTree(@Mocked mouseListener: MouseListener) {
         // Arrange
-        val view = GuiActionRunner.execute<CodeReviewsView>({ CodeReviewsView() })
+        val view = initializeViewDependencies(mouseListener)
 
         // Act
         frame = showContentInIdeaFrame(view.content)
@@ -27,21 +36,62 @@ class CodeReviewsViewUiTest : AssertJSwingJUnit5TestCase() {
                 .requireEmptyText("Please, select a pull request above to see here its code reviews")
     }
 
+    private fun initializeViewDependencies(mouseListener: MouseListener): CodeReviewsView {
+        return GuiActionRunner.execute<CodeReviewsView>({
+            CodeReviewsView(mouseListener, CodeReviewsTreeCellRenderer())
+        })
+    }
+
     @Test
     @DisplayName("Rendering a model containing reviews should display them on the tree")
-    fun renderModelWithReviews() {
+    fun renderModelWithReviews(@Mocked mouseListener: MouseListener) {
         // Arrange
-        val view = GuiActionRunner.execute<CodeReviewsView>({ CodeReviewsView() })
+        val expectedReviews = Fixture.codeReview().buildList(3)
+        val view = initializeViewDependencies(mouseListener)
         frame = showContentInIdeaFrame(view.content)
 
         // Act
-        val expectedReviews = Fixture.codeReview().buildList(3)
-        view.render(CodeReviewsModel(expectedReviews))
+        CodeReviewsModel().let {
+            it.setReviews(expectedReviews)
+            view.render(it)
+        }
+
 
         // Assert
         frame.tree(IdeaTreeMatcher()).apply {
             for (codeReview in expectedReviews) {
-                node("Code Reviews/${codeReview.reviewer.username} [${codeReview.state}]")
+                requireCodeReviewNode(codeReview)
+            }
+        }
+    }
+
+    @Test
+    @DisplayName("Double clicking on a review node, should load its comments")
+    fun doubleClickOnReview(@Tested presenter: CodeReviewsPresenter) {
+        // Arrange
+        val expectedReviews = Fixture.codeReview().buildList(3)
+        val expectedComments = Fixture.reviewComments().ofReview(expectedReviews[0]).buildList(5)
+        val getAllCommentsFor = mock<CommentsByReviewInteractor> {
+            on { run(expectedReviews[0]) } doReturn expectedComments
+        }
+
+        with(CodeReviewsPresenter()) {
+            val view = initializeViewDependencies(MouseListener(getAllCommentsFor, this))
+            frame = showContentInIdeaFrame(view.content)
+            setView(view)
+            presentReviews(expectedReviews)
+        }
+
+        // Act
+        with(frame.tree(withName("CodeReviews"))) {
+            doubleClickRow(1)
+            node(1).expand()
+        }
+
+        // Assert
+        with(frame.tree(withName("CodeReviews"))) {
+            for (comment in expectedComments) {
+                requireReviewCommentNode(expectedReviews[0], comment)
             }
         }
     }
