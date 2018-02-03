@@ -9,7 +9,7 @@ class PullRequestDescriptionFixtureBuilder : FixtureBuilder<PullRequestDescripti
 
     override fun build(): PullRequestDescriptionEntity {
         return RandomGenerator
-                .nextObject(PullRequestDescriptionEntity::class)
+                .next<PullRequestDescriptionEntity>()
                 .copy(closableIssues = closableIssueIds)
     }
 

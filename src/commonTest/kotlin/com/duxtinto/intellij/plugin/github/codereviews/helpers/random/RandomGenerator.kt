@@ -5,11 +5,12 @@ import io.github.benas.randombeans.api.EnhancedRandom
 import io.github.benas.randombeans.registerRandomizersForIdeaClasses
 import io.github.benas.randombeans.registerRandomizersForJavaClasses
 import io.github.benas.randombeans.registerRandomizersForPluginClasses
+import org.jetbrains.debugger.getClassName
 import kotlin.reflect.KClass
 
 class RandomGenerator {
     companion object {
-        private val random: EnhancedRandom = EnhancedRandomBuilder
+        val random: EnhancedRandom = EnhancedRandomBuilder
                 .aNewEnhancedRandomBuilder()
                 .registerRandomizersForPluginClasses()
                 .registerRandomizersForJavaClasses()
@@ -17,13 +18,11 @@ class RandomGenerator {
                 .build()
 
         @JvmStatic
-        fun <C : Any> nextObject(clazz : KClass<in C>): C {
-            return random.nextObject(clazz.java) as C
-        }
-
-        @JvmStatic
-        fun nextLong(): Long {
-            return random.nextLong()
+        inline fun <reified C> next(): C {
+            return when {
+                C::class.isInstance(Long) -> random.nextLong() as C
+                else -> random.nextObject(C::class.java)
+            }
         }
     }
 }

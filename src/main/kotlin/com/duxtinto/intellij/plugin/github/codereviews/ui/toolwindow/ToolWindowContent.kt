@@ -3,17 +3,27 @@ package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow
 import javax.swing.*
 
 interface ToolWindowContent {
-    interface Model
-    interface RevieweeView {
-        val content: JComponent
+    interface Reviewee {
+        interface View {
+            val content: JComponent
+        }
+        interface Presenter {
+            fun setView(view: Reviewee.View)
+        }
     }
 
-    interface ReviewerView {
-        val content: JComponent
+    interface Reviewer {
+        interface View {
+            val content: JComponent
+        }
+        interface Presenter {
+            fun setView(view: Reviewer.View)
+        }
     }
+
+    interface Model
 
     interface Presenter {
-        fun setRevieweeView(view: RevieweeView)
-        fun setReviewerView(view: ReviewerView)
+        fun displayToolWindow()
     }
 }

@@ -1,0 +1,43 @@
+package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules
+
+import com.duxtinto.intellij.plugin.github.codereviews.data.pullrequests.PullRequestRepositoryImpl
+import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestDomainContract
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewsByPullRequestInteractor
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.GetAllReviewsForInteractor
+import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.ApiV3PullRequestFetcher
+import com.duxtinto.intellij.plugin.github.codereviews.services.pullrequests.GithubDescriptionParser
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestList
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListPresenter
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListView
+import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.events.SelectionListener
+import dagger.Binds
+import dagger.Module
+
+@Module
+abstract class PullRequestModule {
+    @Binds
+    @ProjectScoped
+    abstract fun provideGetAllReviewsForInteractor(interactor: GetAllReviewsForInteractor): CodeReviewsByPullRequestInteractor
+
+    @Binds
+    abstract fun providePullRequestDomainContractFetcher(fetcher: ApiV3PullRequestFetcher): PullRequestDomainContract.Fetcher
+
+    @Binds
+    abstract fun providePullRequestDomainContractRepository(repository: PullRequestRepositoryImpl): PullRequestDomainContract.Repository
+
+    @Binds
+    abstract fun providePullRequestDomainContractDescriptionParser(parser: GithubDescriptionParser): PullRequestDomainContract.DescriptionParser
+
+    @Binds
+    @ProjectScoped
+    abstract fun providePullRequestListPresenter(presenter: PullRequestListPresenter): PullRequestList.Presenter
+
+    @Binds
+    @ProjectScoped
+    abstract fun providePullRequestListView(view: PullRequestListView): PullRequestList.View
+
+    @Binds
+    @ProjectScoped
+    abstract fun providePullRequestListViewEventsSelectionListener(listener: SelectionListener): PullRequestList.View.Events.SelectionListener
+}

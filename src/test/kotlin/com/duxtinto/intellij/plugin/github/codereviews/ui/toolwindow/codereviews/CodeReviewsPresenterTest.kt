@@ -1,59 +1,90 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews
 
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewEntity
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.GetAllReviewsForInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
 import mockit.*
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 internal class CodeReviewsPresenterTest {
-    @Injectable
-    private lateinit var getAllCodeReviewsFor: GetAllReviewsForInteractor
 
-    @Tested
-    private lateinit var presenter: CodeReviewsPresenter
+    private val model = CodeReviewsModel()
 
-    @Test
-    @DisplayName("display code reviews should create model and order the revieweeView to render it")
-    internal fun displayCodeReviewsHappyPath(
-            @Mocked model: CodeReviewsModel,
-            @Mocked view: CodeReviews.View) {
-        // Arrange
-        val pullRequest = Fixture.pullRequest().build()
-        presenter.setView(view)
-
-        object : Expectations() {
+    @BeforeEach
+    private fun setUp() {
+        object : Expectations(CodeReviewsModel::class.java) {
             init {
-                val codeReviews = listOf<CodeReviewEntity>()
-
-                getAllCodeReviewsFor.run(pullRequest)
-                result = codeReviews
-
-                CodeReviewsModel(codeReviews)
+                CodeReviewsModel()
                 result = model
             }
         }
+    }
+
+    @Test
+    @DisplayName("present reviews should update the model and order the view to render it")
+    internal fun presentReviewsHappyPath(
+            @Injectable view: CodeReviews.View,
+            @Tested presenter: CodeReviewsPresenter) {
+        // Arrange
+        val codeReviews = Fixture.codeReview().buildList(5)
 
         // Act
-        presenter.displayCodeReviews(pullRequest)
+        presenter.presentReviews(codeReviews)
 
         // Assert
         object : Verifications() {
             init {
+                model.setReviews(codeReviews)
                 view.render(model)
             }
         }
     }
 
     @Test
-    @DisplayName("display code reviews, if revieweeView is not set, should do nothing")
-    internal fun displayCodeReviewsIfViewNotSet() {
+    @DisplayName("present reviews, if view is not set, should do nothing")
+    internal fun presentReviewsIfViewNotSet(@Tested presenter: CodeReviewsPresenter) {
         // Arrange
-        val pullRequest = Fixture.pullRequest().build()
+        val codeReviews = Fixture.codeReview().buildList(5)
 
         // Act
-        presenter.displayCodeReviews(pullRequest)
+        presenter.presentReviews(codeReviews)
+
+        // Assert
+        object : FullVerifications() {
+            init {}
+        }
+    }
+
+    @Test
+    @DisplayName("present comments should update the model and order the view to render it")
+    internal fun presentCommentsHappyPath(
+            @Injectable view: CodeReviews.View,
+            @Tested presenter: CodeReviewsPresenter) {
+        // Arrange
+        val review = Fixture.codeReview().build()
+        val comments = Fixture.reviewComments().ofReview(review).buildList(5)
+
+        // Act
+        presenter.presentComments(review, comments)
+
+        // Assert
+        object : FullVerifications() {
+            init {
+                model.setReviewComments(review, comments)
+                view.render(model)
+            }
+        }
+    }
+
+    @Test
+    @DisplayName("present comments, if view is not set, should do nothing")
+    internal fun presentCommentsIfViewNotSet(@Tested presenter: CodeReviewsPresenter) {
+        // Arrange
+        val review = Fixture.codeReview().build()
+        val comments = Fixture.reviewComments().ofReview(review).buildList(5)
+
+        // Act
+        presenter.presentComments(review, comments)
 
         // Assert
         object : FullVerifications() {

@@ -6,7 +6,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.FixtureB
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.random.RandomGenerator
 
 class PullRequestFixtureBuilder : FixtureBuilder<PullRequestEntity> {
-    private var number: Long = RandomGenerator.nextLong()
+    private var number: Long = RandomGenerator.next()
     private var closableIssues = arrayListOf<IssueEntity>()
 
     fun closes(issue: IssueEntity): PullRequestFixtureBuilder {
@@ -16,7 +16,7 @@ class PullRequestFixtureBuilder : FixtureBuilder<PullRequestEntity> {
 
     override fun build(): PullRequestEntity {
         return RandomGenerator
-                .nextObject(PullRequestEntity::class)
+                .next<PullRequestEntity>()
                 .copy(number, closableIssues)
     }
 

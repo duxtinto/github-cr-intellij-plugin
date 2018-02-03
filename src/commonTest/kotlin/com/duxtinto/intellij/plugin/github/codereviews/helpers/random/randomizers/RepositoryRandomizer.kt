@@ -6,6 +6,6 @@ import io.github.benas.randombeans.api.Randomizer
 
 class RepositoryRandomizer : Randomizer<GithubRepositoryEntity> {
     override fun getRandomValue(): GithubRepositoryEntity {
-        return GithubRepositoryEntity(RandomGenerator.nextObject(String::class), RandomGenerator.nextObject(String::class))
+        return GithubRepositoryEntity(RandomGenerator.next(), RandomGenerator.next())
     }
 }
