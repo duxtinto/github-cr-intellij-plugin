@@ -1,5 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.reviewee
 
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.ToolWindowContent
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviews
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestList
@@ -9,7 +10,7 @@ class RevieweePresenter
     @Inject
     constructor(
             pullRequestListView: PullRequestList.View,
-            pullRequestListPresenter: PullRequestList.Presenter,
+            private val pullRequestListPresenter: PullRequestList.Presenter,
             codeReviewsView: CodeReviews.View,
             codeReviewsPresenter: CodeReviews.Presenter)
     : ToolWindowContent.Reviewee.Presenter {
@@ -23,5 +24,9 @@ class RevieweePresenter
 
     override fun setView(view: ToolWindowContent.Reviewee.View) {
         this.view = view
+    }
+
+    override fun presentPullRequests(pullRequests: List<PullRequestEntity>) {
+        pullRequestListPresenter.displayPullRequests(pullRequests)
     }
 }

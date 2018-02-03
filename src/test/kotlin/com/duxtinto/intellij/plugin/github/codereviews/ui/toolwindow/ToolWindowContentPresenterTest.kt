@@ -1,5 +1,8 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow
 
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllOpenForRepoInteractor
+import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.FindGithubRepoForRootFolderInteractor
+import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
 import com.intellij.ui.content.Content
 import com.intellij.ui.content.ContentFactory
 import com.intellij.ui.content.ContentManager
@@ -8,6 +11,11 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 internal class ToolWindowContentPresenterTest {
+    @Injectable
+    private lateinit var githubRepoFinder: FindGithubRepoForRootFolderInteractor
+
+    @Injectable
+    private lateinit var pullRequestFetcher: GetAllOpenForRepoInteractor
 
     @Injectable
     private lateinit var contentFactory: ContentFactory
@@ -55,6 +63,9 @@ internal class ToolWindowContentPresenterTest {
 
                 contentFactory.createContent(reviewerView.content, "Reviewer", anyBoolean)
                 result = reviewerContent
+
+                githubRepoFinder.run(null)
+                result = null
             }
         }
 
@@ -66,6 +77,36 @@ internal class ToolWindowContentPresenterTest {
             init {
                 contentManager.addContent(revieweeContent)
                 contentManager.addContent(reviewerContent)
+            }
+        }
+    }
+
+    @Test
+    @DisplayName("present tool window, If the root repository is ready, should present pull requests")
+    internal fun presentToolWindowIfRepositoryIsReady(
+            @Mocked revieweeContent: Content,
+            @Mocked reviewerContent: Content) {
+        // Arrange
+        val repository = Fixture.repository().build()
+        val pullRequests = Fixture.pullRequest().buildList(4)
+
+        object : Expectations() {
+            init {
+                githubRepoFinder.run(null)
+                result = repository
+
+                pullRequestFetcher.run(repository)
+                result = pullRequests
+            }
+        }
+
+        // Act
+        presenter.displayToolWindow()
+
+        // Assert
+        object : Verifications() {
+            init {
+                revieweePresenter.presentPullRequests(pullRequests)
             }
         }
     }
