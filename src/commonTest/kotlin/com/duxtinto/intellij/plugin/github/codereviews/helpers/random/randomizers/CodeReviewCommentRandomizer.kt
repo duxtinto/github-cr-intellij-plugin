@@ -9,7 +9,9 @@ class CodeReviewCommentRandomizer : Randomizer<CodeReviewCommentEntity> {
         return CodeReviewCommentEntity(
                 id = RandomGenerator.next(),
                 reviewId = RandomGenerator.next(),
-                body = RandomGenerator.next()
+                body = RandomGenerator.next(),
+                filePath = RandomGenerator.next(),
+                lineNumber = RandomGenerator.next()
         )
     }
 }
