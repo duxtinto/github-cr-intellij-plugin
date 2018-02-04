@@ -9,3 +9,10 @@ patchPluginXml {
     sinceBuild 162
     untilBuild '181.*'
 }
+
+idea {
+    module {
+        sourceDirs += files('build/generated/source/kapt/main', 'build/generated/source/kaptKotlin/main')
+        generatedSourceDirs += files('build/generated/source/kapt/main', 'build/generated/source/kaptKotlin/main')
+    }
+}
