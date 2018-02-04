@@ -1,13 +1,10 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow
 
 import com.duxtinto.intellij.plugin.github.codereviews.di.contracts.DiContainerAware
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviews
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestList
 import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.impl.ToolWindowImpl
-
 import javax.inject.Inject
 import javax.inject.Named
 

@@ -62,7 +62,7 @@ internal class CodeReviewsPresenterTest {
             @Tested presenter: CodeReviewsPresenter) {
         // Arrange
         val review = Fixture.codeReview().build()
-        val comments = Fixture.reviewComments().ofReview(review).buildList(5)
+        val comments = Fixture.reviewComment().ofReview(review).buildList(5)
 
         // Act
         presenter.presentComments(review, comments)
@@ -81,7 +81,7 @@ internal class CodeReviewsPresenterTest {
     internal fun presentCommentsIfViewNotSet(@Tested presenter: CodeReviewsPresenter) {
         // Arrange
         val review = Fixture.codeReview().build()
-        val comments = Fixture.reviewComments().ofReview(review).buildList(5)
+        val comments = Fixture.reviewComment().ofReview(review).buildList(5)
 
         // Act
         presenter.presentComments(review, comments)

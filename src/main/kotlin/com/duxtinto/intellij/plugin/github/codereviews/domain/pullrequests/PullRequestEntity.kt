@@ -6,7 +6,7 @@ import java.net.URL
 
 data class PullRequestEntity (
         val number: Long,
-        val closeableIssues: List<IssueEntity> = arrayListOf(),
+        val closeableIssues: List<IssueEntity> = listOf(),
         val title: String = "",
         val state: State = State.OPEN,
         val url: URL?) {

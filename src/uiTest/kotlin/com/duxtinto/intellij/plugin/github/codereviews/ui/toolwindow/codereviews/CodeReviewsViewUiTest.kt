@@ -1,5 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews
 
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.ActionOnReviewCommentInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.CommentsByReviewInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.events.MouseListener
@@ -67,16 +68,18 @@ class CodeReviewsViewUiTest : AssertJSwingJUnit5TestCase() {
 
     @Test
     @DisplayName("Double clicking on a review node, should load its comments")
-    fun doubleClickOnReview(@Tested presenter: CodeReviewsPresenter) {
+    fun doubleClickOnReview(
+            @Mocked goToCommentLine: ActionOnReviewCommentInteractor,
+            @Tested presenter: CodeReviewsPresenter) {
         // Arrange
         val expectedReviews = Fixture.codeReview().buildList(3)
-        val expectedComments = Fixture.reviewComments().ofReview(expectedReviews[0]).buildList(5)
+        val expectedComments = Fixture.reviewComment().ofReview(expectedReviews[0]).buildList(5)
         val getAllCommentsFor = mock<CommentsByReviewInteractor> {
             on { run(expectedReviews[0]) } doReturn expectedComments
         }
 
         with(CodeReviewsPresenter()) {
-            val view = initializeViewDependencies(MouseListener(getAllCommentsFor, this))
+            val view = initializeViewDependencies(MouseListener(getAllCommentsFor, this, goToCommentLine))
             frame = showContentInIdeaFrame(view.content)
             setView(view)
             presentReviews(expectedReviews)
