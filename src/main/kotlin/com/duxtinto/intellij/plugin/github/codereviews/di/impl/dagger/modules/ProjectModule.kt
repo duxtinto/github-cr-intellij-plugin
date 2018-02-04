@@ -19,7 +19,8 @@ import javax.inject.Named
     PullRequestModule::class,
     CodeReviewModule::class,
     IssueModule::class,
-    ToolWindowModule::class
+    ToolWindowModule::class,
+    EditorModule::class
 ])
 class ProjectModule(private val project: ProjectExt) {
 
