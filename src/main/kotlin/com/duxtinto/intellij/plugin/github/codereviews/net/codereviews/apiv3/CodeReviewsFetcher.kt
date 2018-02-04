@@ -18,13 +18,13 @@ class CodeReviewsFetcher
     : CodeReviewsDataContract.Fetcher {
 
     override fun fetchAllByPullRequestId(id: Long): List<CodeReviewEntity> {
-        return githubRootRepoFinder.run(null)?.let {
+        return githubRootRepoFinder.run(Unit)?.let {
             loader.loadAllForPullRequest(it, id).map { transformer.toEntity(it) }
         } ?: listOf()
     }
 
     override fun fetchAllReviewComments(review: CodeReviewEntity): List<CodeReviewCommentEntity> {
-        return githubRootRepoFinder.run(null)?.let {
+        return githubRootRepoFinder.run(Unit)?.let {
             loader.loadAllReviewComments(it, review).map { commentTransformer.toEntity(it) }
         } ?: listOf()
     }

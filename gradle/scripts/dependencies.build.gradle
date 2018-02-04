@@ -10,7 +10,6 @@ ext {
             guava         : '23.6-jre',
             dagger        : '2.14',
             auto_common   : '0.9',
-            auto_value    : '1.5',
             jsoup         : '1.11.2',
 
             // Testing

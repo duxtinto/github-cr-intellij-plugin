@@ -29,7 +29,7 @@ internal class ApiV3IssueFetcherTest {
 
         object : Expectations() {
             init {
-                rootRepositoryFinder.run(null)
+                rootRepositoryFinder.run(Unit)
                 result = remoteRepository
 
                 apiLoader.loadIssueById(remoteRepository, expectedIssue.number)
@@ -50,7 +50,7 @@ internal class ApiV3IssueFetcherTest {
         // Arrange
         object : Expectations() {
             init {
-                rootRepositoryFinder.run(null)
+                rootRepositoryFinder.run(Unit)
                 result = null
             }
         }
@@ -70,7 +70,7 @@ internal class ApiV3IssueFetcherTest {
 
         object : Expectations() {
             init {
-                rootRepositoryFinder.run(null)
+                rootRepositoryFinder.run(Unit)
                 result = remoteRepository
 
                 apiLoader.loadIssueById(remoteRepository, 182)
