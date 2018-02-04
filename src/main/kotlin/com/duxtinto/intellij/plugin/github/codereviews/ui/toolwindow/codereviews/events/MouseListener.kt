@@ -1,11 +1,14 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.events
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewEntity
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.ActionOnReviewCommentInteractor
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.CodeReviewCommentEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.CommentsByReviewInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviews
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsTree
 import java.awt.event.MouseEvent
 import javax.inject.Inject
+import javax.inject.Named
 import javax.swing.event.MouseInputAdapter
 import javax.swing.tree.DefaultMutableTreeNode
 
@@ -13,7 +16,8 @@ class MouseListener
     @Inject
     constructor(
             private val getAllCommentsFor: CommentsByReviewInteractor,
-            private val presenter: CodeReviews.Presenter)
+            private val presenter: CodeReviews.Presenter,
+            @Named("goToLine") private val goToCommentLine: ActionOnReviewCommentInteractor)
     : MouseInputAdapter(), CodeReviews.View.Events.MouseListener {
 
     override fun mousePressed(event: MouseEvent) {
@@ -25,6 +29,12 @@ class MouseListener
                         is CodeReviewEntity -> {
                             with(node.userObject as CodeReviewEntity) {
                                 presenter.presentComments(this, getAllCommentsFor.run(this)!!)
+                            }
+                        }
+
+                        is CodeReviewCommentEntity -> {
+                            with(node.userObject as CodeReviewCommentEntity) {
+                                goToCommentLine.run(this)
                             }
                         }
                     }
