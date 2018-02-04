@@ -13,6 +13,6 @@ class ApiV3IssueFetcher
         private val apiV3Loader: GithubApiV3IssueLoader)
     : IssuesDomainContract.Fetcher {
     override fun fetchIssueById(id: Long): IssueEntity? {
-        return githubRootRepoFinder.run(null)?.let { apiV3Loader.loadIssueById(it, id) }
+        return githubRootRepoFinder.run(Unit)?.let { apiV3Loader.loadIssueById(it, id) }
     }
 }

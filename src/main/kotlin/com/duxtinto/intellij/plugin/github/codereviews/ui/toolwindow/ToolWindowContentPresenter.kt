@@ -32,7 +32,7 @@ class ToolWindowContentPresenter
     }
 
     private fun presentPullRequests() {
-        githubRepoFinder.run(null)?.let {
+        githubRepoFinder.run(Unit)?.let {
             pullRequestFetcher.run(it)?.let {
                 revieweePresenter.presentPullRequests(it)
             }

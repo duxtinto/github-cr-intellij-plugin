@@ -29,7 +29,7 @@ internal class IdeaTaskActivatorTest {
 
         object : Expectations() {
             init {
-                rootRepoFinder.run(null)
+                rootRepoFinder.run(Unit)
                 result = repository
 
                 issueTask.number
@@ -69,7 +69,7 @@ internal class IdeaTaskActivatorTest {
 
         object : Expectations() {
             init {
-                rootRepoFinder.run(null)
+                rootRepoFinder.run(Unit)
                 result = null
             }
         }
@@ -92,7 +92,7 @@ internal class IdeaTaskActivatorTest {
 
         object : Expectations() {
             init {
-                rootRepoFinder.run(null)
+                rootRepoFinder.run(Unit)
                 result = repository
 
                 taskManager.getIssues(anyString)
