@@ -64,7 +64,7 @@ internal class ToolWindowContentPresenterTest {
                 contentFactory.createContent(reviewerView.content, "Reviewer", anyBoolean)
                 result = reviewerContent
 
-                githubRepoFinder.run(null)
+                githubRepoFinder.run(Unit)
                 result = null
             }
         }
@@ -92,7 +92,7 @@ internal class ToolWindowContentPresenterTest {
 
         object : Expectations() {
             init {
-                githubRepoFinder.run(null)
+                githubRepoFinder.run(Unit)
                 result = repository
 
                 pullRequestFetcher.run(repository)

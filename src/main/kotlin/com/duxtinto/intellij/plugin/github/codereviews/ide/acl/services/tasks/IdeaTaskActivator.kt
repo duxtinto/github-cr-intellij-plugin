@@ -16,7 +16,7 @@ class IdeaTaskActivator
     : IssuesDomainContract.Switcher {
 
     override fun switchToIssue(issue: IssueEntity) {
-        val repository: GithubRepositoryEntity = rootRepoFinder.run(null) ?: return
+        val repository: GithubRepositoryEntity = rootRepoFinder.run(Unit) ?: return
         val task = taskManager
                 .getIssues(generateQuery(repository, issue))
                 .find {

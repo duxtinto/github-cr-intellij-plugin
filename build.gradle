@@ -13,7 +13,6 @@ buildscript {
 }
 
 plugins {
-    id 'net.ltgt.apt-idea' version '0.13'
     id 'org.jetbrains.intellij' version '0.2.17'
     id "org.jetbrains.kotlin.jvm" version "1.2.21"
     id "org.jetbrains.kotlin.plugin.allopen" version "1.2.21"
@@ -39,7 +38,6 @@ allprojects {
 
 sourceSets {
     main {
-        java.srcDir 'src/main/java'
         kotlin.srcDirs 'src/main/kotlin'
         resources.srcDir 'src/main/resources'
     }
@@ -54,13 +52,5 @@ dependencies {
             "com.google.guava:guava:${project.versions.guava}",
             "com.google.dagger:dagger:${project.versions.dagger}",
             "org.jsoup:jsoup:${project.versions.jsoup}",
-    )
-
-    compileOnly "com.google.auto.value:auto-value:${project.versions.auto_value}"
-
-    apt(
-            "com.google.dagger:dagger-compiler:${project.versions.dagger}",
-            "com.google.auto:auto-common:${project.versions.auto_common}",
-            "com.google.auto.value:auto-value:${project.versions.auto_value}",
     )
 }

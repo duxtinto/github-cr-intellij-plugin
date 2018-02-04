@@ -6,7 +6,6 @@ dependencies {
     kapt(
             "com.google.dagger:dagger-compiler:${project.versions.dagger}",
             "com.google.auto:auto-common:${project.versions.auto_common}",
-            "com.google.auto.value:auto-value:${project.versions.auto_value}",
     )
 }
 
