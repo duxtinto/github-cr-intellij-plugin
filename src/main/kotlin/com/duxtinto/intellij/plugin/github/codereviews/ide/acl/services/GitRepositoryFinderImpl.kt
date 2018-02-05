@@ -13,6 +13,6 @@ class GitRepositoryFinderImpl
 
     override fun findRootRepo(): GitRepositoryExt? {
         val repository = GithubUtil.getGitRepository(project, null)
-        return if (repository != null) GitRepositoryExt.create(repository) else null
+        return if (repository != null) GitRepositoryExt(repository) else null
     }
 }

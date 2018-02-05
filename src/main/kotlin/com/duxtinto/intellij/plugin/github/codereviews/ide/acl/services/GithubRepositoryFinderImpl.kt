@@ -11,7 +11,7 @@ class GithubRepositoryFinderImpl @Inject
 constructor() : RepositoriesDomainContract.GithubRepositoryFinder {
 
     override fun find(gitRepository: GitRepositoryExt): GithubRepositoryEntity? {
-        val remote = GithubUtil.findGithubRemote(gitRepository.delegate()) ?: return null
+        val remote = GithubUtil.findGithubRemote(gitRepository) ?: return null
         val path = GithubUrlUtil.getUserAndRepositoryFromRemoteUrl(remote.getSecond()) ?: return null
 
         return GithubRepositoryEntity(path.repository, path.user)
