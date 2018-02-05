@@ -3,6 +3,10 @@ apply plugin: "kotlin-allopen"
 apply plugin: 'kotlin-kapt'
 
 dependencies {
+`    compileOnly(
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.versions.kotlin}",
+    )
+
     kapt(
             "com.google.dagger:dagger-compiler:${project.versions.dagger}",
             "com.google.auto:auto-common:${project.versions.auto_common}",
