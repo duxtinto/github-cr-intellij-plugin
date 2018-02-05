@@ -11,6 +11,6 @@ class IdeaTaskModule {
     @Provides
     @ProjectScoped
     fun provideTaskManager(project: ProjectExt): TaskManager {
-        return project.delegate().getComponent(TaskManager::class.java)
+        return project.getComponent(TaskManager::class.java)
     }
 }

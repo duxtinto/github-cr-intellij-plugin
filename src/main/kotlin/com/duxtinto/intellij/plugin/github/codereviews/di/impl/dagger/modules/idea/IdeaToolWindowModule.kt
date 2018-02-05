@@ -13,7 +13,7 @@ class IdeaToolWindowModule {
     @Provides
     @ProjectScoped
     fun provideToolWindowManager(project: ProjectExt): ToolWindowManager {
-        return ToolWindowManager.getInstance(project.delegate())
+        return ToolWindowManager.getInstance(project)
     }
 
     @Provides

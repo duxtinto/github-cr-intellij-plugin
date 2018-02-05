@@ -25,6 +25,6 @@ class IdeaGitModule {
     @Provides
     @ProjectScoped
     fun provideGitRepositoryManager(project: ProjectExt): GitRepositoryManager {
-        return GitRepositoryManager.getInstance(project.delegate())
+        return GitRepositoryManager.getInstance(project)
     }
 }
