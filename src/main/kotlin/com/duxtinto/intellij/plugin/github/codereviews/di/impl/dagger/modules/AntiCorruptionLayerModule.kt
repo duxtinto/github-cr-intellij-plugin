@@ -8,6 +8,7 @@ import dagger.Module
     IdeaToolWindowModule::class,
     IdeaUiContentModule::class,
     IdeaFileAndDocumentModule::class,
-    IdeaGitModule::class
+    IdeaGitModule::class,
+    IdeaGithubAuthModule::class
 ])
 class AntiCorruptionLayerModule

@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules
+package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.idea
 
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubConnectionExt
@@ -14,7 +14,7 @@ import org.jetbrains.plugins.github.util.GithubUtil
 import java.io.IOException
 
 @Module
-class AuthModule {
+class IdeaGithubAuthModule {
     @Provides
     @ProjectScoped
     fun provideGithubAuthDataHolder(project: ProjectExt, progressIndicator: ProgressIndicator): GithubAuthDataHolder {
