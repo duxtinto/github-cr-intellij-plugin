@@ -20,7 +20,7 @@ class AuthModule {
     fun provideGithubAuthDataHolder(project: ProjectExt, progressIndicator: ProgressIndicator): GithubAuthDataHolder {
         try {
             // TODO: because of the exception handling here, it 'smells' to me that hidden inside a module is not the place for this call
-            return GithubUtil.getValidAuthDataHolderFromConfig(project.delegate(), AuthLevel.LOGGED, progressIndicator)
+            return GithubUtil.getValidAuthDataHolderFromConfig(project, AuthLevel.LOGGED, progressIndicator)
         } catch (e: IOException) {
             e.printStackTrace()
             throw RuntimeException(e)

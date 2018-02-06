@@ -1,13 +1,10 @@
-package com.duxtinto.intellij.plugin.github.codereviews.events.repos
+package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.events.repositories
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllOpenForRepoInteractor
-import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.GithubRepositoryEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.FindGithubRepoForRootFolderInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestList
 import com.intellij.dvcs.repo.VcsRepositoryMappingListener
 import javax.inject.Inject
-
-import com.google.common.base.Preconditions.checkNotNull
 
 class GitChangeListener
     @Inject
