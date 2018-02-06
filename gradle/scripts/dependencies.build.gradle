@@ -13,8 +13,10 @@ ext {
             jsoup         : '1.11.2',
 
             // Testing
+            junit4         : '4.12',
             junit          : '5.0.3',
             junit_platform : '1.0.3',
+            junit_vintage  : '4.12.3',
             assertj        : '3.9.0',
             assertj_swing  : '3.8.0',
             assertj_guava  : '3.1.0',
