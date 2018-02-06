@@ -17,7 +17,7 @@ class ProjectDIComponent(
         private set
 
     override fun initComponent() {
-        container = applicationDI.container.projectContainer(ProjectModule(ProjectExt.create(project)))
+        container = applicationDI.container.projectContainer(ProjectModule(ProjectExt(project)))
         project.messageBus.connect().subscribe<VcsRepositoryMappingListener>(VcsRepositoryManager.VCS_REPOSITORY_MAPPING_UPDATED, container.repositoryListener())
     }
 }

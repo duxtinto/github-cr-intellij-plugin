@@ -12,5 +12,6 @@ interface CodeReviewsDomainContract {
         interface Repository {
             fun getAllBy(review: CodeReviewEntity): List<CodeReviewCommentEntity>
         }
+
     }
 }
