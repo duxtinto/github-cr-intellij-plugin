@@ -10,7 +10,13 @@ class CodeReviewCommentResponseMapper
 
     override fun toEntity(dataModel: CodeReviewCommentResponse): CodeReviewCommentEntity {
         return with(dataModel) {
-            CodeReviewCommentEntity(id, pull_request_review_id, body)
+            CodeReviewCommentEntity(
+                    id = id,
+                    reviewId = pull_request_review_id,
+                    body = body,
+                    filePath = path,
+                    lineNumber = position
+            )
         }
     }
 }

@@ -44,6 +44,10 @@ sourceSets {
 }
 
 dependencies {
+    compileOnly(
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${project.versions.kotlin}",
+    )
+
     compile(
             "com.google.guava:guava:${project.versions.guava}",
             "com.google.dagger:dagger:${project.versions.dagger}",

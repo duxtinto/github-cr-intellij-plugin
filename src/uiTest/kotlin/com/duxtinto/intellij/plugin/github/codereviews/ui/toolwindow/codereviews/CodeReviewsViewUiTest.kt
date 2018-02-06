@@ -17,6 +17,7 @@ import org.assertj.swing.junit.testcase.AssertJSwingJUnit5TestCase
 import org.assertj.swing.matcher.IdeaTreeMatcher
 import org.assertj.swing.matcher.withName
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 
 class CodeReviewsViewUiTest : AssertJSwingJUnit5TestCase() {
@@ -68,6 +69,7 @@ class CodeReviewsViewUiTest : AssertJSwingJUnit5TestCase() {
 
     @Test
     @DisplayName("Double clicking on a review node, should load its comments")
+    @Tag("testing")
     fun doubleClickOnReview(
             @Mocked goToCommentLine: ActionOnReviewCommentInteractor,
             @Tested presenter: CodeReviewsPresenter) {

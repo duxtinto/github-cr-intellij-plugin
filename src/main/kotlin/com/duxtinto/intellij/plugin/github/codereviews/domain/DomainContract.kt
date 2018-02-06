@@ -2,7 +2,10 @@ package com.duxtinto.intellij.plugin.github.codereviews.domain
 
 interface DomainContract {
     interface EditorDriver {
-        fun openFile(filePath: String): Boolean
-        fun goToLine(number: Int): Boolean
+        fun openDocument(filePath: String): DocumentDriver?
+    }
+
+    interface DocumentDriver {
+        fun goToLine(num: Int)
     }
 }

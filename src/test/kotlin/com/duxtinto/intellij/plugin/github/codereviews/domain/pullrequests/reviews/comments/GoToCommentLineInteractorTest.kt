@@ -2,19 +2,17 @@ package com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.revi
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.DomainContract
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
-import mockit.Expectations
-import mockit.Injectable
-import mockit.Tested
-import org.assertj.core.api.Assertions.assertThat
+import mockit.*
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 
 internal class GoToCommentLineInteractorTest {
 
     @Test
-    @DisplayName("run should open the file where the file is located")
+    @DisplayName("run should open the file and go to the line")
     fun runHappyPath(
+            @Mocked documentDriver: DomainContract.DocumentDriver,
             @Injectable editorDriver: DomainContract.EditorDriver,
             @Tested interactor: GoToCommentLineInteractor) {
         // Arrange
@@ -22,20 +20,24 @@ internal class GoToCommentLineInteractorTest {
 
         object : Expectations() {
             init {
-                editorDriver.openFile(comment.filePath)
-                result = true
+                editorDriver.openDocument(comment.filePath)
+                result = documentDriver
             }
         }
 
         // Act
-        val result = interactor.run(comment)
+        interactor.run(comment)
 
         // Assert
-        assertThat(result).isTrue()
+        object : Verifications() {
+            init {
+                documentDriver.goToLine(comment.lineNumber)
+            }
+        }
     }
 
     @Test
-    @DisplayName("run, if the file doesn't exist, should return false")
+    @DisplayName("run, if the file doesn't exist, should throw exception")
     fun runFileDoesNotExist(
             @Injectable editorDriver: DomainContract.EditorDriver,
             @Tested interactor: GoToCommentLineInteractor) {
@@ -44,15 +46,12 @@ internal class GoToCommentLineInteractorTest {
 
         object : Expectations() {
             init {
-                editorDriver.openFile(comment.filePath)
-                result = false
+                editorDriver.openDocument(comment.filePath)
+                result = KotlinNullPointerException()
             }
         }
 
         // Act
-        val result = interactor.run(comment)
-
-        // Assert
-        assertThat(result).isFalse()
+        assertThrows(KotlinNullPointerException::class.java, { interactor.run(comment) })
     }
 }

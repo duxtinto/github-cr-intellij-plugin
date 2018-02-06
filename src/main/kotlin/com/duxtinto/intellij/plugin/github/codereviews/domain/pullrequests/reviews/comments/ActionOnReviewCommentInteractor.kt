@@ -2,4 +2,4 @@ package com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.revi
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.Interactor
 
-interface ActionOnReviewCommentInteractor: Interactor<CodeReviewCommentEntity, Boolean>
+interface ActionOnReviewCommentInteractor: Interactor<CodeReviewCommentEntity, Any>
