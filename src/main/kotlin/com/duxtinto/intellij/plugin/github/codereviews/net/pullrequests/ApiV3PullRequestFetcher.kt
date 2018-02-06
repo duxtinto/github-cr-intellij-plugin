@@ -2,11 +2,9 @@ package com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestDomainContract
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.GithubApiV3PullRequestLoader
+import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.pullrequests.GithubApiV3PullRequestLoader
 import javax.inject.Inject
 import java.io.IOException
-
-import com.google.common.base.Preconditions.checkNotNull
 
 class ApiV3PullRequestFetcher @Inject
 constructor(private val apiLoader: GithubApiV3PullRequestLoader) : PullRequestDomainContract.Fetcher {

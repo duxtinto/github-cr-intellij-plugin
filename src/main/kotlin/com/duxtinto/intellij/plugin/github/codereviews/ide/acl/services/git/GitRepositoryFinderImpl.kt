@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services
+package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.git
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.RepositoriesDomainContract
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.git.GitRepositoryExt

@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.issues
+package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.issues
 
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubConnectionExt

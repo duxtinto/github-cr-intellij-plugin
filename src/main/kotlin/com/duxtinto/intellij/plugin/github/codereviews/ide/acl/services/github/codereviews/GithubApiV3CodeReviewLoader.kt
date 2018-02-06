@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.codereviews
+package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.codereviews
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.GithubRepositoryEntity
@@ -10,7 +10,7 @@ import org.apache.http.message.BasicHeader
 import org.jetbrains.plugins.github.api.GithubConnection
 import java.io.IOException
 import javax.inject.Inject
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.issues.IssueDataMapper as IdeaIssueDataMapper
+import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.issues.IssueDataMapper as IdeaIssueDataMapper
 
 class GithubApiV3CodeReviewLoader
     @Inject

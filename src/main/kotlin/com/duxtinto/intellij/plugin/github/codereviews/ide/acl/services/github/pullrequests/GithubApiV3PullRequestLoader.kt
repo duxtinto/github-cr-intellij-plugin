@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services
+package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.pullrequests
 
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.duxtinto.intellij.plugin.github.codereviews.domain.issues.IssueEntity
@@ -6,18 +6,13 @@ import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullR
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.issues.GetAllClosableByInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.issues.GetAllClosableByRequest
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubConnectionExt
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.codereviews.GithubApiV3CodeReviewLoader.Companion.ACCEPT_V3_JSON_HTML_MARKUP
 import org.apache.http.Header
 import org.apache.http.message.BasicHeader
 import org.jetbrains.plugins.github.api.GithubConnection
 import org.jetbrains.plugins.github.api.data.GithubPullRequest
 import javax.inject.Inject
 import java.io.IOException
-import java.net.MalformedURLException
 import java.net.URL
-import java.util.stream.Collectors
-
-import com.google.common.base.Preconditions.checkNotNull
 
 @ProjectScoped
 class GithubApiV3PullRequestLoader
