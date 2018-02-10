@@ -1,8 +1,10 @@
 package com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow
 
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllOpenForRepoInteractor
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllMyOpenForRepoInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.FindGithubRepoForRootFolderInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
+import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.presentation.toolwindow.ToolWindowContent
+import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.presentation.toolwindow.ToolWindowContentPresenter
 import com.intellij.ui.content.Content
 import com.intellij.ui.content.ContentFactory
 import com.intellij.ui.content.ContentManager
@@ -15,7 +17,7 @@ internal class ToolWindowContentPresenterTest {
     private lateinit var githubRepoFinder: FindGithubRepoForRootFolderInteractor
 
     @Injectable
-    private lateinit var pullRequestFetcher: GetAllOpenForRepoInteractor
+    private lateinit var pullRequestFetcher: GetAllMyOpenForRepoInteractor
 
     @Injectable
     private lateinit var contentFactory: ContentFactory

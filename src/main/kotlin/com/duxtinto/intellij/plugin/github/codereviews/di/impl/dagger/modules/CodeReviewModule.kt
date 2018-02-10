@@ -6,11 +6,11 @@ import com.duxtinto.intellij.plugin.github.codereviews.data.codereviews.comments
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewsDomainContract
 import com.duxtinto.intellij.plugin.github.codereviews.net.codereviews.apiv3.CodeReviewsFetcher
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.codereviews.CodeReviews
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.codereviews.CodeReviewsPresenter
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.codereviews.CodeReviewsTreeCellRenderer
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.codereviews.CodeReviewsView
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.codereviews.events.MouseListener
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.CodeReviews
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.CodeReviewsPresenter
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.CodeReviewsTreeCellRenderer
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.CodeReviewsView
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.events.MouseListener
 import dagger.Binds
 import dagger.Module
 import javax.inject.Named

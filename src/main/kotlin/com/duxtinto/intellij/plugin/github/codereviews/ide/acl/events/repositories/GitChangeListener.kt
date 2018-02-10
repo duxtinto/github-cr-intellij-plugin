@@ -1,17 +1,17 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.events.repositories
 
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllOpenForRepoInteractor
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllMyOpenForRepoInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.FindGithubRepoForRootFolderInteractor
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.PullRequestList
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestList
 import com.intellij.dvcs.repo.VcsRepositoryMappingListener
 import javax.inject.Inject
 
 class GitChangeListener
     @Inject
     constructor(
-        private val githubRepoFinder: FindGithubRepoForRootFolderInteractor,
-        private val pullRequestFetcher: GetAllOpenForRepoInteractor,
-        private val pullRequestsPresenter: PullRequestList.Presenter)
+            private val githubRepoFinder: FindGithubRepoForRootFolderInteractor,
+            private val pullRequestFetcher: GetAllMyOpenForRepoInteractor,
+            private val pullRequestsPresenter: PullRequestList.Presenter)
     : VcsRepositoryMappingListener {
 
     override fun mappingChanged() {

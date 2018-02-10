@@ -1,16 +1,16 @@
 package com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow
 
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.codereviews.CodeReviewsPresenter
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.codereviews.CodeReviewsTreeCellRenderer
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.codereviews.CodeReviewsView
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.codereviews.formatters.CommentFormatter
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.PullRequestListModel
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.PullRequestListView
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.columns.ColumnInfoFactory
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.events.PullRequestListMouseListener
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.events.SelectionListener
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.reviewee.RevieweeView
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.CodeReviewsPresenter
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.CodeReviewsTreeCellRenderer
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.CodeReviewsView
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.formatters.CommentFormatter
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestListModel
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestListView
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.ColumnInfoFactory
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events.PullRequestListMouseListener
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events.SelectionListener
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.RevieweeView
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import mockit.Injectable
@@ -26,7 +26,7 @@ import org.assertj.swing.matcher.IdeaTreeMatcher
 import org.assertj.swing.matcher.SplitterMatcher
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.codereviews.events.MouseListener as CodeReviewsMouseListener
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.events.MouseListener as CodeReviewsMouseListener
 
 internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
     @Injectable

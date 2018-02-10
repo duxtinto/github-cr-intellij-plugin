@@ -1,12 +1,12 @@
 package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules
 
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.ToolWindowContent
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.ToolWindowContentPresenter
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.reviewee.RevieweePresenter
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.reviewee.RevieweeView
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.reviewer.ReviewerPresenter
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.reviewer.ReviewerView
+import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.presentation.toolwindow.ToolWindowContent
+import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.presentation.toolwindow.ToolWindowContentPresenter
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.RevieweePresenter
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.RevieweeView
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer.ReviewerPresenter
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer.ReviewerView
 import dagger.Binds
 import dagger.Module
 
