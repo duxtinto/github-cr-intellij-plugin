@@ -1,12 +1,13 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.pullrequests
 
+import com.duxtinto.intellij.plugin.github.codereviews.domain.DomainDataMapper
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubConnectionExt
 import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3.PullRequestQueryParameters
+import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3.PullRequestResponse
 import org.apache.http.message.BasicHeader
 import org.jetbrains.plugins.github.api.GithubApiUtil.fromJson
 import org.jetbrains.plugins.github.api.GithubConnection
-import org.jetbrains.plugins.github.api.data.GithubPullRequest
 import java.io.IOException
 import javax.inject.Inject
 import com.duxtinto.intellij.plugin.github.codereviews.net.Contract as NetContract
@@ -15,7 +16,7 @@ class IdeaPullRequestLoader
     @Inject
     constructor(
         private val connection: GithubConnectionExt,
-        private val pullRequestMapper: IdeaPullRequestMapper)
+        private val pullRequestMapper: DomainDataMapper<PullRequestEntity, PullRequestResponse>)
     : NetContract.PullRequest.Loader {
 
     companion object {
@@ -28,7 +29,7 @@ class IdeaPullRequestLoader
     override fun loadAll(userName: String, repoName: String, parameters: PullRequestQueryParameters): List<PullRequestEntity> {
         return GithubConnection.ArrayPagedRequest(
                     "/repos/$userName/$repoName/pulls?${parameters.toQueryString()}",
-                    Array<GithubPullRequest>::class.java,
+                    Array<PullRequestResponse>::class.java,
                     BasicHeader("Accept", V3_FULL_JSON_CONTENT))
                 .getAll(connection.delegate())
                 .map { pullRequestMapper.toEntity(it) }
@@ -41,7 +42,7 @@ class IdeaPullRequestLoader
                         "/repos/$userName/$repoName/pulls/$id",
                         ACCEPT_HEADER
                 ),
-                GithubPullRequest::class.java
+                PullRequestResponse::class.java
         ))
     }
 

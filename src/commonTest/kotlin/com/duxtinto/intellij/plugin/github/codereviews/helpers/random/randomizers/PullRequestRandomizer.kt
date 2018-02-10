@@ -8,11 +8,15 @@ import java.net.URL
 class PullRequestRandomizer : Randomizer<PullRequestEntity> {
     override fun getRandomValue(): PullRequestEntity {
         val prNumber: Long = RandomGenerator.next()
+
         return PullRequestEntity(
                 number = prNumber,
                 closeableIssues = listOf(),
                 title = RandomGenerator.next(),
                 state = RandomGenerator.next(),
-                url = URL("https://github.com/duxtinto/dummy/pull/$prNumber"))
+                url = URL("https://github.com/duxtinto/dummy/pull/$prNumber"),
+                head = RandomGenerator.next(),
+                reviewee = RandomGenerator.next()
+        )
     }
 }

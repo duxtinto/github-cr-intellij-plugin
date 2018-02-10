@@ -1,6 +1,7 @@
 package com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.issues.IssueEntity
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeRevieweeEntity
 import com.google.common.base.Enums
 import java.net.URL
 
@@ -10,7 +11,8 @@ data class PullRequestEntity (
         val title: String = "",
         val state: State = State.OPEN,
         val url: URL? = null,
-        val head: Link? = null) {
+        val head: Link? = null,
+        val reviewee: CodeRevieweeEntity? = null) {
     enum class State {
         UNKNOWN,
         OPEN,
