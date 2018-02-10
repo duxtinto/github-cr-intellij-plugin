@@ -1,16 +1,14 @@
 package com.duxtinto.intellij.plugin.github.codereviews.helpers.random
 
-import io.github.benas.randombeans.EnhancedRandomBuilder
+import io.github.benas.randombeans.*
 import io.github.benas.randombeans.api.EnhancedRandom
-import io.github.benas.randombeans.registerRandomizersForIdeaClasses
-import io.github.benas.randombeans.registerRandomizersForJavaClasses
-import io.github.benas.randombeans.registerRandomizersForPluginClasses
 
 class RandomGenerator {
     companion object {
         val random: EnhancedRandom = EnhancedRandomBuilder
                 .aNewEnhancedRandomBuilder()
-                .registerRandomizersForPluginClasses()
+                .registerRandomizersForDomainClasses()
+                .registerRandomizersForNetClasses()
                 .registerRandomizersForJavaClasses()
                 .registerRandomizersForIdeaClasses()
                 .build()

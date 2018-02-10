@@ -1,7 +1,9 @@
 package com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures
 
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.builders.ide.GithubIssueBuilder
+import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.builders.net.PullRequestResponseAssigneeBuilder
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.builders.net.CodeReviewCommentResponseBuilder
+import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.builders.net.PullRequestResponseBuilder
 
 class NetFixture {
     fun issue(): GithubIssueBuilder {
@@ -10,5 +12,13 @@ class NetFixture {
 
     fun commentResponse(): CodeReviewCommentResponseBuilder {
         return CodeReviewCommentResponseBuilder()
+    }
+
+    fun pullRequestResponse(): PullRequestResponseBuilder {
+        return PullRequestResponseBuilder()
+    }
+
+    fun assignee(): PullRequestResponseAssigneeBuilder {
+        return PullRequestResponseAssigneeBuilder()
     }
 }

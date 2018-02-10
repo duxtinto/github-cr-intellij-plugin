@@ -1,6 +1,7 @@
 package com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures
 
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.builders.*
+import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.builders.domain.CodeRevieweeFixtureBuilder
 
 object Fixture {
     internal fun issue(): IssueFixtureBuilder {
@@ -33,5 +34,9 @@ object Fixture {
 
     fun net(): NetFixture {
         return NetFixture()
+    }
+
+    fun reviewee(): CodeRevieweeFixtureBuilder {
+        return CodeRevieweeFixtureBuilder()
     }
 }

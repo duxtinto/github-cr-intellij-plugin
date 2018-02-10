@@ -12,7 +12,7 @@ interface PullRequestDomainContract {
 
     interface Repository {
         @Throws(IOException::class)
-        fun getAllOpenBy(userName: String, repoName: String): List<PullRequestEntity>
+        fun getAllMyOpenBy(userName: String, repoName: String): List<PullRequestEntity>
         fun getOneById(userName: String, repoName: String, id: Long): PullRequestEntity?
     }
 
