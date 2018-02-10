@@ -2,6 +2,7 @@ package com.duxtinto.intellij.plugin.github.codereviews.net.codereviews.comments
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.DomainDataMapper
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.CodeReviewCommentEntity
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.CodeReviewCommentEntity.State as EntityState
 import javax.inject.Inject
 
 class CodeReviewCommentResponseMapper
@@ -15,7 +16,8 @@ class CodeReviewCommentResponseMapper
                     reviewId = pull_request_review_id,
                     body = body,
                     filePath = path,
-                    lineNumber = position
+                    lineNumber = position ?: 0,
+                    state = if (position == null) { EntityState.OUTDATED } else { EntityState.ACTIVE }
             )
         }
     }

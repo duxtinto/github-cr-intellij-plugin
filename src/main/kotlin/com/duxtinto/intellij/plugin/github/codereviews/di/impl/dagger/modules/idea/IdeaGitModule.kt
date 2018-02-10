@@ -7,7 +7,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.Repos
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.ProjectExt
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.events.repositories.GitChangeListener
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.git.IdeaBranchOperator
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestList
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.PullRequestList
 import com.intellij.dvcs.repo.VcsRepositoryMappingListener
 import dagger.Module
 import dagger.Provides

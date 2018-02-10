@@ -30,4 +30,8 @@ object Fixture {
     internal fun ide(): IdeFixture {
         return IdeFixture()
     }
+
+    fun net(): NetFixture {
+        return NetFixture()
+    }
 }
