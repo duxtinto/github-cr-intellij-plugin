@@ -12,12 +12,12 @@ import java.io.IOException
 import javax.inject.Inject
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.issues.IssueDataMapper as IdeaIssueDataMapper
 
-class GithubApiV3CodeReviewLoader
+class IdeaCodeReviewLoader
     @Inject
     constructor(private val connection : GithubConnectionExt) {
 
     companion object {
-        val ACCEPT_V3_JSON_HTML_MARKUP = BasicHeader("Accept", "application/vnd.github.v3.html+json")
+        val ACCEPT_V3_JSON_HTML_MARKUP = BasicHeader("Accept", "application/vnd.github.v3.full+json")
     }
 
     @Throws(IOException::class)

@@ -7,7 +7,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullR
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestsByRepository
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewsByPullRequestInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.GetAllReviewsForInteractor
-import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.ApiV3PullRequestFetcher
+import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3.PullRequestFetcher
 import com.duxtinto.intellij.plugin.github.codereviews.services.pullrequests.GithubDescriptionParser
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestList
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListPresenter
@@ -27,7 +27,7 @@ abstract class PullRequestModule {
     abstract fun provideGetAllReviewsForInteractor(interactor: GetAllReviewsForInteractor): CodeReviewsByPullRequestInteractor
 
     @Binds
-    abstract fun providePullRequestDomainContractFetcher(fetcher: ApiV3PullRequestFetcher): PullRequestDomainContract.Fetcher
+    abstract fun providePullRequestDomainContractFetcher(fetcher: PullRequestFetcher): PullRequestDomainContract.Fetcher
 
     @Binds
     abstract fun providePullRequestDomainContractRepository(repository: PullRequestRepositoryImpl): PullRequestDomainContract.Repository

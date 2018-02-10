@@ -9,7 +9,7 @@ import javax.inject.Inject
 class GitRepositoryFinderImpl
     @Inject
     constructor(private val project: ProjectExt)
-    : RepositoriesDomainContract.GitRepositoryFinder {
+    : RepositoriesDomainContract.Git.RepositoryFinder {
 
     override fun findRootRepo(): GitRepositoryExt? {
         val repository = GithubUtil.getGitRepository(project, null)

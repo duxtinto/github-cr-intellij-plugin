@@ -8,7 +8,7 @@ import org.jetbrains.plugins.github.api.GithubApiUtil
 import java.io.IOException
 import javax.inject.Inject
 
-class GithubApiV3IssueLoader
+class IdeaIssueLoader
     @Inject
     constructor(
             private val connection : GithubConnectionExt,

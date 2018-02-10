@@ -1,13 +1,21 @@
 package com.duxtinto.intellij.plugin.github.codereviews.domain.repositories
 
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.git.GitRepositoryExt
-
 interface RepositoriesDomainContract {
     interface GithubRepositoryFinder {
-        fun find(gitRepository: GitRepositoryExt): GithubRepositoryEntity?
+        fun find(gitRepository: Git.Repository): GithubRepositoryEntity?
     }
 
-    interface GitRepositoryFinder {
-        fun findRootRepo(): GitRepositoryExt?
+    interface Git {
+        interface Repository {
+            fun hasGithubRemote() : Boolean
+        }
+
+        interface RepositoryFinder {
+            fun findRootRepo(): Repository?
+        }
+
+        interface BranchOperator {
+            fun checkOut(ref: String, repository: Git.Repository)
+        }
     }
 }

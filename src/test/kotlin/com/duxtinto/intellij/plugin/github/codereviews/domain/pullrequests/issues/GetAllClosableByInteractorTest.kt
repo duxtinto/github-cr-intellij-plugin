@@ -1,6 +1,5 @@
 package com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.issues
 
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.issues.GetAllClosableByRequest as Request
 import com.duxtinto.intellij.plugin.github.codereviews.domain.issues.IssueEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.issues.IssuesDomainContract
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestDomainContract
@@ -36,7 +35,7 @@ internal class GetAllClosableByInteractorTest {
         }
 
         // Act
-        val closableIssues = interactor.run(Request(description))
+        val closableIssues = interactor.run(description)
 
         // Assert
         assertThat(closableIssues).isEmpty()
@@ -66,7 +65,7 @@ internal class GetAllClosableByInteractorTest {
         }
 
         // Act
-        val result = interactor.run(Request(descriptionText))
+        val result = interactor.run(descriptionText)
 
         // Assert
         assertThat(result)

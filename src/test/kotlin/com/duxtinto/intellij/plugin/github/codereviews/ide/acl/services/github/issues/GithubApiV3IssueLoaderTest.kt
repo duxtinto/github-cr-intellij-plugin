@@ -21,7 +21,7 @@ internal class GithubApiV3IssueLoaderTest {
     lateinit var ideDataMapper: IssueDataMapper
 
     @Tested
-    lateinit var loader: GithubApiV3IssueLoader
+    lateinit var loader: IdeaIssueLoader
 
     @Test
     @DisplayName("load issue by Id, should search issue on remote repository")

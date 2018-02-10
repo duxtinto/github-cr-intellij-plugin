@@ -28,6 +28,9 @@ constructor(
             return
         }
 
-        presenter.presentReviews(getAllCodeReviewsFor.run(table!!.selectedObject as PullRequestEntity)!!)
+        val pullRequest = table!!.selectedObject as PullRequestEntity
+
+        presenter.presentPullRequest(pullRequest)
+        presenter.presentReviews(getAllCodeReviewsFor.run(pullRequest)!!)
     }
 }
