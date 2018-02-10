@@ -7,7 +7,7 @@ import javax.inject.Inject
 class GetAllOpenForRepoInteractor
     @Inject
     constructor(private val repository: PullRequestDomainContract.Repository)
-    : PullRequestsByRepository {
+    : PullRequestsByRepositoryInteractor {
 
     override fun run(request: GithubRepositoryEntity): List<PullRequestEntity>? {
         try {
