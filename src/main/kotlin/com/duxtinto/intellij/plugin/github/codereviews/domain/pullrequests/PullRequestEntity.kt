@@ -9,7 +9,8 @@ data class PullRequestEntity (
         val closeableIssues: List<IssueEntity> = listOf(),
         val title: String = "",
         val state: State = State.OPEN,
-        val url: URL?) {
+        val url: URL? = null,
+        val head: Link? = null) {
     enum class State {
         UNKNOWN,
         OPEN,
@@ -20,4 +21,10 @@ data class PullRequestEntity (
             }
         }
     }
+
+    data class Link(
+            val label: String,
+            val ref: String,
+            val sha: String
+    )
 }

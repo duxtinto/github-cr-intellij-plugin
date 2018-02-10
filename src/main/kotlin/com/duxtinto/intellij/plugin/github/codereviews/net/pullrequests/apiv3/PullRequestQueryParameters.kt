@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests
+package com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3
 
 data class PullRequestQueryParameters(
         val state: State = State.OPEN,

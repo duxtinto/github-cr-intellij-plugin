@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.codereviews
+package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.codereviews
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.GithubRepositoryEntity
@@ -10,14 +10,14 @@ import org.apache.http.message.BasicHeader
 import org.jetbrains.plugins.github.api.GithubConnection
 import java.io.IOException
 import javax.inject.Inject
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.issues.IssueDataMapper as IdeaIssueDataMapper
+import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.issues.IssueDataMapper as IdeaIssueDataMapper
 
-class GithubApiV3CodeReviewLoader
+class IdeaCodeReviewLoader
     @Inject
     constructor(private val connection : GithubConnectionExt) {
 
     companion object {
-        val ACCEPT_V3_JSON_HTML_MARKUP = BasicHeader("Accept", "application/vnd.github.v3.html+json")
+        val ACCEPT_V3_JSON_HTML_MARKUP = BasicHeader("Accept", "application/vnd.github.v3.full+json")
     }
 
     @Throws(IOException::class)

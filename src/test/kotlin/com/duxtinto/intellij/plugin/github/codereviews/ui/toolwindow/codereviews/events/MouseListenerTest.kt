@@ -1,5 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.events
 
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.ActionOnPullRequestInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.ActionOnReviewCommentInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.CommentsByReviewInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
@@ -7,9 +8,11 @@ import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews
 import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews.CodeReviewsTree
 import mockit.*
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
 import java.awt.event.MouseEvent
 import javax.swing.tree.DefaultMutableTreeNode
+import javax.swing.tree.TreeModel
 
 internal class MouseListenerTest {
     @Test
@@ -18,6 +21,7 @@ internal class MouseListenerTest {
             @Injectable presenter: CodeReviews.Presenter,
             @Injectable getAllCommentsInteractor: CommentsByReviewInteractor,
             @Injectable goToLine: ActionOnReviewCommentInteractor,
+            @Injectable checkoutBranchInteractor: ActionOnPullRequestInteractor,
             @Tested listener: MouseListener,
             @Mocked tree: CodeReviewsTree) {
         // Act
@@ -35,6 +39,7 @@ internal class MouseListenerTest {
             @Injectable presenter: CodeReviews.Presenter,
             @Injectable getAllCommentsInteractor: CommentsByReviewInteractor,
             @Injectable goToLine: ActionOnReviewCommentInteractor,
+            @Injectable checkoutBranchInteractor: ActionOnPullRequestInteractor,
             @Tested listener: MouseListener,
             @Mocked tree: CodeReviewsTree) {
         // Arrange
@@ -60,6 +65,7 @@ internal class MouseListenerTest {
             @Injectable presenter: CodeReviews.Presenter,
             @Injectable getAllCommentsInteractor: CommentsByReviewInteractor,
             @Injectable goToLine: ActionOnReviewCommentInteractor,
+            @Injectable checkoutBranchInteractor: ActionOnPullRequestInteractor,
             @Tested listener: MouseListener,
             @Mocked tree: CodeReviewsTree) {
         // Arrange
@@ -88,18 +94,27 @@ internal class MouseListenerTest {
 
     @Test
     @DisplayName("double click on a comment node, should open the comment's file and position the caret on the proper lineNumber")
+    @Tag("testing")
     fun doubleClickOnACommentNode(
             @Injectable presenter: CodeReviews.Presenter,
             @Injectable getAllCommentsInteractor: CommentsByReviewInteractor,
             @Injectable goToLine: ActionOnReviewCommentInteractor,
+            @Injectable checkoutBranchInteractor: ActionOnPullRequestInteractor,
             @Tested listener: MouseListener,
-            @Mocked tree: CodeReviewsTree) {
+            @Mocked tree: CodeReviewsTree,
+            @Mocked model: TreeModel) {
         // Arrange
         val reviewComment = Fixture.reviewComment().build()
+        val pullRequest = Fixture.pullRequest().build()
+        val rootNode = DefaultMutableTreeNode(pullRequest)
+
         object : Expectations() {
             init {
                 tree.lastSelectedPathComponent
                 result = DefaultMutableTreeNode().apply { userObject = reviewComment }
+
+                model.root
+                result = rootNode
             }
         }
 

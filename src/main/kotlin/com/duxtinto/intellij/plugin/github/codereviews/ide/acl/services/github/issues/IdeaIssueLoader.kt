@@ -1,14 +1,14 @@
-package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.issues
+package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.issues
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.issues.IssueEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.GithubRepositoryEntity
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubConnectionExt
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.issues.IssueDataMapper as IdeaIssueDataMapper
+import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.issues.IssueDataMapper as IdeaIssueDataMapper
 import org.jetbrains.plugins.github.api.GithubApiUtil
 import java.io.IOException
 import javax.inject.Inject
 
-class GithubApiV3IssueLoader
+class IdeaIssueLoader
     @Inject
     constructor(
             private val connection : GithubConnectionExt,

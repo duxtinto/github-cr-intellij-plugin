@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.issues
+package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.issues
 
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubConnectionExt
@@ -21,7 +21,7 @@ internal class GithubApiV3IssueLoaderTest {
     lateinit var ideDataMapper: IssueDataMapper
 
     @Tested
-    lateinit var loader: GithubApiV3IssueLoader
+    lateinit var loader: IdeaIssueLoader
 
     @Test
     @DisplayName("load issue by Id, should search issue on remote repository")
