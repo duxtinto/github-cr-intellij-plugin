@@ -7,9 +7,13 @@ import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3.Pu
 import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3.PullRequestQueryParameters.State
 import javax.inject.Inject
 import java.io.IOException
+import javax.inject.Named
 
-class PullRequestRepositoryImpl @Inject
-constructor(fetcher: PullRequestDomainContract.Fetcher)
+class PullRequestRepository
+    @Inject
+    constructor(
+            @Named("my_github_username") private val myUsername: String,
+            fetcher: PullRequestDomainContract.Fetcher)
     : PullRequestDomainContract.Repository {
 
     private val fetcher: PullRequestFetcher = fetcher as PullRequestFetcher
@@ -19,8 +23,12 @@ constructor(fetcher: PullRequestDomainContract.Fetcher)
     }
 
     @Throws(IOException::class)
-    override fun getAllOpenBy(userName: String, repoName: String): List<PullRequestEntity> {
+    override fun getAllMyOpenBy(userName: String, repoName: String): List<PullRequestEntity> {
         val parameters = PullRequestQueryParameters(state = State.OPEN)
-        return fetcher.fetchAllForRepository(userName, repoName, parameters)
+        return fetcher
+                .fetchAllForRepository(userName, repoName, parameters)
+                .filter {
+                    it.reviewee?.username == myUsername
+                }
     }
 }

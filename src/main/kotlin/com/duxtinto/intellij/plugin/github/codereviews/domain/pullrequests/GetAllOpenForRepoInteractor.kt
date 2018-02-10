@@ -11,7 +11,7 @@ class GetAllOpenForRepoInteractor
 
     override fun run(request: GithubRepositoryEntity): List<PullRequestEntity>? {
         try {
-            return repository.getAllOpenBy(request.ownerName, request.name)
+            return repository.getAllMyOpenBy(request.ownerName, request.name)
         } catch (e: IOException) {
             e.printStackTrace()
             throw RuntimeException(e)
