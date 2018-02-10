@@ -4,6 +4,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.codereviews.CodeReviewsPresenter
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.codereviews.CodeReviewsTreeCellRenderer
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.codereviews.CodeReviewsView
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.codereviews.formatters.CommentFormatter
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.PullRequestListModel
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.PullRequestListView
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.columns.ColumnInfoFactory
@@ -12,6 +13,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.p
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.reviewee.RevieweeView
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
+import mockit.Injectable
 import mockit.Mocked
 import mockit.Tested
 import org.assertj.swing.data.TableCell
@@ -27,6 +29,8 @@ import org.junit.jupiter.api.Test
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.codereviews.events.MouseListener as CodeReviewsMouseListener
 
 internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
+    @Injectable
+    private lateinit var commentFormatter: CommentFormatter
     @Tested
     private lateinit var codeReviewsCellRenderer: CodeReviewsTreeCellRenderer
 

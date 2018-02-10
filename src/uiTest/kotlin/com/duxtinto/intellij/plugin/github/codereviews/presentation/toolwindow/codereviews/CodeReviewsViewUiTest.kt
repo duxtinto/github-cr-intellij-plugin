@@ -5,6 +5,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.revie
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.CommentsByReviewInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.codereviews.events.MouseListener
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.codereviews.formatters.CommentFormatter
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import mockit.Mocked
@@ -40,7 +41,7 @@ class CodeReviewsViewUiTest : AssertJSwingJUnit5TestCase() {
 
     private fun initializeViewDependencies(mouseListener: MouseListener): CodeReviewsView {
         return GuiActionRunner.execute<CodeReviewsView>({
-            CodeReviewsView(mouseListener, CodeReviewsTreeCellRenderer())
+            CodeReviewsView(mouseListener, CodeReviewsTreeCellRenderer(CommentFormatter()))
         })
     }
 
