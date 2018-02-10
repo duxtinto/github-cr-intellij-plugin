@@ -9,10 +9,10 @@ import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.revie
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.GetAllReviewsForInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3.PullRequestFetcher
 import com.duxtinto.intellij.plugin.github.codereviews.services.pullrequests.GithubDescriptionParser
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestList
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListPresenter
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestListView
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.events.SelectionListener
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.PullRequestList
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.PullRequestListPresenter
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.PullRequestListView
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.events.SelectionListener
 import dagger.Binds
 import dagger.Module
 

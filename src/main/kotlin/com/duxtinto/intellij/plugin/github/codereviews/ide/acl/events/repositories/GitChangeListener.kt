@@ -2,7 +2,7 @@ package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.events.repositor
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllOpenForRepoInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.FindGithubRepoForRootFolderInteractor
-import com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.pullrequestlist.PullRequestList
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.PullRequestList
 import com.intellij.dvcs.repo.VcsRepositoryMappingListener
 import javax.inject.Inject
 
