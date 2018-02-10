@@ -2,7 +2,8 @@ package com.duxtinto.intellij.plugin.github.codereviews.net.issues
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.FindGithubRepoForRootFolderInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.issues.GithubApiV3IssueLoader
+import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.issues.IdeaIssueLoader
+import com.duxtinto.intellij.plugin.github.codereviews.net.issues.apiv3.IssueFetcher
 import mockit.Expectations
 import mockit.Injectable
 import mockit.Tested
@@ -12,13 +13,13 @@ import org.junit.jupiter.api.Test
 
 internal class ApiV3IssueFetcherTest {
     @Injectable
-    lateinit var apiLoader : GithubApiV3IssueLoader
+    lateinit var apiLoader : IdeaIssueLoader
 
     @Injectable
     lateinit var rootRepositoryFinder: FindGithubRepoForRootFolderInteractor
 
     @Tested
-    lateinit var fetcher : ApiV3IssueFetcher
+    lateinit var fetcher : IssueFetcher
 
     @Test
     @DisplayName("fetch issue by id, if the issue exist in the remote root repository")

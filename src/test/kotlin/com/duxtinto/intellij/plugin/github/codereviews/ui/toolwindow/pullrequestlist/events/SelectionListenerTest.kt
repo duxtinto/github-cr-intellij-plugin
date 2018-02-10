@@ -47,6 +47,7 @@ class SelectionListenerTest {
         // Assert
         object : FullVerifications(codeReviewsPresenter, codeReviewsInteractor) {
             init {
+                codeReviewsPresenter.presentPullRequest(pullRequest)
                 codeReviewsPresenter.presentReviews(codeReviews)
             }
         }

@@ -4,9 +4,7 @@ data class CodeReviewResponse(
         val id: Long,
         val user: UserResponse,
         val state: String,
-        val _links: CodeReviewResponseLinks
-)
+        val _links: Links) {
 
-data class CodeReviewResponseLinks(
-        val pull_request: Map<String, String>
-)
+    data class Links(val pull_request: Map<String, String>)
+}

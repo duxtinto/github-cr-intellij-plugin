@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.issues
+package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.issues
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.DomainDataMapper
 import com.duxtinto.intellij.plugin.github.codereviews.domain.issues.IssueEntity

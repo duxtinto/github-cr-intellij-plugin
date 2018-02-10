@@ -1,5 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews
 
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.CodeReviewCommentEntity
 import com.intellij.ui.treeStructure.Tree
@@ -15,6 +16,7 @@ class CodeReviewsTree : Tree {
     override fun convertValueToText(value: Any?, selected: Boolean, expanded: Boolean, leaf: Boolean, row: Int, hasFocus: Boolean): String {
         with(TreeUtil.getUserObject(value)) {
             return when (this) {
+                is PullRequestEntity -> "Code Reviews for PR #${this.number}"
                 is CodeReviewEntity -> "${this.reviewer.username} [${this.state}]"
                 is CodeReviewCommentEntity -> this.body
                 else -> { super.convertValueToText(value, selected, expanded, leaf, row, hasFocus) }

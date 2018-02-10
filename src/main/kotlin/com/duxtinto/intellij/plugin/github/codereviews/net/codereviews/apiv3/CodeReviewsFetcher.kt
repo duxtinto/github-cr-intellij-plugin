@@ -4,7 +4,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.data.codereviews.CodeRevi
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.CodeReviewCommentEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.FindGithubRepoForRootFolderInteractor
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.codereviews.GithubApiV3CodeReviewLoader
+import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.codereviews.IdeaCodeReviewLoader
 import com.duxtinto.intellij.plugin.github.codereviews.net.codereviews.comments.apiv3.CodeReviewCommentResponseMapper
 import javax.inject.Inject
 
@@ -12,7 +12,7 @@ class CodeReviewsFetcher
     @Inject
     constructor(
             private val githubRootRepoFinder : FindGithubRepoForRootFolderInteractor,
-            private val loader: GithubApiV3CodeReviewLoader,
+            private val loader: IdeaCodeReviewLoader,
             private val transformer: CodeReviewResponseMapper,
             private val commentTransformer: CodeReviewCommentResponseMapper)
     : CodeReviewsDataContract.Fetcher {

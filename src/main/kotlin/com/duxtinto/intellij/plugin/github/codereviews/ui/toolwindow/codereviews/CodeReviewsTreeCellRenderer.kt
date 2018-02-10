@@ -1,5 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ui.toolwindow.codereviews
 
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.CodeReviewCommentEntity
 import com.intellij.ide.util.treeView.NodeRenderer
@@ -13,6 +14,7 @@ class CodeReviewsTreeCellRenderer
     override fun customizeCellRenderer(tree: JTree, value: Any?, selected: Boolean, expanded: Boolean, leaf: Boolean, row: Int, hasFocus: Boolean) {
         with(TreeUtil.getUserObject(value)) {
             val body = when (this) {
+                is PullRequestEntity -> "Code Reviews for PR #${this.number}"
                 is CodeReviewEntity -> "${this.reviewer.username} [${this.state}]"
                 is CodeReviewCommentEntity -> this.body
                 else -> value

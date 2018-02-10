@@ -4,12 +4,8 @@ import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullR
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestDomainContract
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
-
-import javax.inject.Inject
-import java.util.HashSet
-import java.util.regex.Matcher
 import java.util.regex.Pattern
-import java.util.stream.Collectors
+import javax.inject.Inject
 
 class GithubDescriptionParser
     @Inject
