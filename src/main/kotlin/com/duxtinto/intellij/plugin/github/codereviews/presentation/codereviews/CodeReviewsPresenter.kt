@@ -10,8 +10,8 @@ class CodeReviewsPresenter
     constructor()
     : CodeReviews.Presenter {
     private var model: CodeReviews.Model = CodeReviewsModel()
-    private var view : CodeReviews.View? = null
 
+    private var view : CodeReviews.View? = null
     override fun setView(view: CodeReviews.View) {
         this.view = view
     }
@@ -29,5 +29,9 @@ class CodeReviewsPresenter
     override fun presentComments(review: CodeReviewEntity, comments: List<CodeReviewCommentEntity>) {
         model.setReviewComments(review, comments)
         view?.render(model)
+    }
+
+    override fun clear() {
+        model.setPullRequest(null)
     }
 }

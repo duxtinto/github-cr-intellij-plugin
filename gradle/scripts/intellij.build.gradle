@@ -5,7 +5,7 @@ intellij {
 }
 
 patchPluginXml {
-    version '0.0.2'
+    version '1.0.0'
     sinceBuild 162
     untilBuild '181.*'
 }

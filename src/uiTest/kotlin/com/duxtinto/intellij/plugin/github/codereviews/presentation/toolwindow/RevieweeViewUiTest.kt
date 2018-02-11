@@ -10,6 +10,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestl
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.ColumnInfoFactory
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events.PullRequestListMouseListener
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events.SelectionListener
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.RevieweeContent
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.RevieweeView
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
@@ -30,6 +31,8 @@ import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.
 
 internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
     @Injectable
+    private lateinit var toolbar: RevieweeContent.Toolbar
+    @Injectable
     private lateinit var commentFormatter: CommentFormatter
     @Tested
     private lateinit var codeReviewsCellRenderer: CodeReviewsTreeCellRenderer
@@ -48,7 +51,7 @@ internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
         view = GuiActionRunner.execute<RevieweeView> {
             pullRequestListView = PullRequestListView(pullRequestColumns, mouseListener, selectionListener)
             codeReviewsView = CodeReviewsView(codeReviewsMouseListener, codeReviewsCellRenderer)
-            RevieweeView(pullRequestListView, codeReviewsView)
+            RevieweeView(pullRequestListView, codeReviewsView, toolbar)
         }
     }
 

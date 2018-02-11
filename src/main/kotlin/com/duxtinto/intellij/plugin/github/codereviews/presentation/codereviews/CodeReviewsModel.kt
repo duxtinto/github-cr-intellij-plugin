@@ -12,9 +12,9 @@ class CodeReviewsModel
         get() = super.root as DefaultMutableTreeNode
         set(value) = super.setRoot(value)
 
-    override fun setPullRequest(pullRequest: PullRequestEntity) {
+    override fun setPullRequest(pullRequest: PullRequestEntity?) {
         mutableRoot.removeAllChildren()
-        mutableRoot.userObject = pullRequest
+        mutableRoot.userObject = pullRequest ?: "Code Reviews"
         this.reload()
     }
 

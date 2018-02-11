@@ -2,6 +2,8 @@ package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.presentation.too
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllMyOpenForRepoInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.FindGithubRepoForRootFolderInteractor
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.RevieweeContent
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer.ReviewerContent
 import com.intellij.ui.content.ContentFactory
 import com.intellij.ui.content.ContentManager
 import javax.inject.Inject
@@ -14,10 +16,10 @@ class ToolWindowContentPresenter
             private val pullRequestFetcher: GetAllMyOpenForRepoInteractor,
             private val contentFactory: ContentFactory,
             @Named("GH_Reviews") private val contentManager: ContentManager,
-            private val revieweeView: ToolWindowContent.Reviewee.View,
-            private val revieweePresenter: ToolWindowContent.Reviewee.Presenter,
-            private val reviewerView: ToolWindowContent.Reviewer.View,
-            reviewerPresenter: ToolWindowContent.Reviewer.Presenter)
+            private val revieweeView: RevieweeContent.View,
+            private val revieweePresenter: RevieweeContent.Presenter,
+            private val reviewerView: ReviewerContent.View,
+            reviewerPresenter: ReviewerContent.Presenter)
     : ToolWindowContent.Presenter {
 
     init {

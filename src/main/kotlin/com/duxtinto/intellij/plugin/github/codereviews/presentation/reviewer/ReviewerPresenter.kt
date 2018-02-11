@@ -1,16 +1,15 @@
 package com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer
 
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.presentation.toolwindow.ToolWindowContent
 import javax.inject.Inject
 
 class ReviewerPresenter
     @Inject
     constructor()
-    : ToolWindowContent.Reviewer.Presenter {
+    : ReviewerContent.Presenter {
 
-    private lateinit var view: ToolWindowContent.Reviewer.View
+    private lateinit var view: ReviewerContent.View
 
-    override fun setView(view: ToolWindowContent.Reviewer.View) {
+    override fun setView(view: ReviewerContent.View) {
         this.view = view
     }
 }

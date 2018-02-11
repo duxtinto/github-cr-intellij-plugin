@@ -1,7 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.presentation.toolwindow.ToolWindowContent
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.CodeReviews
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestList
 import javax.inject.Inject
@@ -12,21 +11,22 @@ class RevieweePresenter
             pullRequestListView: PullRequestList.View,
             private val pullRequestListPresenter: PullRequestList.Presenter,
             codeReviewsView: CodeReviews.View,
-            codeReviewsPresenter: CodeReviews.Presenter)
-    : ToolWindowContent.Reviewee.Presenter {
+            private val codeReviewsPresenter: CodeReviews.Presenter)
+    : RevieweeContent.Presenter {
 
-    private lateinit var view: ToolWindowContent.Reviewee.View
+    private lateinit var view: RevieweeContent.View
 
     init {
         pullRequestListPresenter.setView(pullRequestListView)
         codeReviewsPresenter.setView(codeReviewsView)
     }
 
-    override fun setView(view: ToolWindowContent.Reviewee.View) {
+    override fun setView(view: RevieweeContent.View) {
         this.view = view
     }
 
     override fun presentPullRequests(pullRequests: List<PullRequestEntity>) {
+        codeReviewsPresenter.clear()
         pullRequestListPresenter.displayPullRequests(pullRequests)
     }
 }

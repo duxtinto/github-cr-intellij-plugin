@@ -8,7 +8,7 @@ import javax.swing.tree.TreeModel
 
 interface CodeReviews {
     interface Model : TreeModel {
-        fun setPullRequest(pullRequest: PullRequestEntity)
+        fun setPullRequest(pullRequest: PullRequestEntity?)
         fun setReviews(reviews: List<CodeReviewEntity>)
         fun setReviewComments(review: CodeReviewEntity, comments: List<CodeReviewCommentEntity>)
     }
@@ -26,5 +26,6 @@ interface CodeReviews {
         fun presentPullRequest(pullRequest: PullRequestEntity)
         fun presentReviews(reviews: List<CodeReviewEntity>)
         fun presentComments(review: CodeReviewEntity, comments: List<CodeReviewCommentEntity>)
+        fun clear()
     }
 }

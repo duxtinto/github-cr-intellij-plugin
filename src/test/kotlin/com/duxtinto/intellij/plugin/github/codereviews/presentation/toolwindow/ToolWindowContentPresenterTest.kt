@@ -3,8 +3,9 @@ package com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllMyOpenForRepoInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.FindGithubRepoForRootFolderInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.presentation.toolwindow.ToolWindowContent
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.presentation.toolwindow.ToolWindowContentPresenter
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.RevieweeContent
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer.ReviewerContent
 import com.intellij.ui.content.Content
 import com.intellij.ui.content.ContentFactory
 import com.intellij.ui.content.ContentManager
@@ -26,16 +27,16 @@ internal class ToolWindowContentPresenterTest {
     private lateinit var contentManager: ContentManager
 
     @Injectable
-    private lateinit var revieweeView: ToolWindowContent.Reviewee.View
+    private lateinit var revieweeView: RevieweeContent.View
 
     @Injectable
-    private lateinit var  revieweePresenter: ToolWindowContent.Reviewee.Presenter
+    private lateinit var  revieweePresenter: RevieweeContent.Presenter
 
     @Injectable
-    private lateinit var  reviewerView: ToolWindowContent.Reviewer.View
+    private lateinit var  reviewerView: ReviewerContent.View
 
     @Injectable
-    private lateinit var  reviewerPresenter: ToolWindowContent.Reviewer.Presenter
+    private lateinit var  reviewerPresenter: ReviewerContent.Presenter
 
     @Tested
     private lateinit var presenter: ToolWindowContentPresenter

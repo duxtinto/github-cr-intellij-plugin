@@ -1,12 +1,11 @@
 package com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer
 
-import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.presentation.toolwindow.ToolWindowContent
 import com.intellij.openapi.ui.SimpleToolWindowPanel
 import javax.inject.Inject
 
 class ReviewerView
     @Inject
     constructor()
-    : ToolWindowContent.Reviewer.View {
+    : ReviewerContent.View {
     override val content = SimpleToolWindowPanel(true, true)
 }
