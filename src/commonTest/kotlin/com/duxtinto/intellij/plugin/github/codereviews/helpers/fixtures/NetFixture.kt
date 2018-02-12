@@ -4,6 +4,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.builders
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.builders.net.PullRequestResponseAssigneeBuilder
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.builders.net.CodeReviewCommentResponseBuilder
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.builders.net.PullRequestResponseBuilder
+import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.builders.net.UserResponseBuilder
 
 class NetFixture {
     fun issue(): GithubIssueBuilder {
@@ -20,5 +21,9 @@ class NetFixture {
 
     fun assignee(): PullRequestResponseAssigneeBuilder {
         return PullRequestResponseAssigneeBuilder()
+    }
+
+    fun userResponse(): UserResponseBuilder {
+        return UserResponseBuilder()
     }
 }
