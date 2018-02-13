@@ -1,5 +1,6 @@
 package io.github.benas.randombeans
 
+import com.duxtinto.intellij.plugin.github.codereviews.domain.User.UserEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.issues.IssueEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestDescriptionEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
@@ -10,10 +11,13 @@ import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.revie
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.GithubRepositoryEntity
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.random.randomizers.*
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.random.randomizers.domain.CodeRevieweeRandomizer
+import com.duxtinto.intellij.plugin.github.codereviews.helpers.random.randomizers.domain.UserRandomizer
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.random.randomizers.net.PullRequestResponseAssigneeRandomizer
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.random.randomizers.net.PullRequestResponseLinkRandomizer
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.random.randomizers.net.PullRequestResponseRandomizer
+import com.duxtinto.intellij.plugin.github.codereviews.helpers.random.randomizers.net.UserResponseRandomizer
 import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3.PullRequestResponse
+import com.duxtinto.intellij.plugin.github.codereviews.net.users.apiv3.UserResponse
 import io.github.benas.randombeans.randomizers.misc.EnumRandomizer
 
 fun EnhancedRandomBuilder.registerRandomizersForDomainClasses(): EnhancedRandomBuilder {
@@ -27,6 +31,7 @@ fun EnhancedRandomBuilder.registerRandomizersForDomainClasses(): EnhancedRandomB
             .randomize(CodeReviewCommentEntity::class.java, CodeReviewCommentRandomizer())
             .randomize(CodeReviewerEntity::class.java, CodeReviewerRandomizer())
             .randomize(CodeRevieweeEntity::class.java, CodeRevieweeRandomizer())
+            .randomize(UserEntity::class.java, UserRandomizer())
 }
 
 fun EnhancedRandomBuilder.registerRandomizersForNetClasses(): EnhancedRandomBuilder {
@@ -34,6 +39,7 @@ fun EnhancedRandomBuilder.registerRandomizersForNetClasses(): EnhancedRandomBuil
             .randomize(PullRequestResponse::class.java, PullRequestResponseRandomizer())
             .randomize(PullRequestResponse.Link::class.java, PullRequestResponseLinkRandomizer())
             .randomize(PullRequestResponse.Assignee::class.java, PullRequestResponseAssigneeRandomizer())
+            .randomize(UserResponse::class.java, UserResponseRandomizer())
 }
 
 fun EnhancedRandomBuilder.registerRandomizersForJavaClasses(): EnhancedRandomBuilder {

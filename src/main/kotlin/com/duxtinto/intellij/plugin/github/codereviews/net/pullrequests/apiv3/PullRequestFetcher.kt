@@ -2,13 +2,13 @@ package com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestDomainContract
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
-import com.duxtinto.intellij.plugin.github.codereviews.net.Contract
+import com.duxtinto.intellij.plugin.github.codereviews.net.NetContract
 import java.io.IOException
 import javax.inject.Inject
 
 class PullRequestFetcher
     @Inject
-    constructor(private val apiLoader: Contract.PullRequest.Loader)
+    constructor(private val apiLoader: NetContract.PullRequest.Loader)
     : PullRequestDomainContract.Fetcher {
 
     override fun fetchOneForRepository(userName: String, repoName: String, id: Long): PullRequestEntity {
