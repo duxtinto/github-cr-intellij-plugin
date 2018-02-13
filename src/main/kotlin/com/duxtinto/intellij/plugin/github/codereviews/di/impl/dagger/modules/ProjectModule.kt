@@ -14,6 +14,7 @@ import javax.inject.Named
 
 @Module(includes = [
     AntiCorruptionLayerModule::class,
+    UserModule::class,
     ReposModule::class,
     PullRequestModule::class,
     CodeReviewModule::class,

@@ -2,6 +2,7 @@ package com.duxtinto.intellij.plugin.github.codereviews.net.codereviews.apiv3
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.DomainDataMapper
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewerEntity
+import com.duxtinto.intellij.plugin.github.codereviews.net.users.apiv3.UserResponse
 import javax.inject.Inject
 
 class CodeReviewerMapper

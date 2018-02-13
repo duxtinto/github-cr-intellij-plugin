@@ -10,7 +10,7 @@ import org.jetbrains.plugins.github.api.GithubApiUtil.fromJson
 import org.jetbrains.plugins.github.api.GithubConnection
 import java.io.IOException
 import javax.inject.Inject
-import com.duxtinto.intellij.plugin.github.codereviews.net.Contract as NetContract
+import com.duxtinto.intellij.plugin.github.codereviews.net.NetContract as NetContract
 
 class IdeaPullRequestLoader
     @Inject
@@ -22,7 +22,7 @@ class IdeaPullRequestLoader
     companion object {
         private val V3_FULL_JSON_CONTENT = "application/vnd.github.v3.full+json"
         private val V3_DIFF = "application/vnd.github.v3.diff"
-        private val ACCEPT_HEADER = BasicHeader("Accept", ", ")
+        private val ACCEPT_HEADER = BasicHeader("Accept", V3_FULL_JSON_CONTENT)
     }
 
     @Throws(IOException::class)
