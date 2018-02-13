@@ -3,7 +3,7 @@ package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules
 import com.duxtinto.intellij.plugin.github.codereviews.data.pullrequests.PullRequestRepository
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.duxtinto.intellij.plugin.github.codereviews.domain.DomainDataMapper
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllOpenForRepoInteractor
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllMyOpenForRepoInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestDomainContract
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestsByRepositoryInteractor
@@ -13,10 +13,10 @@ import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3.Pu
 import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3.PullRequestResponse
 import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3.PullRequestResponseMapper
 import com.duxtinto.intellij.plugin.github.codereviews.services.pullrequests.GithubDescriptionParser
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.PullRequestList
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.PullRequestListPresenter
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.PullRequestListView
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.events.SelectionListener
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestList
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestListPresenter
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestListView
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events.SelectionListener
 import dagger.Binds
 import dagger.Module
 
@@ -24,7 +24,7 @@ import dagger.Module
 abstract class PullRequestModule {
     @Binds
     @ProjectScoped
-    abstract fun provideGetAllOpenForRepoInteractor(interactor: GetAllOpenForRepoInteractor): PullRequestsByRepositoryInteractor
+    abstract fun provideGetAllMyOpenForRepoInteractor(interactor: GetAllMyOpenForRepoInteractor): PullRequestsByRepositoryInteractor
 
     @Binds
     @ProjectScoped

@@ -1,7 +1,7 @@
 package org.assertj.swing.fixture.pullrequest
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.columns.ColumnInfoFactory
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.ColumnInfoFactory
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.swing.data.TableCell
 import org.assertj.swing.fixture.JTableFixture
