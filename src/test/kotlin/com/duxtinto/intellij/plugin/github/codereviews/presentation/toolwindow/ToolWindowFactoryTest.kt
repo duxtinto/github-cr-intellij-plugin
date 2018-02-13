@@ -1,5 +1,7 @@
 package com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow
 
+import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.presentation.toolwindow.ToolWindowContent
+import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.presentation.toolwindow.ToolWindowFactory
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.impl.ToolWindowImpl

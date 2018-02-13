@@ -20,7 +20,7 @@
         <toolWindow
                 id="GitHub Reviews"
                 anchor="bottom"
-                factoryClass="com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.ToolWindowFactory"
+                factoryClass="com.duxtinto.intellij.plugin.github.codereviews.ide.acl.presentation.toolwindow.ToolWindowFactory"
         />
     </extensions>
 

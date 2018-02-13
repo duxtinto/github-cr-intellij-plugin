@@ -3,7 +3,7 @@ package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.ProjectExt
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow.pullrequestlist.columns.ColumnInfoFactory
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.ColumnInfoFactory
 import com.intellij.openapi.progress.EmptyProgressIndicator
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.util.ui.ColumnInfo
