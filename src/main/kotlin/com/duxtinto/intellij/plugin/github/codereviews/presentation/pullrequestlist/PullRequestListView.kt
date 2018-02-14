@@ -9,15 +9,12 @@ import com.intellij.uiDesigner.core.GridLayoutManager
 import com.intellij.util.ui.ColumnInfo
 import com.intellij.util.ui.JBUI
 import com.intellij.util.ui.ListTableModel
-import javax.inject.Inject
-import javax.inject.Named
 import javax.swing.JPanel
 import javax.swing.ListSelectionModel
 
-class PullRequestListView
-@Inject
+abstract class PullRequestListView
 constructor(
-        @Named("default") private val defaultColumns: Array<ColumnInfo<PullRequestEntity,*>>,
+        defaultColumns: Array<ColumnInfo<PullRequestEntity,*>>,
         mouseListener: PullRequestListMouseListener,
         private val selectionListener: PullRequestList.View.Events.SelectionListener
 ) : PullRequestList.View {

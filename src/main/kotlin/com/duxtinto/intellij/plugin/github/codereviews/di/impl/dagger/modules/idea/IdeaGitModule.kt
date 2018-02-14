@@ -1,5 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.idea
 
+import com.duxtinto.intellij.plugin.github.codereviews.di.qualifiers.Reviewee
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllMyOpenForRepoInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.FindGithubRepoForRootFolderInteractor
@@ -21,7 +22,7 @@ class IdeaGitModule {
     fun provideVcsRepositoryMappingListener(
             repoFinder: FindGithubRepoForRootFolderInteractor,
             prFetcher: GetAllMyOpenForRepoInteractor,
-            prPresenter: PullRequestList.Presenter): VcsRepositoryMappingListener {
+            @Reviewee prPresenter: PullRequestList.Presenter): VcsRepositoryMappingListener {
         return GitChangeListener(repoFinder, prFetcher, prPresenter)
     }
 

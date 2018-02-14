@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <idea-plugin>
     <id>main.com.duxtinto.intellij.plugin.github.codereviews</id>
-    <name>Github Code Review Plugin</name>
+    <name>Github Code Reviews Plugin</name>
     <vendor
             email="david.hernando@2manylanguages.com"
             url="https://github.com/duxtinto/github-cr-intellij-plugin">David Hernando Sancha</vendor>

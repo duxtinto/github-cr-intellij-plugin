@@ -6,10 +6,9 @@ import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.CodeReviewsView
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.formatters.CommentFormatter
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestListModel
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestListView
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.ColumnInfoFactory
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events.PullRequestListMouseListener
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events.SelectionListener
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.events.SelectionListener
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.RevieweeContent
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.RevieweeView
 import com.nhaarman.mockitokotlin2.doReturn
@@ -38,7 +37,7 @@ internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
     private lateinit var codeReviewsCellRenderer: CodeReviewsTreeCellRenderer
 
     private val pullRequestColumns = ColumnInfoFactory().createDefaultColumns()
-    private lateinit var pullRequestListView: PullRequestListView
+    private lateinit var pullRequestListView: com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestListView
     private lateinit var codeReviewsView: CodeReviewsView
     private lateinit var view: RevieweeView
 
@@ -49,7 +48,7 @@ internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
             mouseListener: PullRequestListMouseListener,
             selectionListener: SelectionListener) {
         view = GuiActionRunner.execute<RevieweeView> {
-            pullRequestListView = PullRequestListView(pullRequestColumns, mouseListener, selectionListener)
+            pullRequestListView = com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.PullRequestListView(pullRequestColumns, mouseListener, selectionListener)
             codeReviewsView = CodeReviewsView(codeReviewsMouseListener, codeReviewsCellRenderer)
             RevieweeView(pullRequestListView, codeReviewsView, toolbar)
         }

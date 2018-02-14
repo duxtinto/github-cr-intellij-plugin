@@ -5,7 +5,8 @@ import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.CodeReviewsPresenter
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.*
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events.PullRequestListMouseListener
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events.SelectionListener
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.events.SelectionListener
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.PullRequestListView
 import com.intellij.util.ui.ColumnInfo
 import com.nhaarman.mockitokotlin2.*
 import mockit.Injectable
@@ -33,7 +34,7 @@ class PullRequestListViewUiTest : AssertJSwingJUnit5TestCase() {
     fun initializeEmptyTable(
             @Injectable mouseListener: PullRequestListMouseListener,
             @Injectable selectionListener: SelectionListener,
-            @Tested view: PullRequestListView) {
+            @Tested view: com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestListView) {
 
         frame = showContentInIdeaFrame(view.content)
 

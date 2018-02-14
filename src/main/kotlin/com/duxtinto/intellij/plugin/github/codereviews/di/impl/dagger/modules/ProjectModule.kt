@@ -1,5 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules
 
+import com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.pullrequest.PullRequestModule
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.ProjectExt

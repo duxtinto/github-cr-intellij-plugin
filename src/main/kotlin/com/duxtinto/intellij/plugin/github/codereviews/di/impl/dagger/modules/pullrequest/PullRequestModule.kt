@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules
+package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.pullrequest
 
 import com.duxtinto.intellij.plugin.github.codereviews.data.pullrequests.PullRequestRepository
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
@@ -13,14 +13,12 @@ import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3.Pu
 import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3.PullRequestResponse
 import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3.PullRequestResponseMapper
 import com.duxtinto.intellij.plugin.github.codereviews.services.pullrequests.GithubDescriptionParser
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestList
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestListPresenter
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestListView
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events.SelectionListener
 import dagger.Binds
 import dagger.Module
 
-@Module
+@Module(includes = [
+    RevieweePullRequestModule::class
+])
 abstract class PullRequestModule {
     @Binds
     @ProjectScoped
@@ -38,18 +36,6 @@ abstract class PullRequestModule {
 
     @Binds
     abstract fun providePullRequestDomainContractDescriptionParser(parser: GithubDescriptionParser): PullRequestDomainContract.DescriptionParser
-
-    @Binds
-    @ProjectScoped
-    abstract fun providePullRequestListPresenter(presenter: PullRequestListPresenter): PullRequestList.Presenter
-
-    @Binds
-    @ProjectScoped
-    abstract fun providePullRequestListView(view: PullRequestListView): PullRequestList.View
-
-    @Binds
-    @ProjectScoped
-    abstract fun providePullRequestListViewEventsSelectionListener(listener: SelectionListener): PullRequestList.View.Events.SelectionListener
 
     @Binds
     @ProjectScoped

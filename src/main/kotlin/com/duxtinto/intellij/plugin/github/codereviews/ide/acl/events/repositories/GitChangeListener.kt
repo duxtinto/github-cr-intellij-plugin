@@ -1,5 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.events.repositories
 
+import com.duxtinto.intellij.plugin.github.codereviews.di.qualifiers.Reviewee
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllMyOpenForRepoInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.FindGithubRepoForRootFolderInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestList
@@ -11,7 +12,7 @@ class GitChangeListener
     constructor(
             private val githubRepoFinder: FindGithubRepoForRootFolderInteractor,
             private val pullRequestFetcher: GetAllMyOpenForRepoInteractor,
-            private val pullRequestsPresenter: PullRequestList.Presenter)
+            @Reviewee private val pullRequestsPresenter: PullRequestList.Presenter)
     : VcsRepositoryMappingListener {
 
     override fun mappingChanged() {
