@@ -5,7 +5,8 @@ import dagger.Module
 import dagger.Provides
 
 @Module(includes = [
-    IdeaRevieweeActionModule::class
+    IdeaRevieweeActionModule::class,
+    IdeaReviewerActionModule::class
 ])
 class IdeaActionModule {
     @Provides

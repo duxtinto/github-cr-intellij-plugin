@@ -1,6 +1,7 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.presentation.toolwindow.toolbar.reviewee
 
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllMyOpenForRepoInteractor
+import com.duxtinto.intellij.plugin.github.codereviews.di.qualifiers.Reviewee
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestsByRepositoryInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.FindGithubRepoForRootFolderInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.RevieweeContent
 import com.intellij.icons.AllIcons
@@ -12,7 +13,7 @@ class RefreshPullRequestListAction
     @Inject
     constructor(
             private val githubRepoFinder: FindGithubRepoForRootFolderInteractor,
-            private val pullRequestFetcher: GetAllMyOpenForRepoInteractor,
+            @Reviewee private val pullRequestFetcher: PullRequestsByRepositoryInteractor,
             private val revieweePresenter: RevieweeContent.Presenter)
     : DumbAwareAction("Refresh", "Refresh pull request list", AllIcons.Actions.Refresh) {
     override fun actionPerformed(e: AnActionEvent) {

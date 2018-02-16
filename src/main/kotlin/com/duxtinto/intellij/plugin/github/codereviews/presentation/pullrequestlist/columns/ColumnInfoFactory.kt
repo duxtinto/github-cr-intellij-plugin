@@ -5,9 +5,7 @@ import com.intellij.util.ui.ColumnInfo
 
 import javax.inject.Inject
 
-class ColumnInfoFactory
-    @Inject constructor() {
-
+sealed class ColumnInfoFactory {
     enum class ColumnIndexes {
         NUMBER,
         ISSUE,
@@ -15,7 +13,23 @@ class ColumnInfoFactory
         TITLE
     }
 
-    fun createDefaultColumns(): Array<ColumnInfo<PullRequestEntity, *>> {
+    abstract fun createDefaultColumns(): Array<ColumnInfo<PullRequestEntity, *>>
+}
+
+class RevieweeColumnInfoFactory
+    @Inject
+    constructor()
+    : ColumnInfoFactory() {
+    override fun createDefaultColumns(): Array<ColumnInfo<PullRequestEntity, *>> {
         return arrayOf(NumberColumnInfo(), IssuesColumnInfo(), StateColumnInfo(), TitleColumnInfo())
+    }
+}
+
+class ReviewerColumnInfoFactory
+    @Inject
+    constructor()
+    : ColumnInfoFactory() {
+    override fun createDefaultColumns(): Array<ColumnInfo<PullRequestEntity, *>> {
+        return arrayOf(NumberColumnInfo(), TitleColumnInfo())
     }
 }

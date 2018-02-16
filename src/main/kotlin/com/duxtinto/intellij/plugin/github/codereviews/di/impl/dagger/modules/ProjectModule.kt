@@ -1,16 +1,12 @@
 package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules
 
+import com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.pullrequest.PullRequestModule
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.ProjectExt
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.ColumnInfoFactory
 import com.intellij.openapi.progress.EmptyProgressIndicator
 import com.intellij.openapi.progress.ProgressIndicator
-import com.intellij.util.ui.ColumnInfo
 import dagger.Module
 import dagger.Provides
-
-import javax.inject.Named
 
 @Module(includes = [
     AntiCorruptionLayerModule::class,
@@ -34,12 +30,5 @@ class ProjectModule(private val project: ProjectExt) {
     @ProjectScoped
     fun provideProgressIndicator(): ProgressIndicator {
         return EmptyProgressIndicator()
-    }
-
-    @Provides
-    @ProjectScoped
-    @Named("default")
-    fun providePullRequestColumnInfoDefaultArray(columnInfoFactory: ColumnInfoFactory): Array<ColumnInfo<PullRequestEntity, *>> {
-        return columnInfoFactory.createDefaultColumns()
     }
 }

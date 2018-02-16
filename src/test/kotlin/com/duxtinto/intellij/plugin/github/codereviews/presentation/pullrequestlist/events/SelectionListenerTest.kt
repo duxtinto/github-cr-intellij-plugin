@@ -4,6 +4,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullR
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewsByPullRequestInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.CodeReviewsPresenter
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.events.SelectionListener
 import com.intellij.ui.table.TableView
 import mockit.Expectations
 import mockit.FullVerifications

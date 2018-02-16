@@ -6,6 +6,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.domain.User.UserEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubConnectionExt
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.ProjectExt
+import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.codereviews.IdeaCodeReviewerLoader
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.pullrequests.IdeaPullRequestLoader
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.users.IdeaUserLoader
 import com.duxtinto.intellij.plugin.github.codereviews.net.NetContract
@@ -57,5 +58,13 @@ class IdeaGithubModule {
             mapper: @JvmSuppressWildcards DomainDataMapper<UserEntity, UserResponse>
     ): NetContract.User.Loader {
         return IdeaUserLoader(connection, mapper)
+    }
+
+    @Provides
+    @ProjectScoped
+    fun provideCodeReviewReviewerLoader(
+            connection: GithubConnectionExt
+    ): NetContract.CodeReview.Reviewer.Loader {
+        return IdeaCodeReviewerLoader(connection)
     }
 }

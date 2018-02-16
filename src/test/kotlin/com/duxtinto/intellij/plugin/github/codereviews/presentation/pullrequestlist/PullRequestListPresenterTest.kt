@@ -3,15 +3,13 @@ package com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequest
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.NumberColumnInfo
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.TitleColumnInfo
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer.pullrequests.PullRequestListPresenter
 import com.intellij.util.ui.ColumnInfo
 import mockit.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-import javax.inject.Named
 import java.util.ArrayList
-
-import org.junit.jupiter.api.Assertions.assertThrows
 
 internal class PullRequestListPresenterTest {
 
