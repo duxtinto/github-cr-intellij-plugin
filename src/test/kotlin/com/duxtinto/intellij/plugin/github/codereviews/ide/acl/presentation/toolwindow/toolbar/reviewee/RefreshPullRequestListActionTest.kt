@@ -1,6 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.presentation.toolwindow.toolbar.reviewee
 
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllMyOpenForRepoInteractor
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllMyAssignedForRepoInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.FindGithubRepoForRootFolderInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.RevieweeContent
@@ -13,7 +13,7 @@ internal class RefreshPullRequestListActionTest {
     @Injectable
     private lateinit var githubRepoFinder: FindGithubRepoForRootFolderInteractor
     @Injectable
-    private lateinit var pullRequestFetcher: GetAllMyOpenForRepoInteractor
+    private lateinit var pullRequestFetcher: GetAllMyAssignedForRepoInteractor
     @Injectable
     private lateinit var revieweePresenter: RevieweeContent.Presenter
 

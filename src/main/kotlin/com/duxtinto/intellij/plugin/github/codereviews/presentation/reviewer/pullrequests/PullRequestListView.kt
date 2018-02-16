@@ -7,12 +7,11 @@ import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestl
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events.PullRequestListMouseListener
 import com.intellij.util.ui.ColumnInfo
 import javax.inject.Inject
-import javax.inject.Named
 
 class PullRequestListView
 @Inject
 constructor(
-        @Named("default") private val defaultColumns: Array<ColumnInfo<PullRequestEntity, *>>,
+        @Reviewer private val defaultColumns: Array<ColumnInfo<PullRequestEntity, *>>,
         mouseListener: PullRequestListMouseListener,
         @Reviewer private val selectionListener: PullRequestList.View.Events.SelectionListener
 ): PullRequestListView(defaultColumns, mouseListener, selectionListener)

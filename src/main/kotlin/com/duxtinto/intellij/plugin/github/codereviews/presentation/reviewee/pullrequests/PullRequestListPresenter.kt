@@ -1,12 +1,12 @@
 package com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests
 
+import com.duxtinto.intellij.plugin.github.codereviews.di.qualifiers.Reviewee
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestListPresenter
 import com.intellij.util.ui.ColumnInfo
 import javax.inject.Inject
-import javax.inject.Named
 
 class PullRequestListPresenter
     @Inject
-    constructor(@Named("default") columnInfos: Array<ColumnInfo<PullRequestEntity, *>>)
+    constructor(@Reviewee columnInfos: Array<ColumnInfo<PullRequestEntity, *>>)
     : PullRequestListPresenter(columnInfos)

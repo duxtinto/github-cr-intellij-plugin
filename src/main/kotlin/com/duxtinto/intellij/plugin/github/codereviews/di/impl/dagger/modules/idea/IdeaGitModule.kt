@@ -1,14 +1,16 @@
 package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.idea
 
 import com.duxtinto.intellij.plugin.github.codereviews.di.qualifiers.Reviewee
+import com.duxtinto.intellij.plugin.github.codereviews.di.qualifiers.Reviewer
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllMyOpenForRepoInteractor
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestsByRepositoryInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.FindGithubRepoForRootFolderInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.RepositoriesDomainContract.Git
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.ProjectExt
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.events.repositories.GitChangeListener
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.git.IdeaBranchOperator
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestList
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.RevieweeContent
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer.ReviewerContent
 import com.intellij.dvcs.repo.VcsRepositoryMappingListener
 import dagger.Module
 import dagger.Provides
@@ -21,9 +23,12 @@ class IdeaGitModule {
     @ProjectScoped
     fun provideVcsRepositoryMappingListener(
             repoFinder: FindGithubRepoForRootFolderInteractor,
-            prFetcher: GetAllMyOpenForRepoInteractor,
-            @Reviewee prPresenter: PullRequestList.Presenter): VcsRepositoryMappingListener {
-        return GitChangeListener(repoFinder, prFetcher, prPresenter)
+            @Reviewee assignedPrFetcher: PullRequestsByRepositoryInteractor,
+            @Reviewer requestedPrFetcher: PullRequestsByRepositoryInteractor,
+            revieweePresenter: RevieweeContent.Presenter,
+            reviewerPresenter: ReviewerContent.Presenter)
+            : VcsRepositoryMappingListener {
+        return GitChangeListener(repoFinder, assignedPrFetcher, requestedPrFetcher, revieweePresenter, reviewerPresenter)
     }
 
     @Provides

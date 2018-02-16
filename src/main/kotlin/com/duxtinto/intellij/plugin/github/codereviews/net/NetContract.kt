@@ -2,6 +2,8 @@ package com.duxtinto.intellij.plugin.github.codereviews.net
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.User.UserEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
+import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.GithubRepositoryEntity
+import com.duxtinto.intellij.plugin.github.codereviews.net.codereviews.apiv3.RequestedReviewersResponse
 import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3.PullRequestQueryParameters
 
 interface NetContract {
@@ -15,6 +17,14 @@ interface NetContract {
     interface User {
         interface Loader {
             fun loadAuthenticated(): UserEntity
+        }
+    }
+
+    interface CodeReview {
+        interface Reviewer {
+            interface Loader {
+                fun loadAllForPullRequest(repository: GithubRepositoryEntity, pullRequest: PullRequestEntity): RequestedReviewersResponse
+            }
         }
     }
 }

@@ -6,11 +6,11 @@ import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.CodeReviewsView
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.formatters.CommentFormatter
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestListModel
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.ColumnInfoFactory
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.RevieweeColumnInfoFactory
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events.PullRequestListMouseListener
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.events.SelectionListener
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.RevieweeContent
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.RevieweeView
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.events.SelectionListener
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import mockit.Injectable
@@ -36,7 +36,7 @@ internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
     @Tested
     private lateinit var codeReviewsCellRenderer: CodeReviewsTreeCellRenderer
 
-    private val pullRequestColumns = ColumnInfoFactory().createDefaultColumns()
+    private val pullRequestColumns = RevieweeColumnInfoFactory().createDefaultColumns()
     private lateinit var pullRequestListView: com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestListView
     private lateinit var codeReviewsView: CodeReviewsView
     private lateinit var view: RevieweeView

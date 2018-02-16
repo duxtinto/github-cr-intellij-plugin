@@ -6,7 +6,7 @@
             email="david.hernando@2manylanguages.com"
             url="https://github.com/duxtinto/github-cr-intellij-plugin">David Hernando Sancha</vendor>
     <description><![CDATA[
-      GitHub code review integration into intellij platform
+      GitHub code review integration for intellij IDEs
     ]]></description>
 
     <depends>com.intellij.modules.platform</depends>

@@ -1,43 +1,31 @@
 package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.pullrequest
 
-import com.duxtinto.intellij.plugin.github.codereviews.data.pullrequests.PullRequestRepository
+import com.duxtinto.intellij.plugin.github.codereviews.di.qualifiers.Reviewee
+import com.duxtinto.intellij.plugin.github.codereviews.di.qualifiers.Reviewer
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
-import com.duxtinto.intellij.plugin.github.codereviews.domain.DomainDataMapper
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllMyOpenForRepoInteractor
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestDomainContract
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestsByRepositoryInteractor
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewsByPullRequestInteractor
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.GetAllReviewsForInteractor
-import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3.PullRequestFetcher
-import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3.PullRequestResponse
-import com.duxtinto.intellij.plugin.github.codereviews.net.pullrequests.apiv3.PullRequestResponseMapper
-import com.duxtinto.intellij.plugin.github.codereviews.services.pullrequests.GithubDescriptionParser
-import dagger.Binds
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.ColumnInfoFactory
+import com.intellij.util.ui.ColumnInfo
 import dagger.Module
+import dagger.Provides
 
 @Module(includes = [
-    RevieweePullRequestModule::class
+    CommonModule::class,
+    RevieweeModule::class,
+    ReviewerModule::class
 ])
-abstract class PullRequestModule {
-    @Binds
+class PullRequestModule {
+    @Provides
     @ProjectScoped
-    abstract fun provideGetAllMyOpenForRepoInteractor(interactor: GetAllMyOpenForRepoInteractor): PullRequestsByRepositoryInteractor
+    @Reviewee
+    fun provideRevieweePullRequestColumnInfoDefaultArray(@Reviewee columnInfoFactory: ColumnInfoFactory): Array<ColumnInfo<PullRequestEntity, *>> {
+        return columnInfoFactory.createDefaultColumns()
+    }
 
-    @Binds
+    @Provides
     @ProjectScoped
-    abstract fun provideGetAllReviewsForInteractor(interactor: GetAllReviewsForInteractor): CodeReviewsByPullRequestInteractor
-
-    @Binds
-    abstract fun providePullRequestDomainContractFetcher(fetcher: PullRequestFetcher): PullRequestDomainContract.Fetcher
-
-    @Binds
-    abstract fun providePullRequestDomainContractRepository(repository: PullRequestRepository): PullRequestDomainContract.Repository
-
-    @Binds
-    abstract fun providePullRequestDomainContractDescriptionParser(parser: GithubDescriptionParser): PullRequestDomainContract.DescriptionParser
-
-    @Binds
-    @ProjectScoped
-    abstract fun providePullRequestResponseMapper(mapper: PullRequestResponseMapper): DomainDataMapper<PullRequestEntity, PullRequestResponse>
+    @Reviewer
+    fun provideReviewerPullRequestColumnInfoDefaultArray(@Reviewer columnInfoFactory: ColumnInfoFactory): Array<ColumnInfo<PullRequestEntity, *>> {
+        return columnInfoFactory.createDefaultColumns()
+    }
 }
