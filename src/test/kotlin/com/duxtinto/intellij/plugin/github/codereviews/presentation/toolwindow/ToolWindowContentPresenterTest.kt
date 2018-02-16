@@ -1,6 +1,7 @@
 package com.duxtinto.intellij.plugin.github.codereviews.presentation.toolwindow
 
-import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllMyOpenForRepoInteractor
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllMyAssignedForRepoInteractor
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.GetAllMyRequestedForRepoInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.FindGithubRepoForRootFolderInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.presentation.toolwindow.ToolWindowContentPresenter
@@ -18,7 +19,10 @@ internal class ToolWindowContentPresenterTest {
     private lateinit var githubRepoFinder: FindGithubRepoForRootFolderInteractor
 
     @Injectable
-    private lateinit var pullRequestFetcher: GetAllMyOpenForRepoInteractor
+    private lateinit var assignedPullRequestInteractor: GetAllMyAssignedForRepoInteractor
+
+    @Injectable
+    private lateinit var requestedPullRequestInteractor: GetAllMyRequestedForRepoInteractor
 
     @Injectable
     private lateinit var contentFactory: ContentFactory
@@ -38,12 +42,14 @@ internal class ToolWindowContentPresenterTest {
     @Injectable
     private lateinit var  reviewerPresenter: ReviewerContent.Presenter
 
-    @Tested
     private lateinit var presenter: ToolWindowContentPresenter
 
     @Test
     @DisplayName("on initialization, presenter should set both reviewee & reviewer views")
     internal fun init() {
+        // Arrange
+        createSut()
+
         // Assert
         object : FullVerifications() {
             init {
@@ -53,12 +59,28 @@ internal class ToolWindowContentPresenterTest {
         }
     }
 
+    private fun createSut() {
+        presenter = ToolWindowContentPresenter(
+                githubRepoFinder,
+                assignedPullRequestInteractor,
+                requestedPullRequestInteractor,
+                contentFactory,
+                contentManager,
+                revieweeView,
+                revieweePresenter,
+                reviewerView,
+                reviewerPresenter
+        )
+    }
+
     @Test
     @DisplayName("present tool window should present both, reviewee & reviewer content")
     internal fun presentToolWindow(
             @Mocked revieweeContent: Content,
             @Mocked reviewerContent: Content) {
         // Arrange
+        createSut()
+
         object : Expectations() {
             init {
                 contentFactory.createContent(revieweeView.content, "Reviewee", anyBoolean)
@@ -85,21 +107,27 @@ internal class ToolWindowContentPresenterTest {
     }
 
     @Test
-    @DisplayName("present tool window, If the root repository is ready, should present pull requests")
+    @DisplayName("present tool window, If the root repository is ready, should present pull requests for reviewee & reviewer")
     internal fun presentToolWindowIfRepositoryIsReady(
             @Mocked revieweeContent: Content,
             @Mocked reviewerContent: Content) {
         // Arrange
         val repository = Fixture.repository().build()
-        val pullRequests = Fixture.pullRequest().buildList(4)
+        val assignedPullRequests = Fixture.pullRequest().buildList(4)
+        val requestedPullRequests = Fixture.pullRequest().buildList(8)
+
+        createSut()
 
         object : Expectations() {
             init {
                 githubRepoFinder.run(Unit)
                 result = repository
 
-                pullRequestFetcher.run(repository)
-                result = pullRequests
+                assignedPullRequestInteractor.run(repository)
+                result = assignedPullRequests
+
+                requestedPullRequestInteractor.run(repository)
+                result = requestedPullRequests
             }
         }
 
@@ -109,7 +137,8 @@ internal class ToolWindowContentPresenterTest {
         // Assert
         object : Verifications() {
             init {
-                revieweePresenter.presentPullRequests(pullRequests)
+                revieweePresenter.presentPullRequests(assignedPullRequests)
+                reviewerPresenter.presentPullRequests(requestedPullRequests)
             }
         }
     }

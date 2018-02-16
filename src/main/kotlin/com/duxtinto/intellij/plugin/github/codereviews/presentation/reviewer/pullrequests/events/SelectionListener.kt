@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events
+package com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer.pullrequests.events
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewsByPullRequestInteractor
@@ -9,10 +9,8 @@ import javax.inject.Inject
 import javax.swing.event.ListSelectionEvent
 
 class SelectionListener
-@Inject
-constructor(
-        private val getAllCodeReviewsFor: CodeReviewsByPullRequestInteractor,
-        private val presenter: CodeReviews.Presenter)
+    @Inject
+    constructor()
     : PullRequestList.View.Events.SelectionListener {
 
     private var table: TableView<PullRequestEntity>? = null
@@ -27,10 +25,5 @@ constructor(
             (table!!.selectedObjects.size != 1)) {
             return
         }
-
-        val pullRequest = table!!.selectedObject as PullRequestEntity
-
-        presenter.presentPullRequest(pullRequest)
-        presenter.presentReviews(getAllCodeReviewsFor.run(pullRequest)!!)
     }
 }

@@ -1,5 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer
 
+import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import javax.swing.JComponent
 
 interface ReviewerContent {
@@ -9,5 +10,6 @@ interface ReviewerContent {
 
     interface Presenter {
         fun setView(view: View)
+        fun presentPullRequests(pullRequests: List<PullRequestEntity>)
     }
 }

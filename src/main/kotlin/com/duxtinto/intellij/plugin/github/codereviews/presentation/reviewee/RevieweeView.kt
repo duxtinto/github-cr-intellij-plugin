@@ -12,7 +12,7 @@ import javax.inject.Inject
 class RevieweeView
     @Inject
     constructor(
-        private val pullRequestListView: PullRequestList.View,
+        @Reviewee private val pullRequestListView: PullRequestList.View,
         private val codeReviewsView: CodeReviews.View,
         @Reviewee toolbar: Toolbar)
     : RevieweeContent.View {

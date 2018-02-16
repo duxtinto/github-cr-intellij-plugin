@@ -8,12 +8,12 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-internal class GetAllMyOpenForRepoInteractorTest {
+internal class GetAllMyAssignedForRepoInteractorTest {
     @Injectable
     private lateinit var pullRequestsRepository: PullRequestDomainContract.Repository
 
     @Tested
-    private lateinit var sut: GetAllMyOpenForRepoInteractor
+    private lateinit var sut: GetAllMyAssignedForRepoInteractor
 
     @Test
     @DisplayName("run should return all my open pull requests")
@@ -24,7 +24,7 @@ internal class GetAllMyOpenForRepoInteractorTest {
 
         object : Expectations() {
             init {
-                pullRequestsRepository.getAllMyOpenBy(githubRepository.ownerName, githubRepository.name)
+                pullRequestsRepository.getAllMyAssignedBy(githubRepository.ownerName, githubRepository.name)
                 result = expectedPullRequests
             }
         }

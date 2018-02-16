@@ -2,6 +2,7 @@ package com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequest
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events.PullRequestListMouseListener
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.PullRequestListView
 import com.intellij.ui.components.JBScrollPane
 import com.intellij.ui.table.TableView
 import com.intellij.util.ui.ColumnInfo

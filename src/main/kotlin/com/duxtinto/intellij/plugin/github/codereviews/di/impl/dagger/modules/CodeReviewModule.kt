@@ -1,10 +1,12 @@
 package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules
 
+import com.duxtinto.intellij.plugin.github.codereviews.data.DataContract
 import com.duxtinto.intellij.plugin.github.codereviews.data.codereviews.CodeReviewsDataContract
 import com.duxtinto.intellij.plugin.github.codereviews.data.codereviews.CodeReviewsRepository
 import com.duxtinto.intellij.plugin.github.codereviews.data.codereviews.comments.CommentsRepository
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewsDomainContract
+import com.duxtinto.intellij.plugin.github.codereviews.net.codereviews.apiv3.CodeReviewerFetcher
 import com.duxtinto.intellij.plugin.github.codereviews.net.codereviews.apiv3.CodeReviewsFetcher
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.CodeReviews
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.CodeReviewsPresenter
@@ -48,4 +50,7 @@ abstract class CodeReviewModule {
     @Binds
     @ProjectScoped
     abstract fun provideCodeReviewsPresenter(presenter: CodeReviewsPresenter): CodeReviews.Presenter
+
+    @Binds
+    abstract fun provideCodeReviewReviewerFetcher(fetcher: CodeReviewerFetcher): DataContract.CodeReview.Reviewer.Fetcher
 }

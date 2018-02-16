@@ -5,29 +5,45 @@ intellij {
 }
 
 patchPluginXml {
-    version '1.0.0'
+    version '1.0.1'
     sinceBuild 162
     untilBuild '181.*'
     changeNotes '''
-    Use cases implemented by the v1.0.0 release:
-    - As a reviewee, before moving the caret into the comment line, I want to checkout the pull request branch if it's not checked out yet (#15)
-    - As a reviewee, I want to visually see whenever a review comment is outdated (#16)
-    - [bug] As a reviewee, only my open pull request should be displayed in the pull request list (#17)
-    - [bug] As a reviewee, if I authenticate myself by using a token, the list of my PRs is not loaded (#18)
-    - As a reviewee, I want to be able of refreshing the pull request list (#19)
-    
-    Use cases implemented by the v0.0.2 pre-release:
-    - As a reviewee, I want to see a list of the reviews related to my open pull requests (#7)
-    - As a reviewer, I want to be able of changing the plugin into reviewer mode (#10)
-    - As a reviewee, I want to see a list of comments under each item on the review list (#11)
-    - As a reviewee, I want to see the list of pull request after making visible the tool window (#12)
-    - As a reviewee, I want to be able of setting the caret in the proper line after clicking on a comment (#14)
-    
-    Use cases implemented by the v0.0.1 pre-release:
-    - As a reviewee, I want to see the list of my open reviews in a tool window (#1)
-    - As a reviewee, I want to be able of opening in my browser any of my open PRs (#2)
-    - As a reviewee, I want to see the issue number (if any) associated to the PR (#3)
-    - As a reviewee, I want to be able of switching task context by clicking on the issue's column (#6)
+    <p>
+        <ul>
+          <li>Use cases implemented by the v1.0.1 release:</li>
+          <ul>
+            <li>As a reviewer, I want to see the list of my open requested reviews under the reviewer tab</li>
+          </ul>
+
+          <li>Use cases implemented by the v1.0.0 release:</li>
+          <ul>
+            <li>As a reviewee, before moving the caret into the comment line, I want to checkout the pull request branch if it's not checked out yet (#15)</li>
+            <li>As a reviewee, I want to visually see whenever a review comment is outdated (#16)</li>
+            <li>[bug] As a reviewee, only my open pull request should be displayed in the pull request list (#17)</li>
+            <li>[bug] As a reviewee, if I authenticate myself by using a token, the list of my PRs is not loaded (#18)</li>
+            <li>As a reviewee, I want to be able of refreshing the pull request list (#19)</li>
+          </ul>
+
+          <li>Use cases implemented by the v0.0.2 pre-release:</li>
+          <ul>  
+            <li>As a reviewee, I want to see a list of the reviews related to my open pull requests (#7)</li>
+            <li>As a reviewer, I want to be able of changing the plugin into reviewer mode (#10)</li>
+            <li>As a reviewee, I want to see a list of comments under each item on the review list (#11)</li>
+            <li>As a reviewee, I want to see the list of pull request after making visible the tool window (#12)</li>
+            <li>As a reviewee, I want to be able of setting the caret in the proper line after clicking on a comment (#14)</li>
+            <li></li>
+          </ul>
+          
+          <li>Use cases implemented by the v0.0.1 pre-release:</li>
+          <ul>  
+            <li>As a reviewee, I want to see the list of my open reviews in a tool window (#1)</li>
+            <li>As a reviewee, I want to be able of opening in my browser any of my open PRs (#2)</li>
+            <li>As a reviewee, I want to see the issue number (if any) associated to the PR (#3)</li>
+            <li>As a reviewee, I want to be able of switching task context by clicking on the issue's column (#6)</li>
+          </ul>
+        </ul>
+    </p>      
   '''
 }
 
