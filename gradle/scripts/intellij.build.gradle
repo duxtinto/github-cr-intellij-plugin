@@ -5,12 +5,17 @@ intellij {
 }
 
 patchPluginXml {
-    version '1.0.1'
+    version '1.0.2'
     sinceBuild 162
     untilBuild '181.*'
     changeNotes '''
     <p>
         <ul>
+          <li>Fixes implemented by the v1.0.2 release:</li>
+          <ul>
+            <li>The plugin should not crash if the idea task plugin has been disabled</li>
+          </ul>
+
           <li>Use cases implemented by the v1.0.1 release:</li>
           <ul>
             <li>As a reviewer, I want to see the list of my open requested reviews under the reviewer tab</li>
