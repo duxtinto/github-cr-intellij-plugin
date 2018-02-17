@@ -10,7 +10,7 @@ import dagger.Provides
 class IdeaTaskModule {
     @Provides
     @ProjectScoped
-    fun provideTaskManager(project: ProjectExt): TaskManager {
+    fun provideTaskManager(project: ProjectExt): TaskManager? {
         return project.getComponent(TaskManager::class.java)
     }
 }

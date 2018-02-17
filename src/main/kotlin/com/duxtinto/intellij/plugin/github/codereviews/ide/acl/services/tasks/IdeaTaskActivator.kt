@@ -11,20 +11,21 @@ import javax.inject.Inject
 class IdeaTaskActivator
     @Inject
     constructor(
-            private val taskManager : TaskManager,
+            private val taskManager : TaskManager?,
             private val rootRepoFinder: FindGithubRepoForRootFolderInteractor)
     : IssuesDomainContract.Switcher {
 
     override fun switchToIssue(issue: IssueEntity) {
         val repository: GithubRepositoryEntity = rootRepoFinder.run(Unit) ?: return
-        val task = taskManager
-                .getIssues(generateQuery(repository, issue))
-                .find {
-                    it.number == issue.number.toString()
-                }
 
-        if (task != null) {
-            taskManager.activateTask(task, true)
+        taskManager?.let {
+            val task = it
+                    .getIssues(generateQuery(repository, issue))
+                    .find {
+                        it.number == issue.number.toString()
+                    }
+
+            task?.let { taskManager.activateTask(it, true) }
         }
     }
 

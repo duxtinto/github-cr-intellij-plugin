@@ -108,4 +108,28 @@ internal class IdeaTaskActivatorTest {
             init {}
         }
     }
+
+    @Test
+    @DisplayName("switch to issue, if idea task manager is not available, should do nothing")
+    fun switchToIssueIfNoTaskManager() {
+        // Arrange
+        val sut = IdeaTaskActivator(null, rootRepoFinder)
+        val repository = Fixture.repository().build()
+        val issue = Fixture.issue().build()
+
+        object : Expectations() {
+            init {
+                rootRepoFinder.run(Unit)
+                result = repository
+            }
+        }
+
+        // Act
+        sut.switchToIssue(issue)
+
+        // Assert
+        object : FullVerifications(taskManager) {
+            init {}
+        }
+    }
 }
