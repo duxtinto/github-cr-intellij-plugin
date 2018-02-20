@@ -1,7 +1,6 @@
 intellij {
     pluginName 'github_reviews_plugin'
     version = project.versions.idea_version
-    alternativeIdePath = '/home/duxtinto/.local/opt/android-studio'
     plugins = ['git4idea', 'github', 'android', 'tasks']
     sandboxDirectory = "${project.rootDir}/.sandbox"
 }

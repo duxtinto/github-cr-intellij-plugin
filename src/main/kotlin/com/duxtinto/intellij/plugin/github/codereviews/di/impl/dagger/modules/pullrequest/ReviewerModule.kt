@@ -5,8 +5,9 @@ import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestList
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.ColumnInfoFactory
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.ReviewerColumnInfoFactory
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer.pullrequests.PullRequestListView
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer.pullrequests.events.MouseListener
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer.pullrequests.PullRequestListPresenter
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer.pullrequests.PullRequestListView
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer.pullrequests.events.SelectionListener
 import dagger.Binds
 import dagger.Module
@@ -32,4 +33,9 @@ abstract class ReviewerModule {
     @Reviewer
     @ProjectScoped
     abstract fun providePullRequestListViewEventsSelectionListener(listener: SelectionListener): PullRequestList.View.Events.SelectionListener
+
+    @Binds
+    @Reviewer
+    @ProjectScoped
+    abstract fun providePullRequestListViewEventsMouseListener(listener: MouseListener): PullRequestList.View.Events.MouseListener
 }

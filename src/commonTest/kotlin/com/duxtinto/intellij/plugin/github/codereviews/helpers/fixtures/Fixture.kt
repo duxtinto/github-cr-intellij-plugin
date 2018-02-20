@@ -30,23 +30,23 @@ object Fixture {
         return CodeReviewCommentFixtureBuilder()
     }
 
+    internal fun reviewee(): CodeRevieweeFixtureBuilder {
+        return CodeRevieweeFixtureBuilder()
+    }
+
+    internal fun user(): UserFixtureBuilder {
+        return UserFixtureBuilder()
+    }
+
+    internal fun reviewer(): CodeReviewerFixtureBuilder {
+        return CodeReviewerFixtureBuilder()
+    }
+
     internal fun ide(): IdeFixture {
         return IdeFixture()
     }
 
-    fun net(): NetFixture {
+    internal fun net(): NetFixture {
         return NetFixture()
-    }
-
-    fun reviewee(): CodeRevieweeFixtureBuilder {
-        return CodeRevieweeFixtureBuilder()
-    }
-
-    fun user(): UserFixtureBuilder {
-        return UserFixtureBuilder()
-    }
-
-    fun reviewer(): CodeReviewerFixtureBuilder {
-        return CodeReviewerFixtureBuilder()
     }
 }

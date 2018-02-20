@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events
+package com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.events
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.issues.IssueEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.issues.SwitchToIssueInteractor
@@ -23,7 +23,7 @@ import java.awt.event.MouseEvent
 import java.net.MalformedURLException
 import java.util.stream.Stream
 
-internal class PullRequestListMouseListenerTest {
+internal class MouseListenerTest {
     @Injectable
     lateinit var issueContextSwitcher: SwitchToIssueInteractor
 
@@ -32,7 +32,7 @@ internal class PullRequestListMouseListenerTest {
     fun mousePressedOverPrNumberHappyPath(
             @Injectable pullRequest: PullRequestEntity,
             @Injectable table: TableView<PullRequestEntity>,
-            @Tested sut: PullRequestListMouseListener) {
+            @Tested sut: MouseListener) {
         val event = MouseEvent(table, 0, 0, 0, 38, 25, 1, false, 0)
 
         object : Expectations() {
@@ -67,7 +67,7 @@ internal class PullRequestListMouseListenerTest {
     @DisplayName("on mouse pressed, if the table is not the event's originator, should do nothing")
     fun mousePressedIfDifferentSource(
             @Injectable table: TableView<PullRequestEntity>,
-            @Tested sut: PullRequestListMouseListener) {
+            @Tested sut: MouseListener) {
         val event = MouseEvent(JBTable(), 0, 0, 0, 0, 0, 1, false, 0)
 
         sut.mousePressed(event)
@@ -84,7 +84,7 @@ internal class PullRequestListMouseListenerTest {
     fun mousePressedInANonActionableCell(
             columnIndex: ColumnInfoFactory.ColumnIndexes,
             @Injectable table: TableView<PullRequestEntity>,
-            @Tested sut: PullRequestListMouseListener) {
+            @Tested sut: MouseListener) {
         val event = MouseEvent(table, 0, 0, 0, 38, 25, 1, false, 0)
 
         object : Expectations() {
@@ -114,7 +114,7 @@ internal class PullRequestListMouseListenerTest {
             expectedIssue: IssueEntity,
             @Injectable pullRequest: PullRequestEntity,
             @Injectable table: TableView<PullRequestEntity>,
-            @Tested sut: PullRequestListMouseListener) {
+            @Tested sut: MouseListener) {
         val event = MouseEvent(table, 0, 0, 0, 38, 25, 1, false, 0)
 
         object : Expectations() {
@@ -161,7 +161,7 @@ internal class PullRequestListMouseListenerTest {
     fun mousePressedOverEmptyIssueNumberCell(
             @Injectable pullRequest: PullRequestEntity,
             @Injectable table: TableView<PullRequestEntity>,
-            @Tested sut: PullRequestListMouseListener) {
+            @Tested sut: MouseListener) {
         val event = MouseEvent(table, 0, 0, 0, 38, 25, 1, false, 0)
 
         object : Expectations() {
