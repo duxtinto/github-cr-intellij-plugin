@@ -1,13 +1,15 @@
 intellij {
     pluginName 'github_reviews_plugin'
     version = project.versions.idea_version
-    plugins = ['git4idea', 'github']
+    alternativeIdePath = '/home/duxtinto/.local/opt/android-studio'
+    plugins = ['git4idea', 'github', 'android', 'tasks']
+    sandboxDirectory = "${project.rootDir}/.sandbox"
 }
 
 patchPluginXml {
     version '1.0.2'
-    sinceBuild 162
-    untilBuild '181.*'
+    sinceBuild 171
+    untilBuild '182.*'
     changeNotes '''
     <p>
         <ul>

@@ -8,7 +8,14 @@ class ApplicationDIComponent : ApplicationComponent {
     lateinit var container: ApplicationContainer
         private set
 
+    override fun getComponentName(): String {
+        return "GithubReviewsApplicationComponent"
+    }
+
     override fun initComponent() {
         container = DaggerApplicationContainer.create()
+    }
+
+    override fun disposeComponent() {
     }
 }

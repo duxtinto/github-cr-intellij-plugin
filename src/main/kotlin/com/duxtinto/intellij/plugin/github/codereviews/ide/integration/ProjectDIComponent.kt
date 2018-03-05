@@ -12,12 +12,24 @@ class ProjectDIComponent(
         private val applicationDI: ApplicationDIComponent,
         private val project: Project)
     : ProjectComponent {
-
     lateinit var container: ProjectContainer
         private set
+
+    override fun getComponentName(): String {
+        return "GithubReviewsProjectComponent"
+    }
 
     override fun initComponent() {
         container = applicationDI.container.projectContainer(ProjectModule(ProjectExt(project)))
         project.messageBus.connect().subscribe<VcsRepositoryMappingListener>(VcsRepositoryManager.VCS_REPOSITORY_MAPPING_UPDATED, container.repositoryListener())
+    }
+
+    override fun disposeComponent() {
+    }
+
+    override fun projectClosed() {
+    }
+
+    override fun projectOpened() {
     }
 }
