@@ -4,7 +4,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullR
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.CodeReviewCommentEntity
 import com.intellij.ui.treeStructure.Tree
-import com.intellij.util.ui.tree.TreeUtil
+import javax.swing.tree.DefaultMutableTreeNode
 import javax.swing.tree.TreeModel
 import javax.swing.tree.TreeNode
 
@@ -14,7 +14,7 @@ class CodeReviewsTree : Tree {
     constructor(model: TreeModel) : super(model)
 
     override fun convertValueToText(value: Any?, selected: Boolean, expanded: Boolean, leaf: Boolean, row: Int, hasFocus: Boolean): String {
-        with(TreeUtil.getUserObject(value)) {
+        with(getUserObject(value)) {
             return when (this) {
                 is PullRequestEntity -> "Code Reviews for PR #${this.number}"
                 is CodeReviewEntity -> "${this.reviewer.username} [${this.state}]"
@@ -22,5 +22,9 @@ class CodeReviewsTree : Tree {
                 else -> { super.convertValueToText(value, selected, expanded, leaf, row, hasFocus) }
             }
         }
+    }
+
+    fun getUserObject(node: Any?): Any? {
+        return if (node is DefaultMutableTreeNode) node.userObject else node
     }
 }
