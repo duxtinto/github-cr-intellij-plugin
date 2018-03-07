@@ -13,9 +13,9 @@ class IdeaEditorDriver
     : DomainContract.EditorDriver {
     override fun openDocument(filePath: String): DomainContract.DocumentDriver {
         val rootFolder = GithubUtil.getGitRepository(project, null)?.root
-            ?: throw error("Could not determine root folder of the project's git repository.")
+            ?: error("Could not determine root folder of the project's git repository.")
         val file = rootFolder.findFileByRelativePath(filePath)
-            ?: throw IllegalStateException("Could not find file at path $filePath (for git root: $rootFolder)")
+            ?: error("Could not find file at path $filePath (for git root: $rootFolder)")
 
         return IdeaDocumentDriver(
                 project,
