@@ -1,6 +1,6 @@
 package io.github.benas.randombeans
 
-import com.duxtinto.intellij.plugin.github.codereviews.domain.User.UserEntity
+import com.duxtinto.intellij.plugin.github.codereviews.domain.user.UserEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.issues.IssueEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestDescriptionEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity

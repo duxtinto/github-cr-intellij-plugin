@@ -2,7 +2,7 @@ package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.i
 
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.duxtinto.intellij.plugin.github.codereviews.domain.DomainDataMapper
-import com.duxtinto.intellij.plugin.github.codereviews.domain.User.UserEntity
+import com.duxtinto.intellij.plugin.github.codereviews.domain.user.UserEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubConnectionExt
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.ProjectExt

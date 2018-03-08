@@ -1,7 +1,7 @@
 package com.duxtinto.intellij.plugin.github.codereviews.net.users.apiv3
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.DomainDataMapper
-import com.duxtinto.intellij.plugin.github.codereviews.domain.User.UserEntity
+import com.duxtinto.intellij.plugin.github.codereviews.domain.user.UserEntity
 import javax.inject.Inject
 
 class UserMapper
