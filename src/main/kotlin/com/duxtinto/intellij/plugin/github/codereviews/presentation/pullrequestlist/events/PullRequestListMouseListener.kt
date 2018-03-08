@@ -19,7 +19,7 @@ class PullRequestListMouseListener
 
     override fun mousePressed(event: MouseEvent) {
         if (event.source is TableView<*>) {
-            with(event.source as TableView<PullRequestEntity>) {
+            with(event.source  as TableView<PullRequestEntity>) {
                 val rowIndex = rowAtPoint(event.point)
                 if (rowIndex != -1) {
                     when (columnAtPoint(event.point)) {

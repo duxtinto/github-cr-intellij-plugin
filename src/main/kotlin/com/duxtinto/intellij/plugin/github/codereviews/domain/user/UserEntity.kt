@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.domain.User
+package com.duxtinto.intellij.plugin.github.codereviews.domain.user
 
 data class UserEntity(
         val id: Long,

@@ -1,6 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.data
 
-import com.duxtinto.intellij.plugin.github.codereviews.domain.User.UserEntity
+import com.duxtinto.intellij.plugin.github.codereviews.domain.user.UserEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.CodeReviewerEntity
 

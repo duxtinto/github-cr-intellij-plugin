@@ -1,7 +1,7 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.github.users
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.DomainDataMapper
-import com.duxtinto.intellij.plugin.github.codereviews.domain.User.UserEntity
+import com.duxtinto.intellij.plugin.github.codereviews.domain.user.UserEntity
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.GithubConnectionExt
 import com.duxtinto.intellij.plugin.github.codereviews.net.NetContract
 import com.duxtinto.intellij.plugin.github.codereviews.net.users.apiv3.UserResponse

@@ -1,6 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.helpers.random.randomizers.domain
 
-import com.duxtinto.intellij.plugin.github.codereviews.domain.User.UserEntity
+import com.duxtinto.intellij.plugin.github.codereviews.domain.user.UserEntity
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.random.RandomGenerator
 import io.github.benas.randombeans.api.Randomizer
 
