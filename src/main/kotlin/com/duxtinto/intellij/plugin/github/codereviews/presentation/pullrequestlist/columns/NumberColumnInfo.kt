@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableCellRenderer
 import javax.swing.table.TableCellRenderer
 import java.awt.*
 
-class NumberColumnInfo : ColumnInfo<PullRequestEntity, Long>("number") {
+class NumberColumnInfo : ColumnInfo<PullRequestEntity, Long>(ColumnInfoFactory.ColumnNames.NUMBER.value) {
 
     override fun valueOf(pullRequest: PullRequestEntity): Long? {
         return pullRequest.number

@@ -17,5 +17,9 @@ interface RepositoriesDomainContract {
         interface BranchOperator {
             fun checkOut(ref: String, repository: Git.Repository)
         }
+
+        interface Fetcher {
+            fun fetchAll(repository: Git.Repository): Boolean
+        }
     }
 }

@@ -7,7 +7,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.formatters.CommentFormatter
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestListModel
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.RevieweeColumnInfoFactory
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events.PullRequestListMouseListener
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.events.MouseListener
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.RevieweeContent
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.RevieweeView
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.events.SelectionListener
@@ -45,7 +45,7 @@ internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
     private lateinit var codeReviewsMouseListener: CodeReviewsMouseListener
 
     fun initViews(
-            mouseListener: PullRequestListMouseListener,
+            mouseListener: MouseListener,
             selectionListener: SelectionListener) {
         view = GuiActionRunner.execute<RevieweeView> {
             pullRequestListView = com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.PullRequestListView(pullRequestColumns, mouseListener, selectionListener)
@@ -57,7 +57,7 @@ internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
     @Test
     @DisplayName("after view initialization, the pull request & code review panels should be visible")
     fun initView(
-            @Mocked mouseListener: PullRequestListMouseListener,
+            @Mocked mouseListener: MouseListener,
             @Mocked selectionListener: SelectionListener) {
         // Arrange
         initViews(mouseListener, selectionListener)
@@ -78,7 +78,7 @@ internal class RevieweeViewUiTest : AssertJSwingJUnit5TestCase() {
 
     @Test
     @DisplayName("after selecting a pull request, the list of code reviews has to be populated")
-    fun selectPullRequest(@Mocked mouseListener: PullRequestListMouseListener) {
+    fun selectPullRequest(@Mocked mouseListener: MouseListener) {
         // Arrange
         val aPullRequest = Fixture.pullRequest().build()
         val expectedReviews = Fixture.codeReview().ofPullRequest(aPullRequest).buildList(4)

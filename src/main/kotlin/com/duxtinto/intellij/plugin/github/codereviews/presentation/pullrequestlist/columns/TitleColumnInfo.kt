@@ -3,7 +3,7 @@ package com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequest
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
 import com.intellij.util.ui.ColumnInfo
 
-class TitleColumnInfo : ColumnInfo<PullRequestEntity, String>("title") {
+class TitleColumnInfo : ColumnInfo<PullRequestEntity, String>(ColumnInfoFactory.ColumnNames.TITLE.value) {
 
     override fun valueOf(pullRequest: PullRequestEntity): String? {
         return pullRequest.title

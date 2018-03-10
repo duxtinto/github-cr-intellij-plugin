@@ -20,7 +20,7 @@ class MouseListener
             private val getAllCommentsFor: CommentsByReviewInteractor,
             private val presenter: CodeReviews.Presenter,
             @Named("goToLine") private val goToCommentLine: ActionOnReviewCommentInteractor,
-            private val checkoutBranchInteractor: ActionOnPullRequestInteractor)
+            @Named("checkoutBranch") private val checkoutBranchInteractor: ActionOnPullRequestInteractor)
     : MouseInputAdapter(), CodeReviews.View.Events.MouseListener {
 
     override fun mousePressed(event: MouseEvent) {

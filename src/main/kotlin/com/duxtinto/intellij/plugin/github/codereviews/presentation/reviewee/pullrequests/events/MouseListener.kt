@@ -1,8 +1,8 @@
-package com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events
+package com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.events
 
-import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.duxtinto.intellij.plugin.github.codereviews.domain.issues.SwitchToIssueInteractor
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestList
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.ColumnInfoFactory.ColumnIndexes.ISSUE
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.ColumnInfoFactory.ColumnIndexes.NUMBER
 import com.intellij.ide.BrowserUtil
@@ -11,11 +11,10 @@ import java.awt.event.MouseEvent
 import javax.inject.Inject
 import javax.swing.event.MouseInputAdapter
 
-@ProjectScoped
-class PullRequestListMouseListener
+class MouseListener
     @Inject
     constructor(private val issueContextSwitcher: SwitchToIssueInteractor)
-    : MouseInputAdapter() {
+    : MouseInputAdapter(), PullRequestList.View.Events.MouseListener {
 
     override fun mousePressed(event: MouseEvent) {
         if (event.source is TableView<*>) {
