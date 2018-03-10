@@ -7,3 +7,10 @@
 ## Known limitations
 
 - If your project contains several repositories, only pull requests for the root repository are detected
+
+## Standing on the shoulders of Giants
+
+[gerrit intellij plugin](https://github.com/uwolfer/gerrit-intellij-plugin):
+
+Infinite source of inspiration for this plugin.  
+Its source code is always of great help whenever in doubt about how to interact with the intellij IDE.
