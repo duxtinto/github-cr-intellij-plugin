@@ -1,7 +1,7 @@
 package com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events.PullRequestListMouseListener
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.events.MouseListener
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.PullRequestListView
 import com.intellij.ui.components.JBScrollPane
 import com.intellij.ui.table.TableView
@@ -20,7 +20,7 @@ internal class PullRequestListRevieweeViewTest {
     private var columnInfos = arrayOf<ColumnInfo<PullRequestEntity, *>>()
 
     @Injectable
-    private lateinit var mouseListener: PullRequestListMouseListener
+    private lateinit var mouseListener: MouseListener
 
     @Injectable
     private lateinit var selectionListener: PullRequestList.View.Events.SelectionListener

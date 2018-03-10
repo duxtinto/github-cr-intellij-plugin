@@ -4,7 +4,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullR
 import com.duxtinto.intellij.plugin.github.codereviews.helpers.fixtures.Fixture
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.codereviews.CodeReviewsPresenter
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.*
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events.PullRequestListMouseListener
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.events.MouseListener
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.events.SelectionListener
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.PullRequestListView
 import com.intellij.util.ui.ColumnInfo
@@ -32,7 +32,7 @@ class PullRequestListViewUiTest : AssertJSwingJUnit5TestCase() {
     @Test
     @DisplayName("An initialized empty table should contain the expected columns")
     fun initializeEmptyTable(
-            @Injectable mouseListener: PullRequestListMouseListener,
+            @Injectable mouseListener: MouseListener,
             @Injectable selectionListener: SelectionListener,
             @Tested view: com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestListView) {
 
@@ -59,7 +59,7 @@ class PullRequestListViewUiTest : AssertJSwingJUnit5TestCase() {
         val model = PullRequestListModel(columns)
         model.setPullRequests(arrayListOf(pullRequest))
 
-        val mouseListener = spy(PullRequestListMouseListener(mock())) {
+        val mouseListener = spy(MouseListener(mock())) {
             doNothing().whenever(it).mousePressed(any())
         }
 
@@ -88,7 +88,7 @@ class PullRequestListViewUiTest : AssertJSwingJUnit5TestCase() {
             setPullRequests(arrayListOf(pullRequest))
         }
 
-        val mouseListener = spy(PullRequestListMouseListener(mock())) {
+        val mouseListener = spy(MouseListener(mock())) {
             doNothing().whenever(it).mousePressed(any())
         }
 

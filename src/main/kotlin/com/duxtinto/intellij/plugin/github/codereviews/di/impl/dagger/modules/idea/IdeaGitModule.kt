@@ -9,13 +9,16 @@ import com.duxtinto.intellij.plugin.github.codereviews.domain.repositories.Repos
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.ProjectExt
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.events.repositories.GitChangeListener
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.git.IdeaBranchOperator
+import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.services.git.IdeaFetcher
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.RevieweeContent
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer.ReviewerContent
 import com.intellij.dvcs.repo.VcsRepositoryMappingListener
+import com.intellij.openapi.progress.ProgressIndicator
 import dagger.Module
 import dagger.Provides
 import git4idea.branch.GitBrancher
 import git4idea.repo.GitRepositoryManager
+import git4idea.update.GitFetcher
 
 @Module
 class IdeaGitModule {
@@ -47,5 +50,11 @@ class IdeaGitModule {
     @ProjectScoped
     fun provideBranchOperator(brancher: GitBrancher): Git.BranchOperator {
         return IdeaBranchOperator(brancher)
+    }
+
+    @Provides
+    @ProjectScoped
+    fun provideGitFetcher(project: ProjectExt, progressInidcator: ProgressIndicator): Git.Fetcher {
+        return IdeaFetcher(GitFetcher(project, progressInidcator, true))
     }
 }

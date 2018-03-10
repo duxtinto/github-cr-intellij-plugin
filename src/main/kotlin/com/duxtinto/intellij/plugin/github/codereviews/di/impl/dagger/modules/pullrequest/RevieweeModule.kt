@@ -8,6 +8,7 @@ import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestl
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.events.SelectionListener
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.PullRequestListPresenter
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.PullRequestListView
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.events.MouseListener
 import dagger.Binds
 import dagger.Module
 
@@ -32,4 +33,9 @@ abstract class RevieweeModule {
     @Reviewee
     @ProjectScoped
     abstract fun providePullRequestListViewEventsSelectionListener(listener: SelectionListener): PullRequestList.View.Events.SelectionListener
+
+    @Binds
+    @Reviewee
+    @ProjectScoped
+    abstract fun providePullRequestListViewEventsMouseListener(listener: MouseListener): PullRequestList.View.Events.MouseListener
 }

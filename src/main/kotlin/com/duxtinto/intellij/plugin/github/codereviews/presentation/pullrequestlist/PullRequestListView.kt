@@ -1,7 +1,6 @@
 package com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist
 
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.PullRequestEntity
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.events.PullRequestListMouseListener
 import com.intellij.ui.components.JBScrollPane
 import com.intellij.ui.table.TableView
 import com.intellij.uiDesigner.core.GridConstraints
@@ -15,7 +14,7 @@ import javax.swing.ListSelectionModel
 abstract class PullRequestListView
 constructor(
         defaultColumns: Array<ColumnInfo<PullRequestEntity,*>>,
-        mouseListener: PullRequestListMouseListener,
+        mouseListener: PullRequestList.View.Events.MouseListener,
         private val selectionListener: PullRequestList.View.Events.SelectionListener
 ) : PullRequestList.View {
 

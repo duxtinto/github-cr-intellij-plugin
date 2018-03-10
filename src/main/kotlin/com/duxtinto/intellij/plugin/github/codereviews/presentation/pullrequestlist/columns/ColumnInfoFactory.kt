@@ -13,6 +13,13 @@ sealed class ColumnInfoFactory {
         TITLE
     }
 
+    enum class ColumnNames(val value: String) {
+        NUMBER("number"),
+        ISSUE("issues"),
+        STATE("state"),
+        TITLE("title")
+    }
+
     abstract fun createDefaultColumns(): Array<ColumnInfo<PullRequestEntity, *>>
 }
 
