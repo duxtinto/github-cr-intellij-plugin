@@ -6,12 +6,25 @@ intellij {
 }
 
 patchPluginXml {
-    version '1.0.3'
+    version '1.0.4'
     sinceBuild 171
     untilBuild '182.*'
     changeNotes '''
     <p>
         <ul>
+          <li>v1.0.4:
+            <ul>
+                <li>As a reviewer, I want to quickly checkout the pull request branch with the latest changes</li>
+                <li>Avoid crashing if a pull request's bodyHTML is null</li>
+            </ul>
+          </li>
+
+          <li>v1.0.3:
+            <ul>
+                <li>Support for Android Studio 3.0 (or newer)</li>
+            </ul>
+          </li>
+
           <li>Fixes implemented by the v1.0.2 release:</li>
           <ul>
             <li>The plugin should not crash if the idea task plugin has been disabled</li>
