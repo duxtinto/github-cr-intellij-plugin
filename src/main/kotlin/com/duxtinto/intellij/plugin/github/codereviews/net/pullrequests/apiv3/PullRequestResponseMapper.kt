@@ -18,7 +18,7 @@ constructor(private val getClosableIssues: GetAllClosableByInteractor)
                 number = dataModel.number,
                 state = PullRequestEntity.State.fromString(dataModel.state),
                 title = dataModel.title,
-                closeableIssues = getClosableIssues(dataModel.bodyHtml),
+                closeableIssues = getClosableIssues(dataModel.bodyHtml ?: ""),
                 url = URL(dataModel.htmlUrl),
                 head = with(dataModel.head) {
                     PullRequestEntity.Link(
