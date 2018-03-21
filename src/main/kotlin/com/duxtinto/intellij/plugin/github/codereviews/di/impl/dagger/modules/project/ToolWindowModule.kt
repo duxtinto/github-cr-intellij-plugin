@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules
+package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.project
 
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.presentation.toolwindow.ToolWindowContent

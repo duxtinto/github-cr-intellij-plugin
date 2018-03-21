@@ -24,7 +24,7 @@ internal class IdeaUserLoaderTest {
     private lateinit var connection: GithubConnectionExt
 
     @Injectable
-    private lateinit var userMapper: DomainDataMapper<UserEntity, UserResponse>
+    private lateinit var userMapper: @JvmSuppressWildcards DomainDataMapper<UserEntity, UserResponse>
 
     @Tested
     private lateinit var sut: IdeaUserLoader

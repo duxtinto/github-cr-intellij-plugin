@@ -1,7 +1,7 @@
 package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger
 
-import com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.ApplicationModule
-import com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.ProjectModule
+import com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.application.ApplicationModule
+import com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.project.ProjectModule
 import dagger.Component
 
 import javax.inject.Singleton

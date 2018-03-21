@@ -1,7 +1,7 @@
 package com.duxtinto.intellij.plugin.github.codereviews.ide.integration
 
 import com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.ProjectContainer
-import com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.ProjectModule
+import com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.project.ProjectModule
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.ProjectExt
 import com.intellij.dvcs.repo.VcsRepositoryManager
 import com.intellij.dvcs.repo.VcsRepositoryMappingListener
