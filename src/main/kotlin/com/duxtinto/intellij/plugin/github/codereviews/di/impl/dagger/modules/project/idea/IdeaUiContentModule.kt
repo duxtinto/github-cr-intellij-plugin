@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.idea
+package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.project.idea
 
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.intellij.openapi.wm.impl.ToolWindowImpl
@@ -18,6 +18,7 @@ class IdeaUiContentModule {
     }
 
     @Provides
+    @ProjectScoped
     fun provideContentFactory(): ContentFactory {
         return ContentFactory.SERVICE.getInstance()
     }

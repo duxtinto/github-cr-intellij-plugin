@@ -1,41 +1,41 @@
-package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.pullrequest
+package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.project.pullrequest
 
-import com.duxtinto.intellij.plugin.github.codereviews.di.qualifiers.Reviewer
+import com.duxtinto.intellij.plugin.github.codereviews.di.qualifiers.Reviewee
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.PullRequestList
 import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.ColumnInfoFactory
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.ReviewerColumnInfoFactory
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer.pullrequests.events.MouseListener
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer.pullrequests.PullRequestListPresenter
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer.pullrequests.PullRequestListView
-import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewer.pullrequests.events.SelectionListener
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.pullrequestlist.columns.RevieweeColumnInfoFactory
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.events.SelectionListener
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.PullRequestListPresenter
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.PullRequestListView
+import com.duxtinto.intellij.plugin.github.codereviews.presentation.reviewee.pullrequests.events.MouseListener
 import dagger.Binds
 import dagger.Module
 
 @Module
-abstract class ReviewerModule {
+abstract class RevieweeModule {
     @Binds
-    @Reviewer
+    @Reviewee
     @ProjectScoped
-    abstract fun provideColumnFactory(factory: ReviewerColumnInfoFactory): ColumnInfoFactory
+    abstract fun provideColumnFactory(factory: RevieweeColumnInfoFactory): ColumnInfoFactory
 
     @Binds
-    @Reviewer
+    @Reviewee
     @ProjectScoped
     abstract fun providePullRequestListView(view: PullRequestListView): PullRequestList.View
 
     @Binds
-    @Reviewer
+    @Reviewee
     @ProjectScoped
     abstract fun providePullRequestListPresenter(presenter: PullRequestListPresenter): PullRequestList.Presenter
 
     @Binds
-    @Reviewer
+    @Reviewee
     @ProjectScoped
     abstract fun providePullRequestListViewEventsSelectionListener(listener: SelectionListener): PullRequestList.View.Events.SelectionListener
 
     @Binds
-    @Reviewer
+    @Reviewee
     @ProjectScoped
     abstract fun providePullRequestListViewEventsMouseListener(listener: MouseListener): PullRequestList.View.Events.MouseListener
 }

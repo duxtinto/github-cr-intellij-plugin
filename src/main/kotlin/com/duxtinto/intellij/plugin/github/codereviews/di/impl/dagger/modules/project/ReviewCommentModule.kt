@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules
+package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.project
 
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.duxtinto.intellij.plugin.github.codereviews.domain.pullrequests.reviews.comments.*
@@ -20,5 +20,6 @@ abstract class ReviewCommentModule {
     abstract fun provideGoToCommentLineInteractor(interactor: GoToCommentLineInteractor): ActionOnReviewCommentInteractor
 
     @Binds
+    @ProjectScoped
     abstract fun provideCommentFormatter(formatter: CommentFormatter): Formatter<CodeReviewCommentEntity, String>
 }

@@ -1,6 +1,6 @@
-package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules
+package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.project
 
-import com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.pullrequest.PullRequestModule
+import com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.project.pullrequest.PullRequestModule
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.ProjectExt
 import com.intellij.openapi.progress.EmptyProgressIndicator

@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.idea
+package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.project.idea
 
 import com.duxtinto.intellij.plugin.github.codereviews.di.scopes.ProjectScoped
 import com.duxtinto.intellij.plugin.github.codereviews.ide.acl.entities.ProjectExt

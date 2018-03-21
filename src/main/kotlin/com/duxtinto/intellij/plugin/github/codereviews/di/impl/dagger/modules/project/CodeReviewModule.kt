@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules
+package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.project
 
 import com.duxtinto.intellij.plugin.github.codereviews.data.DataContract
 import com.duxtinto.intellij.plugin.github.codereviews.data.codereviews.CodeReviewsDataContract
@@ -52,5 +52,6 @@ abstract class CodeReviewModule {
     abstract fun provideCodeReviewsPresenter(presenter: CodeReviewsPresenter): CodeReviews.Presenter
 
     @Binds
+    @ProjectScoped
     abstract fun provideCodeReviewReviewerFetcher(fetcher: CodeReviewerFetcher): DataContract.CodeReview.Reviewer.Fetcher
 }

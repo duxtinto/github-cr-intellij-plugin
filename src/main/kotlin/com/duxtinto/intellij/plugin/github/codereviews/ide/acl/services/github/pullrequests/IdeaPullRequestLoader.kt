@@ -16,7 +16,7 @@ class IdeaPullRequestLoader
     @Inject
     constructor(
         private val connection: GithubConnectionExt,
-        private val pullRequestMapper: DomainDataMapper<PullRequestEntity, PullRequestResponse>)
+        private val pullRequestMapper: @JvmSuppressWildcards DomainDataMapper<PullRequestEntity, PullRequestResponse>)
     : NetContract.PullRequest.Loader {
 
     companion object {

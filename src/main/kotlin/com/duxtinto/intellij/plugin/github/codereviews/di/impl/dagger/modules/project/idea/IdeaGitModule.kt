@@ -1,4 +1,4 @@
-package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.idea
+package com.duxtinto.intellij.plugin.github.codereviews.di.impl.dagger.modules.project.idea
 
 import com.duxtinto.intellij.plugin.github.codereviews.di.qualifiers.Reviewee
 import com.duxtinto.intellij.plugin.github.codereviews.di.qualifiers.Reviewer

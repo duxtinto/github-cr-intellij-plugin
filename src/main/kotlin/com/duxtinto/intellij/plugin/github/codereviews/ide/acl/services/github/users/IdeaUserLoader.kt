@@ -13,7 +13,7 @@ class IdeaUserLoader
     @Inject
     constructor(
             private val connection: GithubConnectionExt,
-            private val userMapper: DomainDataMapper<UserEntity, UserResponse>)
+            private val userMapper: @JvmSuppressWildcards DomainDataMapper<UserEntity, UserResponse>)
     : NetContract.User.Loader {
 
     companion object {
